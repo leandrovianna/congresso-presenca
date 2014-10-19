@@ -1,6 +1,7 @@
 package com.congresso;
 
 import android.support.v7.app.ActionBarActivity;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,10 +9,17 @@ import com.congresso.R;
 
 public class MainActivity extends ActionBarActivity {
 
+	private DatabaseHelper helper;
+	private SQLiteDatabase db;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		helper =  new DatabaseHelper(this);
+		db = helper.getWritableDatabase();
+		db.close();
 	}
 
 	@Override
