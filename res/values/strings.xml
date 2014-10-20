@@ -4,5 +4,7 @@
     <string name="app_name">congresso-palestra</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    
+    <string name="msg_default_status">Posicione o QR Code dentro do retângulo para a leitura</string>
 
 </resources>

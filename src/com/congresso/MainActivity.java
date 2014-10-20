@@ -2,13 +2,12 @@ package com.congresso;
 
 import java.util.Calendar;
 
-import android.support.v7.app.ActionBarActivity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.congresso.R;
 
 public class MainActivity extends ActionBarActivity {
 
