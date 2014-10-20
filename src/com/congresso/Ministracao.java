@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class Ministracao {
 
-	int id;
-	int palestra_id;
-	Date data;
+	private int id;
+	private int palestraId;
+	private Date data;
 	
-	public Ministracao(int id, int palestra_id, Date data) {
+	public Ministracao(int id, int palestraId, Date data) {
 		super();
 		this.id = id;
-		this.palestra_id = palestra_id;
+		this.palestraId = palestraId;
 		this.data = data;
 	}
 
@@ -28,11 +28,11 @@ public class Ministracao {
 	}
 
 	public int getPalestra_id() {
-		return palestra_id;
+		return palestraId;
 	}
 
-	public void setPalestra_id(int palestra_id) {
-		this.palestra_id = palestra_id;
+	public void setPalestra_id(int palestraId) {
+		this.palestraId = palestraId;
 	}
 
 	public Date getData() {

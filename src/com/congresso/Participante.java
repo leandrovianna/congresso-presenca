@@ -2,8 +2,8 @@ package com.congresso;
 
 public class Participante {
 
-	int inscricao;
-	String nome;
+	private int inscricao;
+	private String nome;
 	
 	public Participante(int inscricao, String nome) {
 		super();

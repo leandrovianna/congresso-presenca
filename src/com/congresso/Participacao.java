@@ -2,17 +2,17 @@ package com.congresso;
 
 public class Participacao {
 
-	int ministracao_id;
-	int participante_inscricao;
-	int id;
-	boolean presenca;
-	boolean updated;
+	private int ministracaoId;
+	private int participanteInscricao;
+	private int id;
+	private boolean presenca;
+	private boolean updated;
 	
-	public Participacao(int ministracao_id, int participante_inscricao, int id,
+	public Participacao(int ministracaoId, int participanteInscricao, int id,
 			boolean presenca, boolean updated) {
 		super();
-		this.ministracao_id = ministracao_id;
-		this.participante_inscricao = participante_inscricao;
+		this.ministracaoId = ministracaoId;
+		this.participanteInscricao = participanteInscricao;
 		this.id = id;
 		this.presenca = presenca;
 		this.updated = updated;
@@ -22,20 +22,20 @@ public class Participacao {
 		super();
 	}
 
-	public int getMinistracao_id() {
-		return ministracao_id;
+	public int getMinistracaoId() {
+		return ministracaoId;
 	}
 
-	public void setMinistracao_id(int ministracao_id) {
-		this.ministracao_id = ministracao_id;
+	public void setMinistracaoId(int ministracaoId) {
+		this.ministracaoId = ministracaoId;
 	}
 
-	public int getParticipante_inscricao() {
-		return participante_inscricao;
+	public int getParticipanteInscricao() {
+		return participanteInscricao;
 	}
 
-	public void setParticipante_inscricao(int participante_inscricao) {
-		this.participante_inscricao = participante_inscricao;
+	public void setParticipanteInscricao(int participanteInscricao) {
+		this.participanteInscricao = participanteInscricao;
 	}
 
 	public int getId() {
@@ -61,4 +61,5 @@ public class Participacao {
 	public void setUpdated(boolean updated) {
 		this.updated = updated;
 	}
+
 }

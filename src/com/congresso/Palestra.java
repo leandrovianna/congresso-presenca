@@ -2,8 +2,8 @@ package com.congresso;
 
 public class Palestra {
 
-	String nome;
-	int id;
+	private String nome;
+	private int id;
 	
 	public Palestra(String nome, int id) {
 		super();
