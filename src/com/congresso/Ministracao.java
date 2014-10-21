@@ -27,11 +27,11 @@ public class Ministracao {
 		this.id = id;
 	}
 
-	public int getPalestra_id() {
+	public int getPalestraId() {
 		return palestraId;
 	}
 
-	public void setPalestra_id(int palestraId) {
+	public void setPalestraId(int palestraId) {
 		this.palestraId = palestraId;
 	}
 
