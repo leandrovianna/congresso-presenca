@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/lista"
         android:layout_alignParentTop="true"
-        android:text="@string/titulo"
+        android:text="Palestras"
         android:textSize="20sp" />
     
     <ListView
