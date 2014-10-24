@@ -1110,9 +1110,9 @@ containing a value of this type.
         public static final int icon=0x7f09002a;
         public static final int ifRoom=0x7f090011;
         public static final int image=0x7f090027;
+        public static final int list=0x7f09003d;
         public static final int listMode=0x7f090006;
         public static final int list_item=0x7f090029;
-        public static final int lista=0x7f09003d;
         public static final int middle=0x7f090018;
         public static final int never=0x7f090012;
         public static final int none=0x7f090019;
@@ -1140,8 +1140,8 @@ containing a value of this type.
         public static final int submit_area=0x7f090039;
         public static final int tabMode=0x7f090008;
         public static final int title=0x7f09002b;
+        public static final int titulo=0x7f09003c;
         public static final int top_action_bar=0x7f090020;
-        public static final int título=0x7f09003c;
         public static final int up=0x7f090021;
         public static final int useLogo=0x7f09000e;
         public static final int viewfinder_view=0x7f09003f;
