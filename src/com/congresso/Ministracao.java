@@ -5,40 +5,37 @@ import java.util.Date;
 public class Ministracao {
 
 	private int id;
-	private int palestraId;
+	private Palestra palestra;
 	private Date data;
 	
-	public Ministracao(int id, int palestraId, Date data) {
-		super();
+	public Ministracao(int id, Palestra palestra, Date data) {
 		this.id = id;
-		this.palestraId = palestraId;
+		this.palestra = palestra;
 		this.data = data;
 	}
-
-	public Ministracao() {
-		super();
-	}
-
+	
+	public Ministracao() {}
+	
 	public int getId() {
 		return id;
 	}
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public int getPalestraId() {
-		return palestraId;
+	
+	public Palestra getPalestra() {
+		return palestra;
 	}
-
-	public void setPalestraId(int palestraId) {
-		this.palestraId = palestraId;
+	
+	public void setPalestra(Palestra palestra) {
+		this.palestra = palestra;
 	}
-
+	
 	public Date getData() {
 		return data;
 	}
-
+	
 	public void setData(Date data) {
 		this.data = data;
 	}

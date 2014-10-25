@@ -2,40 +2,37 @@ package com.congresso;
 
 public class Participacao {
 
-	private int ministracaoId;
-	private int participanteInscricao;
+	private Ministracao ministracao;
+	private Participante participante;
 	private int id;
 	private boolean presenca;
 	private boolean updated;
 	
-	public Participacao(int ministracaoId, int participanteInscricao, int id,
-			boolean presenca, boolean updated) {
-		super();
-		this.ministracaoId = ministracaoId;
-		this.participanteInscricao = participanteInscricao;
+	public Participacao(Ministracao ministracao, Participante participante,
+			int id, boolean presenca, boolean updated) {
+		this.ministracao = ministracao;
+		this.participante = participante;
 		this.id = id;
 		this.presenca = presenca;
 		this.updated = updated;
 	}
+	
+	public Participacao() {}
 
-	public Participacao() {
-		super();
+	public Ministracao getMinistracao() {
+		return ministracao;
 	}
 
-	public int getMinistracaoId() {
-		return ministracaoId;
+	public void setMinistracao(Ministracao ministracao) {
+		this.ministracao = ministracao;
 	}
 
-	public void setMinistracaoId(int ministracaoId) {
-		this.ministracaoId = ministracaoId;
+	public Participante getParticipante() {
+		return participante;
 	}
 
-	public int getParticipanteInscricao() {
-		return participanteInscricao;
-	}
-
-	public void setParticipanteInscricao(int participanteInscricao) {
-		this.participanteInscricao = participanteInscricao;
+	public void setParticipante(Participante participante) {
+		this.participante = participante;
 	}
 
 	public int getId() {
@@ -61,5 +58,4 @@ public class Participacao {
 	public void setUpdated(boolean updated) {
 		this.updated = updated;
 	}
-
 }
