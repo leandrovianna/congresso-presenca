@@ -68,6 +68,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				" FOREIGN KEY(participante_inscricao) REFERENCES participante(inscricao));");
 		
 		db.execSQL("CREATE TABLE participante (inscricao INTEGER PRIMARY KEY, nome TEXT)");
+		
+		inserirDadosTeste(db); //inserindo dados para teste
 	}
 
 	@Override
