@@ -1,7 +1,5 @@
 package com.congresso;
 
-import java.util.Calendar;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	private static final String BANCO_DADOS = "congresso";
-	private static final int VERSAO = 1;
+	private static final int VERSAO = 2;
 	
 	public static class Palestra {
 		public static final String TABELA = "palestra";
@@ -59,8 +57,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("CREATE TABLE palestra (_id INTEGER PRIMARY KEY, nome TEXT);");
 		
 		db.execSQL("CREATE TABLE ministracao (_id INTEGER PRIMARY KEY," +
-				" data DATE, palestra_id INTEGER, " +
+				" data TEXT, palestra_id INTEGER, " +
 				" FOREIGN KEY(palestra_id) REFERENCES palestra(_id));");
+		//alterando campo data para tipo TEXT
+		//assim vou salvar um valor como 2014-11-20 (yyyy-MM-dd)
 		
 		db.execSQL("CREATE TABLE participacao (_id INTEGER PRIMARY KEY, ministracao_id INTEGER," +
 				" participante_inscricao INTEGER, presenca BOOLEAN, updated BOOLEAN," +
@@ -74,14 +74,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		inserirDadosTeste(db); //inserindo dados para teste
 	}
 	
 	private void inserirDadosTeste(SQLiteDatabase db) {
 		ContentValues values = new ContentValues();
 		ContentValues ministracaoValues = new ContentValues();
 		ContentValues participacoesValues = new ContentValues();
-		
-		long dateTest = Calendar.getInstance().getTime().getTime();
 		
 		//INSERINDO PALESTRAS E SUAS MINITRAÇÕES
 		
@@ -90,12 +89,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert(DatabaseHelper.Palestra.TABELA, null, values);
 		
 		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 0);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, dateTest);
+		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-25");
 		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 0);
 		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
 		
 		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 1);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, dateTest);
+		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-26");
 		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 0);
 		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
 		
@@ -104,7 +103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert(DatabaseHelper.Palestra.TABELA, null, values);
 		
 		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 2);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, dateTest);
+		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-25");
 		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 1);
 		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
 		
@@ -113,7 +112,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert(DatabaseHelper.Palestra.TABELA, null, values);
 		
 		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 3);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, dateTest);
+		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-25");
 		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 2);
 		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
 
