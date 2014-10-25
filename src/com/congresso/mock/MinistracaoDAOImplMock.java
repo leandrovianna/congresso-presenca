@@ -20,13 +20,16 @@ public class MinistracaoDAOImplMock implements MinistracaoDAO {
 		List<Ministracao> ministracoes = new ArrayList<Ministracao>();
 		
 		Ministracao m = new Ministracao(0, new Palestra("Desenvolvimento de Jogos", 0), new Date());
+		Ministracao m2 = new Ministracao(1, new Palestra("Introducao ao Ruby", 1), new Date());
+		Ministracao m3 = new Ministracao(2, new Palestra("Curso Arduino", 2), new Date());
+		Ministracao m4 = new Ministracao(3, new Palestra("Curso Arduino", 2), new Date());
+		Ministracao m5 = new Ministracao(4, new Palestra("Curso Arduino", 2), new Date());
 		
 		ministracoes.add(m);
-		ministracoes.add(m);
-		ministracoes.add(m);
-		ministracoes.add(m);
-		ministracoes.add(m);
-		ministracoes.add(m);
+		ministracoes.add(m2);
+		ministracoes.add(m3);
+		ministracoes.add(m4);
+		ministracoes.add(m5);
 		
 		return ministracoes;
 	}
