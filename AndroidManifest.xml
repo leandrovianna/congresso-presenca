@@ -7,7 +7,7 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
-    
+
     <!-- Permissões necessário para ler QR Codes -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -32,12 +32,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-<!--    O Zxing precisa dessa Activity para a leitura do QR Code -->
-        <activity android:name="jim.h.common.android.zxinglib.CaptureActivity"
-			android:screenOrientation="landscape" android:configChanges="orientation|keyboardHidden"
-			android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-			android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <!-- O Zxing precisa dessa Activity para a leitura do QR Code -->
+        <activity
+            android:name="jim.h.common.android.zxinglib.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".Activity_verificar_presenca"
+            android:label="@string/title_activity_activity_verificar_presenca" >
+        </activity>
     </application>
 
 </manifest>
