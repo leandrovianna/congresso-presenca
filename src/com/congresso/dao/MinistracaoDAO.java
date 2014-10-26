@@ -8,7 +8,7 @@ public interface MinistracaoDAO {
 
 	public List<Ministracao> listarMinistracaoDeHoje();
 	
-	public void inserirMinistracao(Ministracao m);
+	public boolean inserirMinistracao(Ministracao m);
 	
 	public boolean removerMinistracao(Ministracao m);
 	
