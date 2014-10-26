@@ -89,11 +89,12 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 	@Override
 	public Ministracao buscarMinistracaoPorId(int id) {
 
-		Ministracao ministracao = null;
-		String[] whereClause = new String[]{String.valueOf(id)};
+		Ministracao ministracao;
 
-		Cursor cursor = getDb().query(DatabaseHelper.Ministracao.TABELA, null, 
-				"WHERE _id = ?", whereClause, null, null, null);
+		Cursor cursor = getDb().rawQuery("SELECT ministracao._id, ministracao.palestra_id, palestra.nome, ministracao.data "
+				+ "FROM ministracao, palestra "
+				+ "WHERE palestra._id = ministracao.palestra_id "
+				+ "AND ministracao._id = "+id, null);
 
 		cursor.moveToFirst();
 
@@ -103,6 +104,8 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 							cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Ministracao.PALESTRA_ID))), 
 							dateFormat.parse(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Ministracao.DATA))));
 		} catch (ParseException e) {
+			//ocorreu um erro no parser da data do banco
+			return null;
 		}
 		
 		return ministracao;
