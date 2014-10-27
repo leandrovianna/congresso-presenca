@@ -59,7 +59,7 @@ public class Activity_verificar_presenca extends ActionBarActivity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				
-				// habilitar para confirmar a presenca no BD				
+				// habilitar para confirmar a presenca				
 			}
 		});
 		
@@ -71,5 +71,8 @@ public class Activity_verificar_presenca extends ActionBarActivity {
 				// retornar, mas com os campos limpos	
 			}
 		});
+		
+		confirmacao = builder.create();
+		confirmacao.show();
 	}
 }
