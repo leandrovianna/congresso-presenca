@@ -58,4 +58,20 @@ public class Participacao {
 	public void setUpdated(boolean updated) {
 		this.updated = updated;
 	}
+
+	public void setPresenca(int presenca) {
+		if (presenca == 0)
+			this.presenca = false;
+		else
+			this.presenca = true;
+		
+	}
+
+	public void setUpdated(int updated) {
+		if (updated == 0)
+			this.updated = false;
+		else
+			this.updated = true;
+		
+	}
 }
