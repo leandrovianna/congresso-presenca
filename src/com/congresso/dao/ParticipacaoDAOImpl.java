@@ -3,6 +3,7 @@ package com.congresso.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -62,21 +63,38 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 	}
 
 	@Override
-	public void inserirParticipacao(Participacao participacao) {
-		// TODO Auto-generated method stub
-
+	public boolean inserirParticipacao(Participacao participacao) {
+		ContentValues values = new ContentValues();
+		
+		values.put("_id", participacao.getId());
+		values.put("ministracao_id", participacao.getMinistracao().getId());
+		values.put("participante_inscricao", participacao.getParticipante().getInscricao());
+		values.put("presenca", participacao.isPresenca());
+		values.put("updated", participacao.isUpdated());
+		
+		long retorno = getDb().insert("participacao", null, values);
+		
+		return retorno != -1;
 	}
 
 	@Override
 	public boolean removerParticipacao(Participacao participacao) {
-		// TODO Auto-generated method stub
-		return false;
+		int retorno = getDb().delete("participacao", "WHERE _id = "+participacao.getId(), null);
+		
+		return retorno != 0;
 	}
 
 	@Override
 	public Participacao buscarParticipacaoPorId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Participacao p;
+		
+		Cursor cursor = getDb().rawQuery("SELECT * FROM participacao, participante " +
+				"WHERE participacao.participante_inscricao = participante.inscricao AND " +
+				"participacao._id = "+id, null);
+		
+		p = criarParticipacao(cursor);
+
+		return p;
 	}
 
 }
