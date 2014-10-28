@@ -35,8 +35,8 @@ public class MinistracaoDAOImplMock implements MinistracaoDAO {
 	}
 
 	@Override
-	public void inserirMinistracao(Ministracao m) {
-		
+	public boolean inserirMinistracao(Ministracao m) {
+		return true;
 	}
 
 	@Override
