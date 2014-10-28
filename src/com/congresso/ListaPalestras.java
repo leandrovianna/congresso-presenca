@@ -2,22 +2,36 @@ package com.congresso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.congresso.dao.MinistracaoDAOImpl;
+
 public class ListaPalestras extends ListActivity{
+
+	private MinistracaoDAOImpl mDAO;
+	private List<Ministracao> ministracoesHoje;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		ArrayList<HashMap<String, String>> itens = getMinistracoesDoDia();
+		mDAO = new MinistracaoDAOImpl(this);
+		ministracoesHoje = mDAO.listarMinistracaoDeHoje();
+
+		ArrayList<HashMap<String, String>> itens = new ArrayList<HashMap<String, String>>();
+		for (int i = 0; i >= ministracoesHoje.size(); i++) {
+			HashMap<String, String> ministracoes = new HashMap<String, String>();
+			ministracoes.put("nome", ministracoesHoje.get(i).getPalestra().getNome());
+			itens.add(ministracoes);
+		}
 
 		String[] from = new String[]{"nome"};
 		int[] to = new int[]{android.R.id.text1};
@@ -33,55 +47,9 @@ public class ListaPalestras extends ListActivity{
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 
-		Toast.makeText(this, "Selecionou opção " + id , Toast.LENGTH_SHORT).show();
-
-		//Intent intent = new Intent(getApplicationContext(), ActivityPresenca.class);
-		//intent.putExtra("id_palestra", id);
-		//startActivity(intent);
+		Intent intent = new Intent(getApplicationContext(), Activity_verificar_presenca.class);
+		intent.putExtra("id_palestra", ministracoesHoje.get(position).getPalestra().getId());
+		startActivity(intent);
 	}
 
-	public static String milisParaData(String dataMilis,String formatoData) {
-		return DateFormat.format(formatoData, Long.parseLong(dataMilis)).toString();
-	}
-
-	private static ArrayList<HashMap<String, String>> getMinistracoesDoDia(){
-
-		ArrayList<HashMap<String, String>> itens = new ArrayList<HashMap<String, String>>();
-
-		//Dados de teste, futuramente acessará o db para as informações
-		String[] nomes = new String[]{
-				"Minicurso Arduino",
-				"Minicurso Desenvolvimento de Jogos",
-				"Minicurso Introdução Ruby",
-				"Palestra A",
-				"Palestra B",
-				"Palestra C",
-				"Palestra D",
-				"Palestra E",
-				"Palestra F"
-		};
-		String hoje  = milisParaData(""+(System.currentTimeMillis()-86400000), "dd/MM/yyyy");
-		String[] datas = new String[]{
-				hoje,
-				hoje,
-				hoje,
-				hoje,
-				hoje,
-				hoje,
-				hoje,
-				"10/10/2014",
-				"10/10/2014"
-		};
-
-		for (int i = 0; i < nomes.length; i++) {
-			HashMap<String, String> ministracoes = new HashMap<String, String>();
-			if(datas[i]==hoje){
-				ministracoes.put("nome", nomes[i]);
-				itens.add(ministracoes);
-			}
-		}
-
-		return itens;
-
-	}
 }
