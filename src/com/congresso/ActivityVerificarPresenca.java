@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Activity_verificar_presenca extends ActionBarActivity {
+public class ActivityVerificarPresenca extends ActionBarActivity {
 
 	private AlertDialog confirmacao;
 	
@@ -44,15 +44,15 @@ public class Activity_verificar_presenca extends ActionBarActivity {
 	
 	public void buscarInscrito () {
 		
-		// implementar a busca através do numero de inscrição
+		// implementar a busca atravï¿½s do numero de inscriï¿½ï¿½o
 	}
 	
 	public void checkPresenca () {
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		
-		builder.setTitle("Confirmação");
-		builder.setMessage("O aluno está presente?");
+		builder.setTitle("Confirmaï¿½ï¿½o");
+		builder.setMessage("O aluno estï¿½ presente?");
 		
 		builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
 			

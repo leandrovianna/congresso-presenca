@@ -47,7 +47,7 @@ public class ListaPalestras extends ListActivity{
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 
-		Intent intent = new Intent(getApplicationContext(), Activity_verificar_presenca.class);
+		Intent intent = new Intent(getApplicationContext(), ActivityVerificarPresenca.class);
 		intent.putExtra("id_palestra", ministracoesHoje.get(position).getPalestra().getId());
 		startActivity(intent);
 	}
