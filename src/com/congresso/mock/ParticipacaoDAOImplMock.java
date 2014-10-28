@@ -35,8 +35,8 @@ public class ParticipacaoDAOImplMock implements ParticipacaoDAO {
 	}
 
 	@Override
-	public void inserirParticipacao(Participacao participacao) {
-
+	public boolean inserirParticipacao(Participacao participacao) {
+		return true;
 	}
 
 	@Override
