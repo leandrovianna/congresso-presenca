@@ -74,9 +74,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		inserirDadosTeste(db); //inserindo dados para teste
 	}
 	
 	private void inserirDadosTeste(SQLiteDatabase db) {
+		
+		db.execSQL("DELETE FROM palestra;");
+		db.execSQL("DELETE FROM ministracao;");
+		db.execSQL("DELETE FROM participacao;");
+		db.execSQL("DELETE FROM participante;");
+		
 		ContentValues values = new ContentValues();
 		ContentValues ministracaoValues = new ContentValues();
 		ContentValues participacoesValues = new ContentValues();
