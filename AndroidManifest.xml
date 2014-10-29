@@ -41,8 +41,8 @@
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".Activity_verificar_presenca"
-            android:label="@string/title_activity_activity_verificar_presenca" >
+            android:name=".ActivityVerificarPresenca"
+            android:label="@string/title_activity_verificar_presenca" >
         </activity>
     </application>
 
