@@ -49,9 +49,9 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 		List<Ministracao> ministracoes = new ArrayList<Ministracao>();
 
 		while (cursor.moveToNext()) {
-			Ministracao m = new Ministracao(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Ministracao._ID)), 
-					new Palestra(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Palestra.NOME)), 
-							cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Ministracao.PALESTRA_ID))), 
+			Ministracao m = new Ministracao(cursor.getInt(cursor.getColumnIndex("_id")), 
+					new Palestra(cursor.getString(cursor.getColumnIndex("nome")), 
+							cursor.getInt(cursor.getColumnIndex("palestra_id"))), 
 							new Date());
 
 			ministracoes.add(m);
@@ -65,11 +65,11 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 
 		ContentValues values = new ContentValues();
 
-		values.put(DatabaseHelper.Ministracao._ID, m.getId());
-		values.put(DatabaseHelper.Ministracao.PALESTRA_ID, m.getPalestra().getId());
-		values.put(DatabaseHelper.Ministracao.DATA, dateFormat.format(m.getData()));
+		values.put("_id", m.getId());
+		values.put("palestra_id", m.getPalestra().getId());
+		values.put("data", dateFormat.format(m.getData()));
 
-		long retorno = getDb().insert(DatabaseHelper.Ministracao.TABELA, null, values);
+		long retorno = getDb().insert("ministracao", null, values);
 
 		return (retorno != 1);
 
@@ -80,7 +80,7 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 
 		String id = String.valueOf(m.getId());
 
-		int retorno = getDb().delete(DatabaseHelper.Ministracao.TABELA, "WHERE _id = ?", 
+		int retorno = getDb().delete("ministracao", "WHERE _id = ?", 
 				new String[]{id});
 
 		return retorno != 0;
@@ -99,10 +99,10 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 		cursor.moveToFirst();
 
 		try {
-			ministracao = new Ministracao(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Ministracao._ID)), 
-					new Palestra(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Palestra.NOME)), 
-							cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Ministracao.PALESTRA_ID))), 
-							dateFormat.parse(cursor.getString(cursor.getColumnIndex(DatabaseHelper.Ministracao.DATA))));
+			ministracao = new Ministracao(cursor.getInt(cursor.getColumnIndex("_id")), 
+					new Palestra(cursor.getString(cursor.getColumnIndex("nome")), 
+							cursor.getInt(cursor.getColumnIndex("palestra_id"))), 
+							dateFormat.parse(cursor.getString(cursor.getColumnIndex("data"))));
 		} catch (ParseException e) {
 			//ocorreu um erro no parser da data do banco
 			return null;

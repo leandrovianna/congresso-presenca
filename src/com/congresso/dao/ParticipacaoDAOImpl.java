@@ -51,14 +51,14 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 	private Participacao criarParticipacao(Cursor cursor) {
 		Participacao p = new Participacao();
 		
-		p.setId(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Participacao._ID)));
-		p.setMinistracao(ministDAO.buscarMinistracaoPorId(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Participacao.MINISTRACAO_ID))));
+		p.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+		p.setMinistracao(ministDAO.buscarMinistracaoPorId(cursor.getInt(cursor.getColumnIndex("ministracao_id"))));
 		p.setParticipante(new Participante(
-					cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Participacao.PARTICIPANTE_INSCRICAO)),
-					cursor.getString(cursor.getColumnIndex(DatabaseHelper.Participante.NOME))
+					cursor.getInt(cursor.getColumnIndex("participante_inscricao")),
+					cursor.getString(cursor.getColumnIndex("nome"))
 				));
-		p.setPresenca(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Participacao.PRESENCA)));
-		p.setUpdated(cursor.getInt(cursor.getColumnIndex(DatabaseHelper.Participacao.UPDATED)));
+		p.setPresenca(cursor.getInt(cursor.getColumnIndex("presenca")));
+		p.setUpdated(cursor.getInt(cursor.getColumnIndex("updated")));
 		
 		return p;
 	}

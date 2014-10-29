@@ -33,18 +33,18 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ActivityVerificarPresenca"
+            android:label="@string/title_activity_verificar_presenca" >
+        </activity>
+
         <!-- O Zxing precisa dessa Activity para a leitura do QR Code -->
         <activity
             android:name="jim.h.common.android.zxinglib.CaptureActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-
-        <activity
-            android:name=".ActivityVerificarPresenca"
-            android:label="@string/title_activity_verificar_presenca" >
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden">
+       	</activity>
     </application>
-
 </manifest>

@@ -9,43 +9,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	private static final String BANCO_DADOS = "congresso";
 	private static final int VERSAO = 13;
-	
-	public static class Palestra {
-		public static final String TABELA = "palestra";
-		public static final String _ID = "_id";
-		public static final String NOME = "nome";
-		
-		public static final String[] COLUNAS = new String[]{_ID, NOME};
-	}
-	
-	public static class Ministracao {
-		public static final String TABELA = "ministracao";
-		public static final String _ID = "_id";
-		public static final String DATA = "data";
-		public static final String PALESTRA_ID = "palestra_id";
-		
-		public static final String[] COLUNAS = new String[]{_ID, DATA, PALESTRA_ID};
-	}
-	
-	public static class Participacao {
-		public static final String TABELA = "participacao";
-		public static final String _ID = "_id";
-		public static final String MINISTRACAO_ID = "ministracao_id";
-		public static final String PARTICIPANTE_INSCRICAO = "participante_inscricao";
-		public static final String PRESENCA = "presenca";
-		public static final String UPDATED = "updated";
-		
-		public static final String[] COLUNAS = 
-				new String[]{_ID, MINISTRACAO_ID, PARTICIPANTE_INSCRICAO, PRESENCA, UPDATED};
-	}
-	
-	public static class Participante {
-		public static final String TABELA = "participante";
-		public static final String INSCRICAO = "inscricao";
-		public static final String NOME = "nome";
-		
-		public static final String[] COLUNAS = new String[]{INSCRICAO, NOME};
-	}
 
 	public DatabaseHelper(Context context) {
 		super(context, BANCO_DADOS, null, VERSAO);
@@ -90,117 +53,117 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		//INSERINDO PALESTRAS E SUAS MINITRAÇÕES
 		
-		values.put(DatabaseHelper.Palestra._ID, 0);
-		values.put(DatabaseHelper.Palestra.NOME, "Desenvolvimento de Jogos");
-		db.insert(DatabaseHelper.Palestra.TABELA, null, values);
+		values.put("_id", 0);
+		values.put("nome", "Desenvolvimento de Jogos");
+		db.insert("palestra", null, values);
 		
-		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 0);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-29");
-		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 0);
-		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
+		ministracaoValues.put("_id", 0);
+		ministracaoValues.put("data", "2014-10-29");
+		ministracaoValues.put("palestra_id", 0);
+		db.insert("ministracao", null, ministracaoValues);
 		
-		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 1);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-30");
-		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 0);
-		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
+		ministracaoValues.put("_id", 1);
+		ministracaoValues.put("data", "2014-10-30");
+		ministracaoValues.put("palestra_id'", 0);
+		db.insert("ministracao", null, ministracaoValues);
 		
-		values.put(DatabaseHelper.Palestra._ID, 1);
-		values.put(DatabaseHelper.Palestra.NOME, "Minicurso Arduino");
-		db.insert(DatabaseHelper.Palestra.TABELA, null, values);
+		values.put("_id", 1);
+		values.put("nome", "Minicurso Arduino");
+		db.insert("palestra", null, values);
 		
-		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 2);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-29");
-		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 1);
-		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
+		ministracaoValues.put("_id", 2);
+		ministracaoValues.put("data", "2014-10-29");
+		ministracaoValues.put("palestra_id'", 1);
+		db.insert("ministracao", null, ministracaoValues);
 		
-		values.put(DatabaseHelper.Palestra._ID, 2);
-		values.put(DatabaseHelper.Palestra.NOME, "Introdução Ruby");
-		db.insert(DatabaseHelper.Palestra.TABELA, null, values);
+		values.put("_id", 2);
+		values.put("nome", "Introdução Ruby");
+		db.insert("palestra", null, values);
 		
-		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 3);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-29");
-		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 2);
-		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
+		ministracaoValues.put("_id", 3);
+		ministracaoValues.put("data", "2014-10-29");
+		ministracaoValues.put("palestra_id'", 2);
+		db.insert("ministracao", null, ministracaoValues);
 
 		values.clear();
 		
 		//INSERINDO OS PARTICIPANTES E SUAS PARTICIPAÇÕES
 		
-		values.put(DatabaseHelper.Participante.INSCRICAO, 1001);
-		values.put(DatabaseHelper.Participante.NOME, "João da Silva");
-		db.insert(DatabaseHelper.Participante.TABELA, null, values);
+		values.put("inscricao", 1001);
+		values.put("nome", "João da Silva");
+		db.insert("participante", null, values);
 		
-		participacoesValues.put(DatabaseHelper.Participacao._ID, 0);
-		participacoesValues.put(DatabaseHelper.Participacao.MINISTRACAO_ID, 0);
-		participacoesValues.put(DatabaseHelper.Participacao.PARTICIPANTE_INSCRICAO, 1001);
-		participacoesValues.put(DatabaseHelper.Participacao.PRESENCA, false);
-		participacoesValues.put(DatabaseHelper.Participacao.UPDATED, false);
-		db.insert(DatabaseHelper.Participacao.TABELA, null, participacoesValues);
+		participacoesValues.put("_id", 0);
+		participacoesValues.put("ministracao_id", 0);
+		participacoesValues.put("participante_inscricao", 1001);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
 		
-		participacoesValues.put(DatabaseHelper.Participacao._ID, 1);
-		participacoesValues.put(DatabaseHelper.Participacao.MINISTRACAO_ID, 1);
-		participacoesValues.put(DatabaseHelper.Participacao.PARTICIPANTE_INSCRICAO, 1001);
-		participacoesValues.put(DatabaseHelper.Participacao.PRESENCA, false);
-		participacoesValues.put(DatabaseHelper.Participacao.UPDATED, false);
-		db.insert(DatabaseHelper.Participacao.TABELA, null, participacoesValues);
+		participacoesValues.put("_id", 1);
+		participacoesValues.put("ministracao_id", 1);
+		participacoesValues.put("participante_inscricao", 1001);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
 		
-		participacoesValues.put(DatabaseHelper.Participacao._ID, 2);
-		participacoesValues.put(DatabaseHelper.Participacao.MINISTRACAO_ID, 2);
-		participacoesValues.put(DatabaseHelper.Participacao.PARTICIPANTE_INSCRICAO, 1001);
-		participacoesValues.put(DatabaseHelper.Participacao.PRESENCA, false);
-		participacoesValues.put(DatabaseHelper.Participacao.UPDATED, false);
-		db.insert(DatabaseHelper.Participacao.TABELA, null, participacoesValues);
+		participacoesValues.put("_id", 2);
+		participacoesValues.put("ministracao_id", 2);
+		participacoesValues.put("participante_inscricao", 1001);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
 		
-		participacoesValues.put(DatabaseHelper.Participacao._ID, 3);
-		participacoesValues.put(DatabaseHelper.Participacao.MINISTRACAO_ID, 3);
-		participacoesValues.put(DatabaseHelper.Participacao.PARTICIPANTE_INSCRICAO, 1001);
-		participacoesValues.put(DatabaseHelper.Participacao.PRESENCA, false);
-		participacoesValues.put(DatabaseHelper.Participacao.UPDATED, false);
-		db.insert(DatabaseHelper.Participacao.TABELA, null, participacoesValues);
+		participacoesValues.put("_id", 3);
+		participacoesValues.put("ministracao_id", 3);
+		participacoesValues.put("participante_inscricao", 1001);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
 		
-		values.put(DatabaseHelper.Participante.INSCRICAO, 1002);
-		values.put(DatabaseHelper.Participante.NOME, "Maria de Sousa Carvalho");
-		db.insert(DatabaseHelper.Participante.TABELA, null, values); //minist ids 2 e 3
+		values.put("inscricao", 1002);
+		values.put("nome", "Maria de Sousa Carvalho");
+		db.insert("participante", null, values); //minist ids 2 e 3
 		
-		participacoesValues.put(DatabaseHelper.Participacao._ID, 4);
-		participacoesValues.put(DatabaseHelper.Participacao.MINISTRACAO_ID, 2);
-		participacoesValues.put(DatabaseHelper.Participacao.PARTICIPANTE_INSCRICAO, 1002);
-		participacoesValues.put(DatabaseHelper.Participacao.PRESENCA, false);
-		participacoesValues.put(DatabaseHelper.Participacao.UPDATED, false);
-		db.insert(DatabaseHelper.Participacao.TABELA, null, participacoesValues);
+		participacoesValues.put("_id", 4);
+		participacoesValues.put("ministracao_id", 2);
+		participacoesValues.put("participante_inscricao", 1002);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
 	
-		participacoesValues.put(DatabaseHelper.Participacao._ID, 5);
-		participacoesValues.put(DatabaseHelper.Participacao.MINISTRACAO_ID, 3);
-		participacoesValues.put(DatabaseHelper.Participacao.PARTICIPANTE_INSCRICAO, 1002);
-		participacoesValues.put(DatabaseHelper.Participacao.PRESENCA, false);
-		participacoesValues.put(DatabaseHelper.Participacao.UPDATED, false);
-		db.insert(DatabaseHelper.Participacao.TABELA, null, participacoesValues);
+		participacoesValues.put("_id", 5);
+		participacoesValues.put("ministracao_id", 3);
+		participacoesValues.put("participante_inscricao", 1002);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
 	
-		values.put(DatabaseHelper.Participante.INSCRICAO, 1003);
-		values.put(DatabaseHelper.Participante.NOME, "Otavio Mesquita");
-		db.insert(DatabaseHelper.Participante.TABELA, null, values);
+		values.put("inscricao", 1003);
+		values.put("nome", "Otavio Mesquita");
+		db.insert("participante", null, values);
 		//minist. ids 0, 1, 3 (jogos e ruby)
 		
-		participacoesValues.put(DatabaseHelper.Participacao._ID, 6);
-		participacoesValues.put(DatabaseHelper.Participacao.MINISTRACAO_ID, 0);
-		participacoesValues.put(DatabaseHelper.Participacao.PARTICIPANTE_INSCRICAO, 1003);
-		participacoesValues.put(DatabaseHelper.Participacao.PRESENCA, false);
-		participacoesValues.put(DatabaseHelper.Participacao.UPDATED, false);
-		db.insert(DatabaseHelper.Participacao.TABELA, null, participacoesValues);
+		participacoesValues.put("_id", 6);
+		participacoesValues.put("ministracao_id", 0);
+		participacoesValues.put("participante_inscricao", 1003);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
 		
-		participacoesValues.put(DatabaseHelper.Participacao._ID, 7);
-		participacoesValues.put(DatabaseHelper.Participacao.MINISTRACAO_ID, 1);
-		participacoesValues.put(DatabaseHelper.Participacao.PARTICIPANTE_INSCRICAO, 1003);
-		participacoesValues.put(DatabaseHelper.Participacao.PRESENCA, false);
-		participacoesValues.put(DatabaseHelper.Participacao.UPDATED, false);
-		db.insert(DatabaseHelper.Participacao.TABELA, null, participacoesValues);
+		participacoesValues.put("_id", 7);
+		participacoesValues.put("ministracao_id", 1);
+		participacoesValues.put("participante_inscricao", 1003);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
 		
-		participacoesValues.put(DatabaseHelper.Participacao._ID, 8);
-		participacoesValues.put(DatabaseHelper.Participacao.MINISTRACAO_ID, 3);
-		participacoesValues.put(DatabaseHelper.Participacao.PARTICIPANTE_INSCRICAO, 1003);
-		participacoesValues.put(DatabaseHelper.Participacao.PRESENCA, false);
-		participacoesValues.put(DatabaseHelper.Participacao.UPDATED, false);
-		db.insert(DatabaseHelper.Participacao.TABELA, null, participacoesValues);
+		participacoesValues.put("_id", 8);
+		participacoesValues.put("ministracao_id", 3);
+		participacoesValues.put("participante_inscricao", 1003);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
 		
 		//Add 3 participantes
 		//3 palestras (jogos [2 ministracoes], arduino [1 minist.] e ruby [1 minist.]
