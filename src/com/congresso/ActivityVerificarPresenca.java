@@ -6,13 +6,14 @@ import jim.h.common.android.zxinglib.integrator.IntentIntegrator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class ActivityVerificarPresenca extends Activity {
+public class ActivityVerificarPresenca extends Activity implements OnClickListener {
 
 	private AlertDialog confirmacao;
 	
@@ -32,6 +33,8 @@ public class ActivityVerificarPresenca extends Activity {
 		if (id != null) {
 			etInscrito = (EditText) findViewById(R.id.et_inscricao);
 			tvNome = (TextView) findViewById(R.id.tv_nome);
+			
+			
 			
 			tvNome.setText(id);
 		}
@@ -93,5 +96,10 @@ public class ActivityVerificarPresenca extends Activity {
 		
 		confirmacao = builder.create();
 		confirmacao.show();
+	}
+
+	@Override
+	public void onClick(DialogInterface arg0, int arg1) {
+		
 	}
 }

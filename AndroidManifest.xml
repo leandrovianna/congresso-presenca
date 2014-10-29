@@ -40,6 +40,7 @@
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
         <activity
             android:name=".ActivityVerificarPresenca"
             android:label="@string/title_activity_verificar_presenca" >
