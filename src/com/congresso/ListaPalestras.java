@@ -49,7 +49,7 @@ public class ListaPalestras extends ListActivity{
 		super.onListItemClick(l, v, position, id);
 
 		Intent intent = new Intent(getApplicationContext(), ActivityVerificarPresenca.class);
-		intent.putExtra(EXTRA_MINISTRACAO_ID, String.valueOf(ministracoesHoje.get(position).getPalestra().getId()));
+		intent.putExtra(EXTRA_MINISTRACAO_ID, String.valueOf(ministracoesHoje.get(position).getId()));
 		startActivity(intent);
 	}
 

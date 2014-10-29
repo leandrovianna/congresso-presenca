@@ -104,6 +104,7 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 							cursor.getInt(cursor.getColumnIndex("palestra_id"))), 
 							dateFormat.parse(cursor.getString(cursor.getColumnIndex("data"))));
 		} catch (ParseException e) {
+			Log.e("MinistracaoDAOImpl", "ERRO: O parser encontrou problemas na data recebida");
 			//ocorreu um erro no parser da data do banco
 			return null;
 		}
