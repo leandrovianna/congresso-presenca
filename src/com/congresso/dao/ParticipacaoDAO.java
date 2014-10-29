@@ -2,6 +2,7 @@ package com.congresso.dao;
 
 import java.util.List;
 
+import com.congresso.Ministracao;
 import com.congresso.Participacao;
 
 public interface ParticipacaoDAO {
@@ -14,4 +15,6 @@ public interface ParticipacaoDAO {
 	
 	public Participacao buscarParticipacaoPorId(int id);
 	
+	public Participacao buscarParticipacaoPorInscricaoMinistracao(int inscricao, Ministracao ministracao);
+
 }

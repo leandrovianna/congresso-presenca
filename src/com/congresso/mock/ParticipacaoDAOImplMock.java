@@ -52,4 +52,13 @@ public class ParticipacaoDAOImplMock implements ParticipacaoDAO {
 		return p;
 	}
 
+	@Override
+	public Participacao buscarParticipacaoPorInscricaoMinistracao(
+			int inscricao, Ministracao ministracao) {
+		
+		Participacao p = new Participacao(ministracao, new Participante(inscricao, "José Maria"), 0, true, true);
+		
+		return p;
+	}
+
 }

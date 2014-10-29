@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.congresso.DatabaseHelper;
+import com.congresso.Ministracao;
 import com.congresso.Participacao;
 import com.congresso.Participante;
 
@@ -93,6 +94,20 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 				"participacao._id = "+id, null);
 		
 		p = criarParticipacao(cursor);
+
+		return p;
+	}
+
+	@Override
+	public Participacao buscarParticipacaoPorInscricaoMinistracao(
+			int inscricao, Ministracao ministracao) {
+		
+		Cursor cursor = getDb().rawQuery("SELECT * FROM participacao, participante " +
+				"WHERE participacao.ministracao_id = "+ministracao.getId()+" AND " +
+				"participacao.participante_inscricao = "+inscricao+" AND " +
+				"participante.inscricao = participacao.participante_inscricao", null);
+		
+		Participacao p = criarParticipacao(cursor);
 
 		return p;
 	}
