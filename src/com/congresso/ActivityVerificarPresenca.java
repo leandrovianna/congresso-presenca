@@ -1,20 +1,26 @@
 package com.congresso;
 
+import com.congresso.dao.ParticipacaoDAOImpl;
+
+import jim.h.common.android.zxinglib.integrator.IntentIntegrator;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class ActivityVerificarPresenca extends ActionBarActivity {
+public class ActivityVerificarPresenca extends Activity {
 
 	private AlertDialog confirmacao;
 	
 	private EditText etInscrito;
 	private TextView tvNome;
+	
+	private Participacao participacao;
+	private ParticipacaoDAOImpl dao;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +32,8 @@ public class ActivityVerificarPresenca extends ActionBarActivity {
 		if (id != null) {
 			etInscrito = (EditText) findViewById(R.id.et_inscricao);
 			tvNome = (TextView) findViewById(R.id.tv_nome);
+			
+			tvNome.setText(id);
 		}
 			
 	}
@@ -51,13 +59,11 @@ public class ActivityVerificarPresenca extends ActionBarActivity {
 	
 	public void qr () {
 		
-		setContentView(R.layout.qrcode_reader_layout);
-		// continuar
+		IntentIntegrator.initiateScan(this, R.layout.qrcode_reader_layout, 
+				R.id.viewfinder_view, R.id.preview_view, true);
 	}
 	
 	public void buscarInscrito () {
-		
-		// implementar a busca atrav�s do numero de inscri��o
 	}
 	
 	public void checkPresenca () {

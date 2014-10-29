@@ -28,7 +28,7 @@ public class ListaPalestras extends ListActivity{
 		ministracoesHoje = mDAO.listarMinistracaoDeHoje();
 
 		ArrayList<HashMap<String, String>> itens = new ArrayList<HashMap<String, String>>();
-		for (int i = 0; i <= ministracoesHoje.size(); i++) {
+		for (int i = 0; i < ministracoesHoje.size(); i++) {
 			HashMap<String, String> ministracoes = new HashMap<String, String>();
 			ministracoes.put("nome", ministracoesHoje.get(i).getPalestra().getNome());
 			itens.add(ministracoes);

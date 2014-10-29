@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	private static final String BANCO_DADOS = "congresso";
-	private static final int VERSAO = 2;
+	private static final int VERSAO = 13;
 	
 	public static class Palestra {
 		public static final String TABELA = "palestra";
@@ -95,12 +95,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert(DatabaseHelper.Palestra.TABELA, null, values);
 		
 		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 0);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-25");
+		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-29");
 		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 0);
 		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
 		
 		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 1);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-26");
+		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-30");
 		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 0);
 		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
 		
@@ -109,7 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert(DatabaseHelper.Palestra.TABELA, null, values);
 		
 		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 2);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-25");
+		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-29");
 		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 1);
 		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
 		
@@ -118,7 +118,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert(DatabaseHelper.Palestra.TABELA, null, values);
 		
 		ministracaoValues.put(DatabaseHelper.Ministracao._ID, 3);
-		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-25");
+		ministracaoValues.put(DatabaseHelper.Ministracao.DATA, "2014-10-29");
 		ministracaoValues.put(DatabaseHelper.Ministracao.PALESTRA_ID, 2);
 		db.insert(DatabaseHelper.Ministracao.TABELA, null, ministracaoValues);
 
