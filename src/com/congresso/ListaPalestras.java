@@ -16,6 +16,7 @@ import com.congresso.dao.MinistracaoDAOImpl;
 
 public class ListaPalestras extends ListActivity{
 
+	public static final String EXTRA_MINISTRACAO_ID = "ministracao_id";
 	private MinistracaoDAOImpl mDAO;
 	private List<Ministracao> ministracoesHoje;
 
@@ -27,7 +28,7 @@ public class ListaPalestras extends ListActivity{
 		ministracoesHoje = mDAO.listarMinistracaoDeHoje();
 
 		ArrayList<HashMap<String, String>> itens = new ArrayList<HashMap<String, String>>();
-		for (int i = 0; i >= ministracoesHoje.size(); i++) {
+		for (int i = 0; i <= ministracoesHoje.size(); i++) {
 			HashMap<String, String> ministracoes = new HashMap<String, String>();
 			ministracoes.put("nome", ministracoesHoje.get(i).getPalestra().getNome());
 			itens.add(ministracoes);
@@ -48,7 +49,7 @@ public class ListaPalestras extends ListActivity{
 		super.onListItemClick(l, v, position, id);
 
 		Intent intent = new Intent(getApplicationContext(), ActivityVerificarPresenca.class);
-		intent.putExtra("id_palestra", ministracoesHoje.get(position).getPalestra().getId());
+		intent.putExtra(EXTRA_MINISTRACAO_ID, String.valueOf(ministracoesHoje.get(position).getPalestra().getId()));
 		startActivity(intent);
 	}
 

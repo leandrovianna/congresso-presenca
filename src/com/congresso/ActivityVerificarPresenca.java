@@ -1,20 +1,33 @@
 package com.congresso;
 
-import android.support.v7.app.ActionBarActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class ActivityVerificarPresenca extends ActionBarActivity {
 
 	private AlertDialog confirmacao;
 	
+	private EditText etInscrito;
+	private TextView tvNome;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//setContentView(R.layout.activity_verificar_presenca);
+		setContentView(R.layout.activity_verificar_presenca);
+		
+		String id = getIntent().getStringExtra(ListaPalestras.EXTRA_MINISTRACAO_ID);
+		
+		if (id != null) {
+			etInscrito = (EditText) findViewById(R.id.et_inscricao);
+			tvNome = (TextView) findViewById(R.id.tv_nome);
+		}
+			
 	}
 
 	@Override
@@ -51,8 +64,8 @@ public class ActivityVerificarPresenca extends ActionBarActivity {
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		
-		builder.setTitle("Confirma��o");
-		builder.setMessage("O aluno est� presente?");
+		builder.setTitle("Confirmação");
+		builder.setMessage("O aluno está presente?");
 		
 		builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
 			
