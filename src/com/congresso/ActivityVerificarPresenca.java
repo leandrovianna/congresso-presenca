@@ -1,17 +1,18 @@
 package com.congresso;
 
-import com.congresso.dao.ParticipacaoDAOImpl;
-
 import jim.h.common.android.zxinglib.integrator.IntentIntegrator;
+import jim.h.common.android.zxinglib.integrator.IntentResult;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.congresso.dao.ParticipacaoDAOImpl;
 
 public class ActivityVerificarPresenca extends Activity implements OnClickListener {
 
@@ -41,12 +42,27 @@ public class ActivityVerificarPresenca extends Activity implements OnClickListen
 			
 	}
 	
-	public void qr () {
+	public void qr(View v) {
 		
 		IntentIntegrator.initiateScan(this, R.layout.qrcode_reader_layout, 
 				R.id.viewfinder_view, R.id.preview_view, true);
 	}
-	
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		IntentResult result = 
+				IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+		
+		if (result != null) {
+			
+			String textoQr = result.getContents();
+			
+			etInscrito.setText(textoQr);
+		}
+	}
+
 	public void buscarInscrito () {
 	}
 	
