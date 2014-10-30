@@ -3,8 +3,6 @@
 
     <string name="app_name">Congresso Presença</string>
     <string name="title_lista_palestras">Palestras de Hoje</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="msg_default_status">Posicione o QR Code dentro do retângulo para a leitura</string>
     <string name="title_activity_verificar_presenca">Validação de Inscrições</string>
 
