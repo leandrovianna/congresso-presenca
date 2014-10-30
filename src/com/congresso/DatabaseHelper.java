@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	private static final String BANCO_DADOS = "congresso";
-	private static final int VERSAO = 13;
+	private static final int VERSAO = 21;
 
 	public DatabaseHelper(Context context) {
 		super(context, BANCO_DADOS, null, VERSAO);
@@ -58,13 +58,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert("palestra", null, values);
 		
 		ministracaoValues.put("_id", 0);
-		ministracaoValues.put("data", "2014-10-29");
+		ministracaoValues.put("data", "2014-10-30");
 		ministracaoValues.put("palestra_id", 0);
 		db.insert("ministracao", null, ministracaoValues);
 		
 		ministracaoValues.put("_id", 1);
-		ministracaoValues.put("data", "2014-10-30");
-		ministracaoValues.put("palestra_id'", 0);
+		ministracaoValues.put("data", "2014-10-31");
+		ministracaoValues.put("palestra_id", 0);
 		db.insert("ministracao", null, ministracaoValues);
 		
 		values.put("_id", 1);
@@ -72,8 +72,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert("palestra", null, values);
 		
 		ministracaoValues.put("_id", 2);
-		ministracaoValues.put("data", "2014-10-29");
-		ministracaoValues.put("palestra_id'", 1);
+		ministracaoValues.put("data", "2014-10-30");
+		ministracaoValues.put("palestra_id", 1);
+		db.insert("ministracao", null, ministracaoValues);
+		
+		ministracaoValues.put("_id", 4);
+		ministracaoValues.put("data", "2014-10-31");
+		ministracaoValues.put("palestra_id", 1);
 		db.insert("ministracao", null, ministracaoValues);
 		
 		values.put("_id", 2);
@@ -81,8 +86,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert("palestra", null, values);
 		
 		ministracaoValues.put("_id", 3);
-		ministracaoValues.put("data", "2014-10-29");
-		ministracaoValues.put("palestra_id'", 2);
+		ministracaoValues.put("data", "2014-10-30");
+		ministracaoValues.put("palestra_id", 2);
 		db.insert("ministracao", null, ministracaoValues);
 
 		values.clear();
