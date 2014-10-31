@@ -9,6 +9,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,9 +18,11 @@ import com.congresso.dao.ParticipacaoDAOImpl;
 public class ActivityVerificarPresenca extends Activity implements OnClickListener {
 
 	private AlertDialog confirmacao;
+	private AlertDialog.Builder builder;
 	
-	private EditText etInscrito;
+	private EditText etInscricao;
 	private TextView tvNome;
+	private Button btValidar;
 	
 	private Participacao participacao;
 	private ParticipacaoDAOImpl dao;
@@ -32,43 +35,20 @@ public class ActivityVerificarPresenca extends Activity implements OnClickListen
 		String id = getIntent().getStringExtra(ListaPalestras.EXTRA_MINISTRACAO_ID);
 		
 		if (id != null) {
-			etInscrito = (EditText) findViewById(R.id.et_inscricao);
+			
+			builder = new AlertDialog.Builder(this);
+			iniciarMensagem();
+			
+			etInscricao = (EditText) findViewById(R.id.et_inscricao);
 			tvNome = (TextView) findViewById(R.id.tv_nome);
+			btValidar = (Button) findViewById(R.id.bt_validar);
 			
-			
-			
-			tvNome.setText(id);
+			btValidar.setEnabled(false);
 		}
 			
 	}
 	
-	public void qr(View v) {
-		
-		IntentIntegrator.initiateScan(this, R.layout.qrcode_reader_layout, 
-				R.id.viewfinder_view, R.id.preview_view, true);
-	}
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-		
-		IntentResult result = 
-				IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-		
-		if (result != null) {
-			
-			String textoQr = result.getContents();
-			
-			etInscrito.setText(textoQr);
-		}
-	}
-
-	public void buscarInscrito () {
-	}
-	
-	public void checkPresenca () {
-		
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	private void iniciarMensagem() {
 		
 		builder.setTitle("Confirmação");
 		builder.setMessage("O aluno está presente?");
@@ -91,7 +71,42 @@ public class ActivityVerificarPresenca extends Activity implements OnClickListen
 			}
 		});
 		
-		confirmacao = builder.create();
+		confirmacao = builder.create();		
+	}
+
+	public void qr(View v) {
+		
+		IntentIntegrator.initiateScan(this, R.layout.qrcode_reader_layout, 
+				R.id.viewfinder_view, R.id.preview_view, true);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		IntentResult result = 
+				IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+		
+		if (result != null) {
+			
+			String textoQr = result.getContents();
+			
+			etInscricao.setText(textoQr);
+		}
+	}
+
+	public void buscarInscrito () {
+		
+		participacao = dao.buscarParticipacaoPorId(Integer.parseInt
+				(etInscricao.getText().toString()));
+		
+		tvNome.setText(participacao.getParticipante().getNome());
+		
+		btValidar.setEnabled(true);
+	}
+	
+	public void checkPresenca () {
+		
 		confirmacao.show();
 	}
 
