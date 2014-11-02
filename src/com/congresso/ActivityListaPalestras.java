@@ -61,6 +61,8 @@ public class ActivityListaPalestras extends ListActivity{
 		switch (item.getItemId()) {
 		case R.id.action_importacao:
 			//ação para botão importação da action bar
+			//por teste abrindo lista de participacoes
+			startActivity(new Intent(this, ActivityParticipacaoList.class));
 			break;
 			
 		case R.id.action_exportacao:

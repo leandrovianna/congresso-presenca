@@ -49,8 +49,6 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 	}
 
 	private Participacao criarParticipacao(Cursor cursor) {
-		if (cursor.moveToNext()) {
-
 			Participacao p = new Participacao();
 
 			p.setId(cursor.getInt(cursor.getColumnIndex("_id")));
@@ -63,10 +61,6 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 			p.setUpdated(cursor.getInt(cursor.getColumnIndex("updated")));
 
 			return p;
-
-		}
-
-		return null;
 	}
 
 	@Override
@@ -115,10 +109,13 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 				"participacao.ministracao_id = "+ministracao.getId()+" AND " +
 				"participacao.participante_inscricao = "+inscricao
 				, null);
+		
+		while (cursor.moveToNext()) {
+			Participacao p = criarParticipacao(cursor);
+			return p;
+		}
 
-		Participacao p = criarParticipacao(cursor);
-
-		return p;
+		return null;
 	}
 
 	@Override
