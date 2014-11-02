@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	private static final String BANCO_DADOS = "congresso";
-	private static final int VERSAO = 21;
+	private static final int VERSAO = 22;
 
 	public DatabaseHelper(Context context) {
 		super(context, BANCO_DADOS, null, VERSAO);
