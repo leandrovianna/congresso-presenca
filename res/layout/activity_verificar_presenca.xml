@@ -86,7 +86,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="21dp"
-        android:onClick="checkPresenca"
+        android:onClick="validarPresenca"
         android:src="@drawable/presenca" />
 
     <TextView
