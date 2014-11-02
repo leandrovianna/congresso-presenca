@@ -29,7 +29,7 @@ public class ActivityVerificarPresenca extends Activity implements OnClickListen
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_verificar_presenca);
 		
-		String id = getIntent().getStringExtra(ListaPalestras.EXTRA_MINISTRACAO_ID);
+		String id = getIntent().getStringExtra(ActivityListaPalestras.EXTRA_MINISTRACAO_ID);
 		
 		if (id != null) {
 			etInscrito = (EditText) findViewById(R.id.et_inscricao);

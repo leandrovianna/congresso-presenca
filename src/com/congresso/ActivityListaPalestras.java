@@ -7,14 +7,15 @@ import java.util.List;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.congresso.dao.MinistracaoDAOImpl;
 
-public class ListaPalestras extends ListActivity{
+public class ActivityListaPalestras extends ListActivity{
 
 	public static final String EXTRA_MINISTRACAO_ID = "ministracao_id";
 	private MinistracaoDAOImpl mDAO;
@@ -42,6 +43,32 @@ public class ListaPalestras extends ListActivity{
 
 		setListAdapter(adapter);
 
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.lista_palestras, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		
+		switch (item.getItemId()) {
+		case R.id.action_importacao:
+			//ação para botão importação da action bar
+			break;
+			
+		case R.id.action_exportacao:
+			//ação para botão de exportação
+			break;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

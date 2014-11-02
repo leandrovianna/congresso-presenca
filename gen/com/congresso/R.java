@@ -1092,6 +1092,8 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f090023;
         public static final int action_bar_title=0x7f090022;
         public static final int action_context_bar=0x7f09001d;
+        public static final int action_exportacao=0x7f09004a;
+        public static final int action_importacao=0x7f090049;
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
@@ -1212,6 +1214,9 @@ containing a value of this type.
         public static final int qrcode_reader_layout=0x7f03001a;
         public static final int support_simple_spinner_dropdown_item=0x7f03001b;
     }
+    public static final class menu {
+        public static final int lista_palestras=0x7f0c0000;
+    }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
          */
@@ -1253,6 +1258,8 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
+        public static final int action_exportar=0x7f0a0012;
+        public static final int action_importar=0x7f0a0011;
         public static final int app_name=0x7f0a000d;
         public static final int msg_default_status=0x7f0a000f;
         public static final int title_activity_verificar_presenca=0x7f0a0010;
