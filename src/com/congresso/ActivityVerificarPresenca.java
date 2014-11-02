@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.congresso.dao.ParticipacaoDAOImpl;
@@ -21,7 +22,7 @@ public class ActivityVerificarPresenca extends Activity {
 	
 	private EditText etInscricao;
 	private TextView tvNome, tvPalestra;
-	private Button btValidar;
+	private ImageButton btValidar;
 	
 	private Participacao participacao;
 	private ParticipacaoDAOImpl dao;
@@ -40,7 +41,7 @@ public class ActivityVerificarPresenca extends Activity {
 			
 			etInscricao = (EditText) findViewById(R.id.et_inscricao);
 			tvNome = (TextView) findViewById(R.id.tv_nome);
-			btValidar = (Button) findViewById(R.id.bt_validar);
+			btValidar = (ImageButton) findViewById(R.id.bt_validar);
 			tvPalestra = (TextView) findViewById(R.id.tvPalestra);
 			
 			tvPalestra.setText("Nome da Palestra");
