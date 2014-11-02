@@ -58,12 +58,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert("palestra", null, values);
 		
 		ministracaoValues.put("_id", 0);
-		ministracaoValues.put("data", "2014-10-30");
+		ministracaoValues.put("data", "2014-11-02");
 		ministracaoValues.put("palestra_id", 0);
 		db.insert("ministracao", null, ministracaoValues);
 		
 		ministracaoValues.put("_id", 1);
-		ministracaoValues.put("data", "2014-10-31");
+		ministracaoValues.put("data", "2014-11-03");
 		ministracaoValues.put("palestra_id", 0);
 		db.insert("ministracao", null, ministracaoValues);
 		
@@ -72,12 +72,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert("palestra", null, values);
 		
 		ministracaoValues.put("_id", 2);
-		ministracaoValues.put("data", "2014-10-30");
+		ministracaoValues.put("data", "2014-11-02");
 		ministracaoValues.put("palestra_id", 1);
 		db.insert("ministracao", null, ministracaoValues);
 		
 		ministracaoValues.put("_id", 4);
-		ministracaoValues.put("data", "2014-10-31");
+		ministracaoValues.put("data", "2014-11-03");
 		ministracaoValues.put("palestra_id", 1);
 		db.insert("ministracao", null, ministracaoValues);
 		
@@ -86,7 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert("palestra", null, values);
 		
 		ministracaoValues.put("_id", 3);
-		ministracaoValues.put("data", "2014-10-30");
+		ministracaoValues.put("data", "2014-11-02");
 		ministracaoValues.put("palestra_id", 2);
 		db.insert("ministracao", null, ministracaoValues);
 
