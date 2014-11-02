@@ -110,7 +110,7 @@ public class ActivityVerificarPresenca extends Activity {
 		}
 	}
 
-	public void buscarInscrito () {
+	public void buscarInscrito (View v) {
 		
 		participacao = dao.buscarParticipacaoPorId(Integer.parseInt
 				(etInscricao.getText().toString()));
@@ -120,13 +120,13 @@ public class ActivityVerificarPresenca extends Activity {
 		btValidar.setEnabled(true);
 	}
 	
-	public void checkPresenca () {
+	public void validarPresenca (View v) {
 		
 		participacao.setPresenca(true);
 		confirmacao.show();
 	}
 	
-	public void voltar () {
+	public void voltar (View v) {
 		
 		setContentView(R.layout.activity_lista_palestras);
 	}
