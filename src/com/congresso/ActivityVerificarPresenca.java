@@ -84,12 +84,9 @@ public class ActivityVerificarPresenca extends Activity {
 
 	protected void confirmarPresenca() {
 
-		dao.removerParticipacao(dao.buscarParticipacaoPorId
-				(Integer.parseInt(etInscricao.getText().toString())));
+		dao.updateParticipacao(participacao);
 
-		dao.inserirParticipacao(participacao);
-
-		setContentView(R.layout.activity_verificar_presenca);
+		//setContentView(R.layout.activity_verificar_presenca);
 
 	}
 
