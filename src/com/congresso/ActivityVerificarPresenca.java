@@ -5,21 +5,23 @@ import jim.h.common.android.zxinglib.integrator.IntentResult;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.congresso.dao.ParticipacaoDAOImpl;
 
-public class ActivityVerificarPresenca extends Activity implements OnClickListener {
+public class ActivityVerificarPresenca extends Activity {
 
 	private AlertDialog confirmacao;
+	private AlertDialog.Builder builder;
 	
-	private EditText etInscrito;
-	private TextView tvNome;
+	private EditText etInscricao;
+	private TextView tvNome, tvPalestra;
+	private Button btValidar;
 	
 	private Participacao participacao;
 	private ParticipacaoDAOImpl dao;
@@ -32,16 +34,61 @@ public class ActivityVerificarPresenca extends Activity implements OnClickListen
 		String id = getIntent().getStringExtra(ActivityListaPalestras.EXTRA_MINISTRACAO_ID);
 		
 		if (id != null) {
-			etInscrito = (EditText) findViewById(R.id.et_inscricao);
+			
+			builder = new AlertDialog.Builder(this);
+			iniciarMensagem();
+			
+			etInscricao = (EditText) findViewById(R.id.et_inscricao);
 			tvNome = (TextView) findViewById(R.id.tv_nome);
+			btValidar = (Button) findViewById(R.id.bt_validar);
+			tvPalestra = (TextView) findViewById(R.id.tvPalestra);
 			
+			tvPalestra.setText("Nome da Palestra");
 			
-			
-			tvNome.setText(id);
+			btValidar.setEnabled(false);
 		}
 			
 	}
 	
+	private void iniciarMensagem() {
+		
+		builder.setTitle("Confirmação");
+		builder.setMessage("O aluno está presente?");
+		
+		builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+				// conferir
+				
+				confirmarPresenca();
+			}
+		});
+		
+		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+				return;	
+			}
+		});
+		
+		confirmacao = builder.create();		
+	}
+
+	protected void confirmarPresenca() {
+		
+		dao.removerParticipacao(dao.buscarParticipacaoPorId
+				(Integer.parseInt(etInscricao.getText().toString())));
+		
+		dao.inserirParticipacao(participacao);
+		
+		setContentView(R.layout.activity_verificar_presenca);
+		
+	}
+
 	public void qr(View v) {
 		
 		IntentIntegrator.initiateScan(this, R.layout.qrcode_reader_layout, 
@@ -59,44 +106,28 @@ public class ActivityVerificarPresenca extends Activity implements OnClickListen
 			
 			String textoQr = result.getContents();
 			
-			etInscrito.setText(textoQr);
+			etInscricao.setText(textoQr);
 		}
 	}
 
 	public void buscarInscrito () {
+		
+		participacao = dao.buscarParticipacaoPorId(Integer.parseInt
+				(etInscricao.getText().toString()));
+		
+		tvNome.setText(participacao.getParticipante().getNome());
+		
+		btValidar.setEnabled(true);
 	}
 	
 	public void checkPresenca () {
 		
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		
-		builder.setTitle("Confirmação");
-		builder.setMessage("O aluno está presente?");
-		
-		builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				
-				// habilitar para confirmar a presenca				
-			}
-		});
-		
-		builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				
-				// retornar, mas com os campos limpos	
-			}
-		});
-		
-		confirmacao = builder.create();
+		participacao.setPresenca(true);
 		confirmacao.show();
 	}
-
-	@Override
-	public void onClick(DialogInterface arg0, int arg1) {
+	
+	public void voltar () {
 		
+		setContentView(R.layout.activity_lista_palestras);
 	}
 }

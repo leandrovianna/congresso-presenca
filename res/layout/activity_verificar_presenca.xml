@@ -7,33 +7,31 @@
     tools:context="com.congresso.Activity_verificar_presenca" >
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/et_inscricao"
-        android:layout_below="@+id/et_inscricao"
-        android:layout_marginTop="70dp"
-        android:text="Nome:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/tv_nome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView2"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="18dp"
-        android:text="Teste Teste Teste"
+        android:text=" "
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ImageButton
+        android:id="@+id/button1"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignTop="@+id/bt_validar"
+        android:layout_toRightOf="@+id/tv_nome"
+        android:onClick="voltar"
+        android:src="@drawable/voltar" />
 
     <EditText
         android:id="@+id/et_inscricao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="336dp"
+        android:layout_height="48dp"
+        android:layout_alignBottom="@+id/bt_pesquisa"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="14dp"
-        android:layout_toLeftOf="@+id/bt_pesquisa"
+        android:layout_marginLeft="8dp"
         android:ems="10"
         android:hint="Nº Inscrição"
         android:inputType="number" >
@@ -42,39 +40,63 @@
     </EditText>
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_below="@+id/et_inscricao"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="73dp"
+        android:text="Nome:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tvPalestra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView3"
         android:layout_alignParentTop="true"
-        android:text="Inscrição"
+        android:layout_marginTop="8dp"
+        android:text=" "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageButton
-        android:id="@+id/bt_qr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView1"
-        android:onClick="qr"
-        android:src="@drawable/qrcode" />
-
-    <ImageButton
         android:id="@+id/bt_pesquisa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_toLeftOf="@+id/bt_qr"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/tvPalestra"
+        android:layout_marginTop="85dp"
+        android:layout_toLeftOf="@+id/bt_validar"
         android:onClick="buscarInscrito"
         android:src="@drawable/pesquisa" />
 
     <ImageButton
+        android:id="@+id/bt_qr"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_above="@+id/textView2"
+        android:layout_alignLeft="@+id/bt_validar"
+        android:onClick="qr"
+        android:src="@drawable/qrcode" />
+
+    <ImageButton
         android:id="@+id/bt_validar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/bt_pesquisa"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="21dp"
         android:onClick="checkPresenca"
         android:src="@drawable/presenca" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_below="@+id/tvPalestra"
+        android:layout_marginTop="26dp"
+        android:text="Inscrição"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
