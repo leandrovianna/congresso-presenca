@@ -126,6 +126,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		participacoesValues.put("updated", false);
 		db.insert("participacao", null, participacoesValues);
 		
+		participacoesValues.put("_id", 9);
+		participacoesValues.put("ministracao_id", 4);
+		participacoesValues.put("participante_inscricao", 1001);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
+		
 		values.put("inscricao", 1002);
 		values.put("nome", "Maria de Sousa Carvalho");
 		db.insert("participante", null, values); //minist ids 2 e 3
