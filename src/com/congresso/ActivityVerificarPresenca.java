@@ -122,11 +122,8 @@ public class ActivityVerificarPresenca extends Activity {
 		ministracao = daoM.buscarMinistracaoPorId(Integer.parseInt
 				(getIntent().getStringExtra(ActivityListaPalestras.EXTRA_MINISTRACAO_ID).toString()));
 		
-		participacao = new Participacao();
-		participacao.setMinistracao(ministracao);
-		
-		/*participacao = dao.buscarParticipacaoPorInscricaoMinistracao(Integer.parseInt
-				(etInscricao.getText().toString()), ministracao);*/
+		participacao = dao.buscarParticipacaoPorInscricaoMinistracao(Integer.parseInt
+				(etInscricao.getText().toString()), ministracao);
 		
 		tvNome.setText(participacao.getParticipante().getNome());
 		
