@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.congresso.dao.MinistracaoDAOImpl;
 import com.congresso.dao.ParticipacaoDAOImpl;
 
 public class ActivityVerificarPresenca extends Activity {
@@ -25,7 +26,9 @@ public class ActivityVerificarPresenca extends Activity {
 	private ImageButton btValidar;
 	
 	private Participacao participacao;
+	private Ministracao ministracao;
 	private ParticipacaoDAOImpl dao;
+	private MinistracaoDAOImpl daoM;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class ActivityVerificarPresenca extends Activity {
 		String id = getIntent().getStringExtra(ActivityListaPalestras.EXTRA_MINISTRACAO_ID);
 		
 		if (id != null) {
+			
+			dao = new ParticipacaoDAOImpl(this);
+			daoM = new MinistracaoDAOImpl(this);
 			
 			builder = new AlertDialog.Builder(this);
 			iniciarMensagem();
@@ -113,8 +119,14 @@ public class ActivityVerificarPresenca extends Activity {
 
 	public void buscarInscrito (View v) {
 		
-		participacao = dao.buscarParticipacaoPorId(Integer.parseInt
-				(etInscricao.getText().toString()));
+		ministracao = daoM.buscarMinistracaoPorId(Integer.parseInt
+				(getIntent().getStringExtra(ActivityListaPalestras.EXTRA_MINISTRACAO_ID).toString()));
+		
+		participacao = new Participacao();
+		participacao.setMinistracao(ministracao);
+		
+		/*participacao = dao.buscarParticipacaoPorInscricaoMinistracao(Integer.parseInt
+				(etInscricao.getText().toString()), ministracao);*/
 		
 		tvNome.setText(participacao.getParticipante().getNome());
 		
