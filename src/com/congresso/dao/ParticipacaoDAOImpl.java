@@ -123,18 +123,15 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 
 	@Override
 	public boolean updateParticipacao(Participacao participacao) {
-		ContentValues values = new ContentValues();
 
-		values.put("_id", participacao.getId());
-		values.put("ministracao_id", participacao.getMinistracao().getId());
-		values.put("participante_inscricao", participacao.getParticipante().getInscricao());
-		values.put("presenca", participacao.isPresenca());
-		values.put("updated", participacao.isUpdated());
+		getDb().execSQL("UPDATE participacao " +
+				"SET ministracao_id="+participacao.getMinistracao().getId()+", " +
+				"participante_inscricao="+participacao.getParticipante().getInscricao()+", " +
+				"updated=false, " +
+				"presenca="+participacao.isPresenca()+" " +
+				"WHERE _id = "+participacao.getId()+";");
 		
-		int retorno = getDb().update("participacao", values, 
-				"WHERE _id = "+participacao.getId(), null);
-		
-		return retorno != 0;
+		return true;
 	}
 
 }
