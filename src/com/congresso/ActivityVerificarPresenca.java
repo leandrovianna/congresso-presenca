@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import com.congresso.dao.MinistracaoDAOImpl;
 import com.congresso.dao.ParticipacaoDAOImpl;
 
@@ -85,12 +84,9 @@ public class ActivityVerificarPresenca extends Activity {
 
 	protected void confirmarPresenca() {
 
-		dao.removerParticipacao(dao.buscarParticipacaoPorId
-				(Integer.parseInt(etInscricao.getText().toString())));
+		dao.updateParticipacao(participacao);
 
-		dao.inserirParticipacao(participacao);
-
-		setContentView(R.layout.activity_verificar_presenca);
+		//setContentView(R.layout.activity_verificar_presenca);
 
 	}
 
@@ -125,10 +121,12 @@ public class ActivityVerificarPresenca extends Activity {
 					inscricao, ministracao);
 	
 			if (participacao != null) {
+				
 				tvNome.setText(participacao.getParticipante().getNome());
-	
 				btValidar.setEnabled(true);
+				
 			} else {
+				
 				tvNome.setText("Inscrito não encontrado.");
 			}
 		}
@@ -138,10 +136,5 @@ public class ActivityVerificarPresenca extends Activity {
 
 		participacao.setPresenca(true);
 		confirmacao.show();
-	}
-
-	public void voltar (View v) {
-
-		setContentView(R.layout.activity_lista_palestras);
 	}
 }
