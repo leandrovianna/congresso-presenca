@@ -61,4 +61,9 @@ public class ParticipacaoDAOImplMock implements ParticipacaoDAO {
 		return p;
 	}
 
+	@Override
+	public boolean updateParticipacao(Participacao participacao) {
+		return true;
+	}
+
 }

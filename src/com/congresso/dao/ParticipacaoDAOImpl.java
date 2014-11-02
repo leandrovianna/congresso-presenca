@@ -90,6 +90,8 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 
 		return retorno != 0;
 	}
+	
+	
 
 	@Override
 	public Participacao buscarParticipacaoPorId(int id) {
@@ -117,6 +119,22 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 		Participacao p = criarParticipacao(cursor);
 
 		return p;
+	}
+
+	@Override
+	public boolean updateParticipacao(Participacao participacao) {
+		ContentValues values = new ContentValues();
+
+		values.put("_id", participacao.getId());
+		values.put("ministracao_id", participacao.getMinistracao().getId());
+		values.put("participante_inscricao", participacao.getParticipante().getInscricao());
+		values.put("presenca", participacao.isPresenca());
+		values.put("updated", participacao.isUpdated());
+		
+		int retorno = getDb().update("participacao", values, 
+				"WHERE _id = "+participacao.getId(), null);
+		
+		return retorno != 0;
 	}
 
 }
