@@ -19,11 +19,11 @@ public class ActivityParticipacaoList extends ListActivity {
 	
 	private String[] mapKeys = new String[]{"id", "ministracao id", "palestra nome",
 										"palestra id", "participante nome", "participante id",
-										"presenca"};
+										"presenca", "ministracao data"};
 	
 	private int[] interfaceKeys = new int[]{R.id.p_id, R.id.p_ministracao_id, R.id.p_palestra_nome,
 											R.id.p_palestra_id, R.id.p_participante_id, R.id.p_partipante_nome,
-											R.id.p_presenca};
+											R.id.p_presenca, R.id.p_ministracao_data};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,7 @@ public class ActivityParticipacaoList extends ListActivity {
 			item.put("participante nome", p.getParticipante().getNome());
 			item.put("participante id", p.getParticipante().getInscricao());
 			item.put("presenca", p.isPresenca());
+			item.put("ministracao data", p.getMinistracao().getData().toString());
 			
 			listAdapter.add(item);
 		}
