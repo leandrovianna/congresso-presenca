@@ -98,6 +98,7 @@ public class ActivityVerificarPresenca extends Activity implements OnClickListen
 			try {
 				int numeroInscricao = Integer.parseInt(textoQr);
 				etInscricao.setText(numeroInscricao+"");
+				buscarInscrito(null);
 			} catch (NumberFormatException e) {
 				etInscricao.setText("");
 			}
