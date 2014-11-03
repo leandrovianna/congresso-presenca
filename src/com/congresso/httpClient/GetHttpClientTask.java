@@ -16,7 +16,7 @@ public class GetHttpClientTask extends HttpClientTaskAbstract {
 
 		try{
 			HttpClient client = getHttpClient();
-			HttpGet httpGet = new HttpGet(url);
+			HttpGet httpGet = new HttpGet();
 			
 			httpGet.setURI(new URI(url));
 			HttpResponse httpResponse = client.execute(httpGet);
