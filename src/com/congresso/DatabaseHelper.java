@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	private static final String BANCO_DADOS = "congresso";
-	private static final int VERSAO = 22;
+	private static final int VERSAO = 24;
 
 	public DatabaseHelper(Context context) {
 		super(context, BANCO_DADOS, null, VERSAO);
@@ -58,12 +58,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert("palestra", null, values);
 		
 		ministracaoValues.put("_id", 0);
-		ministracaoValues.put("data", "2014-11-02");
+		ministracaoValues.put("data", "2014-11-03");
 		ministracaoValues.put("palestra_id", 0);
 		db.insert("ministracao", null, ministracaoValues);
 		
 		ministracaoValues.put("_id", 1);
-		ministracaoValues.put("data", "2014-11-03");
+		ministracaoValues.put("data", "2014-11-04");
 		ministracaoValues.put("palestra_id", 0);
 		db.insert("ministracao", null, ministracaoValues);
 		
@@ -72,12 +72,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert("palestra", null, values);
 		
 		ministracaoValues.put("_id", 2);
-		ministracaoValues.put("data", "2014-11-02");
+		ministracaoValues.put("data", "2014-11-03");
 		ministracaoValues.put("palestra_id", 1);
 		db.insert("ministracao", null, ministracaoValues);
 		
-		ministracaoValues.put("_id", 4);
-		ministracaoValues.put("data", "2014-11-03");
+		ministracaoValues.put("_id", 3);
+		ministracaoValues.put("data", "2014-11-04");
 		ministracaoValues.put("palestra_id", 1);
 		db.insert("ministracao", null, ministracaoValues);
 		
@@ -85,8 +85,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put("nome", "Introdução Ruby");
 		db.insert("palestra", null, values);
 		
-		ministracaoValues.put("_id", 3);
-		ministracaoValues.put("data", "2014-11-02");
+		ministracaoValues.put("_id", 4);
+		ministracaoValues.put("data", "2014-11-03");
 		ministracaoValues.put("palestra_id", 2);
 		db.insert("ministracao", null, ministracaoValues);
 
@@ -126,7 +126,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		participacoesValues.put("updated", false);
 		db.insert("participacao", null, participacoesValues);
 		
-		participacoesValues.put("_id", 9);
+		participacoesValues.put("_id", 4);
 		participacoesValues.put("ministracao_id", 4);
 		participacoesValues.put("participante_inscricao", 1001);
 		participacoesValues.put("presenca", false);
@@ -137,15 +137,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		values.put("nome", "Maria de Sousa Carvalho");
 		db.insert("participante", null, values); //minist ids 2 e 3
 		
-		participacoesValues.put("_id", 4);
+		participacoesValues.put("_id", 5);
 		participacoesValues.put("ministracao_id", 2);
 		participacoesValues.put("participante_inscricao", 1002);
 		participacoesValues.put("presenca", false);
 		participacoesValues.put("updated", false);
 		db.insert("participacao", null, participacoesValues);
-	
-		participacoesValues.put("_id", 5);
+		
+		participacoesValues.put("_id", 6);
 		participacoesValues.put("ministracao_id", 3);
+		participacoesValues.put("participante_inscricao", 1002);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
+	
+		participacoesValues.put("_id", 7);
+		participacoesValues.put("ministracao_id", 4);
 		participacoesValues.put("participante_inscricao", 1002);
 		participacoesValues.put("presenca", false);
 		participacoesValues.put("updated", false);
@@ -156,30 +163,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.insert("participante", null, values);
 		//minist. ids 0, 1, 3 (jogos e ruby)
 		
-		participacoesValues.put("_id", 6);
+		participacoesValues.put("_id", 8);
 		participacoesValues.put("ministracao_id", 0);
 		participacoesValues.put("participante_inscricao", 1003);
 		participacoesValues.put("presenca", false);
 		participacoesValues.put("updated", false);
 		db.insert("participacao", null, participacoesValues);
 		
-		participacoesValues.put("_id", 7);
+		participacoesValues.put("_id", 9);
 		participacoesValues.put("ministracao_id", 1);
 		participacoesValues.put("participante_inscricao", 1003);
 		participacoesValues.put("presenca", false);
 		participacoesValues.put("updated", false);
 		db.insert("participacao", null, participacoesValues);
 		
-		participacoesValues.put("_id", 8);
-		participacoesValues.put("ministracao_id", 3);
+		participacoesValues.put("_id", 10);
+		participacoesValues.put("ministracao_id", 2);
 		participacoesValues.put("participante_inscricao", 1003);
 		participacoesValues.put("presenca", false);
 		participacoesValues.put("updated", false);
 		db.insert("participacao", null, participacoesValues);
 		
-		//Add 3 participantes
-		//3 palestras (jogos [2 ministracoes], arduino [1 minist.] e ruby [1 minist.]
-		//Add 9 participações
+		participacoesValues.put("_id", 11);
+		participacoesValues.put("ministracao_id", 3);
+		participacoesValues.put("participante_inscricao", 1003);
+		participacoesValues.put("presenca", false);
+		participacoesValues.put("updated", false);
+		db.insert("participacao", null, participacoesValues);
 	}
 
 }
