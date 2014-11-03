@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.congresso.Ministracao;
-import com.congresso.Palestra;
 import com.congresso.dao.MinistracaoDAO;
+import com.congresso.model.Ministracao;
+import com.congresso.model.Palestra;
 
 public class MinistracaoDAOImplMock implements MinistracaoDAO {
 

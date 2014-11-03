@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.congresso.Ministracao;
-import com.congresso.Palestra;
-import com.congresso.Participacao;
-import com.congresso.Participante;
 import com.congresso.dao.ParticipacaoDAO;
+import com.congresso.model.Ministracao;
+import com.congresso.model.Palestra;
+import com.congresso.model.Participacao;
+import com.congresso.model.Participante;
 
 public class ParticipacaoDAOImplMock implements ParticipacaoDAO {
 

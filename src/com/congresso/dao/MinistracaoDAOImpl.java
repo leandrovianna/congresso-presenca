@@ -13,8 +13,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.congresso.DatabaseHelper;
-import com.congresso.Ministracao;
-import com.congresso.Palestra;
+import com.congresso.model.Ministracao;
+import com.congresso.model.Palestra;
 
 public class MinistracaoDAOImpl implements MinistracaoDAO {
 

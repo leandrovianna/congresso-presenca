@@ -9,9 +9,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.congresso.DatabaseHelper;
-import com.congresso.Ministracao;
-import com.congresso.Participacao;
-import com.congresso.Participante;
+import com.congresso.model.Ministracao;
+import com.congresso.model.Participacao;
+import com.congresso.model.Participante;
 
 public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 

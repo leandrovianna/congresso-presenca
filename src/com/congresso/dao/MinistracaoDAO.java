@@ -2,7 +2,7 @@ package com.congresso.dao;
 
 import java.util.List;
 
-import com.congresso.Ministracao;
+import com.congresso.model.Ministracao;
 
 public interface MinistracaoDAO {
 

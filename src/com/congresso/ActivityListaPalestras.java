@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.congresso.dao.MinistracaoDAOImpl;
+import com.congresso.model.Ministracao;
 
 public class ActivityListaPalestras extends ListActivity{
 

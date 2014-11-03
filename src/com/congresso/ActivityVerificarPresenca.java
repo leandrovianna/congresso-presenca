@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.congresso.dao.MinistracaoDAOImpl;
 import com.congresso.dao.ParticipacaoDAOImpl;
+import com.congresso.model.Ministracao;
+import com.congresso.model.Participacao;
 
 public class ActivityVerificarPresenca extends Activity implements OnClickListener {
 

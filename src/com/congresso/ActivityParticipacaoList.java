@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.widget.SimpleAdapter;
 
 import com.congresso.dao.ParticipacaoDAOImpl;
+import com.congresso.model.Participacao;
 
 public class ActivityParticipacaoList extends ListActivity {
 	

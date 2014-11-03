@@ -1,4 +1,4 @@
-package com.congresso;
+package com.congresso.model;
 
 import java.util.Date;
 
