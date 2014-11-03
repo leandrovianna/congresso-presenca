@@ -16,5 +16,9 @@
     <string name="description_bt_voltar">Voltar</string>
     <string name="title_activity_activity_participacao_list">Lista de Participações</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_teste">Teste</string>
+    <string name="title_activity_activity_importar_dados">ActivityImportarDados</string>
+    <string name="title_activity_importar_dados">ImportarDadosActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

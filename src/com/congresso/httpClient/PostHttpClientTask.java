@@ -21,7 +21,7 @@ public class PostHttpClientTask extends HttpClientTaskAbstract{
 
 
 	@Override
-	protected String executaHttp(String string) throws Exception {
+	public String executaHttp(String string) throws Exception {
 
 		BufferedReader bufferreader = null;
 

@@ -11,7 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 
 public class GetHttpClientTask extends HttpClientTaskAbstract {
 	
-	protected String executaHttp(String url) throws Exception {
+	public String executaHttp(String url) throws Exception {
 		BufferedReader bufferreader = null;
 
 		try{

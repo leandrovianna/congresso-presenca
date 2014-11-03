@@ -1093,11 +1093,12 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f090023;
         public static final int action_bar_title=0x7f090022;
         public static final int action_context_bar=0x7f09001d;
-        public static final int action_exportacao=0x7f090053;
-        public static final int action_importacao=0x7f090052;
+        public static final int action_exportacao=0x7f090054;
+        public static final int action_importacao=0x7f090053;
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
+        public static final int action_settings=0x7f090052;
         public static final int activity_chooser_view_content=0x7f090025;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
@@ -1219,14 +1220,16 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030015;
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
-        public static final int activity_lista_palestras=0x7f030018;
-        public static final int activity_participacao_list=0x7f030019;
-        public static final int activity_verificar_presenca=0x7f03001a;
-        public static final int qrcode_reader_layout=0x7f03001b;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
+        public static final int activity_importar_dados=0x7f030018;
+        public static final int activity_lista_palestras=0x7f030019;
+        public static final int activity_participacao_list=0x7f03001a;
+        public static final int activity_verificar_presenca=0x7f03001b;
+        public static final int qrcode_reader_layout=0x7f03001c;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
     }
     public static final class menu {
-        public static final int lista_palestras=0x7f0c0000;
+        public static final int importar_dados=0x7f0c0000;
+        public static final int lista_palestras=0x7f0c0001;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
@@ -1271,6 +1274,7 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000b;
         public static final int action_exportar=0x7f0a0012;
         public static final int action_importar=0x7f0a0011;
+        public static final int action_settings=0x7f0a001f;
         public static final int app_name=0x7f0a000d;
         public static final int description_bt_pesquisa=0x7f0a0018;
         public static final int description_bt_qr=0x7f0a0017;
@@ -1281,7 +1285,10 @@ containing a value of this type.
         public static final int label_inscricao=0x7f0a0013;
         public static final int label_nome=0x7f0a0014;
         public static final int msg_default_status=0x7f0a0010;
+        public static final int title_activity_activity_importar_dados=0x7f0a001d;
         public static final int title_activity_activity_participacao_list=0x7f0a001a;
+        public static final int title_activity_importar_dados=0x7f0a001e;
+        public static final int title_activity_teste=0x7f0a001c;
         public static final int title_activity_verificar_presenca=0x7f0a000f;
         public static final int title_lista_palestras=0x7f0a000e;
     }

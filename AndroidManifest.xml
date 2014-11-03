@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
     <!-- Permissões necessário para ler QR Codes -->
@@ -17,6 +17,7 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -48,11 +49,10 @@
         <activity
             android:name=".ActivityParticipacaoList"
             android:label="@string/title_activity_activity_participacao_list" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ImportarDadosActivity"
+            android:label="@string/title_activity_importar_dados" >
         </activity>
     </application>
 
