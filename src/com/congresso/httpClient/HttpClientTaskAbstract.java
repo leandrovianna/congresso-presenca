@@ -1,4 +1,4 @@
-package com.macaxeira.http;
+package com.congresso.httpClient;
 
 import java.util.ArrayList;
 import java.util.List;

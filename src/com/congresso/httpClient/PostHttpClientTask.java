@@ -1,4 +1,4 @@
-package com.macaxeira.http;
+package com.congresso.httpClient;
 
 import java.io.BufferedReader;
 import java.io.IOException;

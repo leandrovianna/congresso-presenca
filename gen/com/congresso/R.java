@@ -1128,13 +1128,13 @@ containing a value of this type.
         public static final int none=0x7f090019;
         public static final int normal=0x7f090007;
         public static final int p_id=0x7f09003e;
-        public static final int p_ministracao_data=0x7f090042;
+        public static final int p_ministracao_data=0x7f090045;
         public static final int p_ministracao_id=0x7f09003f;
         public static final int p_palestra_id=0x7f090040;
         public static final int p_palestra_nome=0x7f090041;
-        public static final int p_participante_id=0x7f090044;
-        public static final int p_partipante_nome=0x7f090043;
-        public static final int p_presenca=0x7f090045;
+        public static final int p_participante_id=0x7f090043;
+        public static final int p_partipante_nome=0x7f090042;
+        public static final int p_presenca=0x7f090044;
         public static final int preview_view=0x7f09004f;
         public static final int progress_circular=0x7f090004;
         public static final int progress_horizontal=0x7f090005;

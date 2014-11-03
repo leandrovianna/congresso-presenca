@@ -1,4 +1,4 @@
-package com.macaxeira.http;
+package com.congresso.httpClient;
 
 public interface HttpClientListener {
 
