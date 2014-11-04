@@ -1,16 +1,34 @@
 package com.congresso;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends Activity {
+	
+	private Intent intent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+	}
+	
+	public void abrirListaPalestras(View v) {
+		intent = new Intent(this, ListaPalestrasActivity.class);
+		startActivity(intent);
+	}
+	
+	public void abrirImportarDados(View v) {
+		intent = new Intent(this, ImportarDadosActivity.class);
+		startActivity(intent);
+	}
+	
+	public void abrirExportarDados(View v) {
+		//TODO
 	}
 
 	@Override

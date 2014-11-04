@@ -1084,7 +1084,7 @@ containing a value of this type.
         public static final int voltar=0x7f02005b;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f09004a;
+        public static final int RelativeLayout1=0x7f09004d;
         public static final int action_bar=0x7f09001c;
         public static final int action_bar_activity_content=0x7f090001;
         public static final int action_bar_container=0x7f09001b;
@@ -1096,15 +1096,18 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090024;
-        public static final int action_part_list=0x7f090057;
-        public static final int action_settings=0x7f090056;
+        public static final int action_part_list=0x7f09005a;
+        public static final int action_settings=0x7f090059;
         public static final int activity_chooser_view_content=0x7f090025;
         public static final int always=0x7f09000f;
         public static final int beginning=0x7f090016;
         public static final int bt_importar=0x7f09003d;
-        public static final int bt_pesquisa=0x7f09004d;
-        public static final int bt_qr=0x7f09004f;
-        public static final int bt_validar=0x7f090051;
+        public static final int bt_pesquisa=0x7f090050;
+        public static final int bt_qr=0x7f090052;
+        public static final int bt_validar=0x7f090054;
+        public static final int button1=0x7f090044;
+        public static final int button2=0x7f090042;
+        public static final int button3=0x7f090043;
         public static final int checkbox=0x7f09002d;
         public static final int collapseActionView=0x7f090010;
         public static final int default_activity_button=0x7f090028;
@@ -1113,7 +1116,7 @@ containing a value of this type.
         public static final int dropdown=0x7f090015;
         public static final int edit_query=0x7f090030;
         public static final int end=0x7f090017;
-        public static final int et_inscricao=0x7f09004c;
+        public static final int et_inscricao=0x7f09004f;
         public static final int et_link=0x7f09003e;
         public static final int expand_activities_button=0x7f090026;
         public static final int expanded_menu=0x7f09002c;
@@ -1129,15 +1132,15 @@ containing a value of this type.
         public static final int never=0x7f090012;
         public static final int none=0x7f090019;
         public static final int normal=0x7f090007;
-        public static final int p_id=0x7f090042;
-        public static final int p_ministracao_data=0x7f090049;
-        public static final int p_ministracao_id=0x7f090043;
-        public static final int p_palestra_id=0x7f090044;
-        public static final int p_palestra_nome=0x7f090045;
-        public static final int p_participante_id=0x7f090047;
-        public static final int p_partipante_nome=0x7f090046;
-        public static final int p_presenca=0x7f090048;
-        public static final int preview_view=0x7f090053;
+        public static final int p_id=0x7f090045;
+        public static final int p_ministracao_data=0x7f09004c;
+        public static final int p_ministracao_id=0x7f090046;
+        public static final int p_palestra_id=0x7f090047;
+        public static final int p_palestra_nome=0x7f090048;
+        public static final int p_participante_id=0x7f09004a;
+        public static final int p_partipante_nome=0x7f090049;
+        public static final int p_presenca=0x7f09004b;
+        public static final int preview_view=0x7f090056;
         public static final int progressBar=0x7f09003c;
         public static final int progress_circular=0x7f090004;
         public static final int progress_horizontal=0x7f090005;
@@ -1157,20 +1160,20 @@ containing a value of this type.
         public static final int showHome=0x7f09000c;
         public static final int showTitle=0x7f09000d;
         public static final int split_action_bar=0x7f09001e;
-        public static final int status_view=0x7f090055;
+        public static final int status_view=0x7f090058;
         public static final int submit_area=0x7f090039;
         public static final int tabMode=0x7f090008;
-        public static final int textView2=0x7f090050;
-        public static final int textView3=0x7f09004e;
+        public static final int textView2=0x7f090053;
+        public static final int textView3=0x7f090051;
         public static final int title=0x7f09002b;
         public static final int titulo=0x7f090040;
         public static final int top_action_bar=0x7f090020;
-        public static final int tvPalestra=0x7f09004b;
+        public static final int tvPalestra=0x7f09004e;
         public static final int tv_link=0x7f09003f;
-        public static final int tv_nome=0x7f090052;
+        public static final int tv_nome=0x7f090055;
         public static final int up=0x7f090021;
         public static final int useLogo=0x7f09000e;
-        public static final int viewfinder_view=0x7f090054;
+        public static final int viewfinder_view=0x7f090057;
         public static final int withText=0x7f090013;
     }
     public static final class integer {
@@ -1280,7 +1283,10 @@ containing a value of this type.
         public static final int action_part_list=0x7f0a0011;
         public static final int action_settings=0x7f0a001e;
         public static final int app_name=0x7f0a000d;
+        public static final int bt_exportar_dados_activity=0x7f0a0023;
         public static final int bt_importar_dados=0x7f0a0020;
+        public static final int bt_importar_dados_activity=0x7f0a0022;
+        public static final int bt_lista_palestras=0x7f0a0021;
         public static final int description_bt_pesquisa=0x7f0a0017;
         public static final int description_bt_qr=0x7f0a0016;
         public static final int description_bt_validar=0x7f0a0015;
