@@ -46,13 +46,15 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		btImportar = (Button) findViewById(R.id.bt_importar);
 		etLink = (EditText) findViewById(R.id.et_link);
 		
+		etLink.setText(link);
+		
 		ativarTelaNormal();
 	}
 	
 	public void loadFromServer(View v) {
 		ativarTelaCarregamento();
 		
-		getHttpTask.execute(link);
+		getHttpTask.execute(etLink.getText().toString());
 	}
 
 	@Override
