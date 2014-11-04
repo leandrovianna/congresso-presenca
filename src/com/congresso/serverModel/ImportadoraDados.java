@@ -20,6 +20,12 @@ public class ImportadoraDados {
 		
 		db = helper.getWritableDatabase();
 		
+		//limpar dados presentes no banco
+		db.execSQL("DELETE FROM palestra;");
+		db.execSQL("DELETE FROM ministracao;");
+		db.execSQL("DELETE FROM participacao;");
+		db.execSQL("DELETE FROM participante;");
+		
 		int ministracaoIdCount = 0; //contador para os ids das ministracoes
 		int participacaoIdCount = 0; //contador para os ids das participacoes
 
