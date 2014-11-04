@@ -27,11 +27,6 @@
         <activity
             android:name=".ListaPalestrasActivity"
             android:label="@string/title_lista_palestras" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".VerificarPresencaActivity"
@@ -53,6 +48,15 @@
         <activity
             android:name=".ImportarDadosActivity"
             android:label="@string/title_activity_importar_dados" >
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

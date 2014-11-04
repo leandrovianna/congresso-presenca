@@ -1225,14 +1225,16 @@ containing a value of this type.
         public static final int abc_simple_decor=0x7f030017;
         public static final int activity_importar_dados=0x7f030018;
         public static final int activity_lista_palestras=0x7f030019;
-        public static final int activity_participacao_list=0x7f03001a;
-        public static final int activity_verificar_presenca=0x7f03001b;
-        public static final int qrcode_reader_layout=0x7f03001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
+        public static final int activity_main=0x7f03001a;
+        public static final int activity_participacao_list=0x7f03001b;
+        public static final int activity_verificar_presenca=0x7f03001c;
+        public static final int qrcode_reader_layout=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {
         public static final int importar_dados=0x7f0c0000;
         public static final int lista_palestras=0x7f0c0001;
+        public static final int main=0x7f0c0002;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 
