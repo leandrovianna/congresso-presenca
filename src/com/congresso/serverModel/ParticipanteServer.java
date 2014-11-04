@@ -2,7 +2,7 @@ package com.congresso.serverModel;
 
 import java.io.Serializable;
 
-public class Participante implements Serializable {
+public class ParticipanteServer implements Serializable {
 
 	/**
 	 * 
@@ -13,7 +13,7 @@ public class Participante implements Serializable {
 	private String NOME;
 	private String CPF;
 
-	public Participante() {
+	public ParticipanteServer() {
 		
 	}
 

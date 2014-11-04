@@ -14,7 +14,7 @@ public class Atividade implements Serializable {
 	private String CODATIVIDADE;
 	private String DTHORA_INICIO;
 	private String DTHORA_FIM;
-	private List<Participante> LISTA_PARTICIPANTES;
+	private List<ParticipanteServer> LISTA_PARTICIPANTES;
 
 	public Atividade() {}
 
@@ -50,11 +50,11 @@ public class Atividade implements Serializable {
 		DTHORA_FIM = dTHORA_FIM;
 	}
 
-	public List<Participante> getLISTA_PARTICIPANTES() {
+	public List<ParticipanteServer> getLISTA_PARTICIPANTES() {
 		return LISTA_PARTICIPANTES;
 	}
 
-	public void setLISTA_PARTICIPANTES(List<Participante> lISTA_PARTICIPANTES) {
+	public void setLISTA_PARTICIPANTES(List<ParticipanteServer> lISTA_PARTICIPANTES) {
 		LISTA_PARTICIPANTES = lISTA_PARTICIPANTES;
 	}
 
