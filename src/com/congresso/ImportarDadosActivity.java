@@ -1,7 +1,6 @@
 package com.congresso;
 
 import android.app.Activity;
-import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,9 +10,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.congresso.httpClient.HttpClientListener;
-
-public class ImportarDadosActivity extends Activity implements HttpClientListener {
+public class ImportarDadosActivity extends Activity {
 
 	private ProgressBar progressBar;
 	private TextView tvLink;
@@ -30,13 +27,15 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		btImportar = (Button) findViewById(R.id.bt_importar);
 		etLink = (EditText) findViewById(R.id.et_link);
 		
-		tvLink.setVisibility(View.INVISIBLE);
-		btImportar.setVisibility(View.INVISIBLE);
-		etLink.setVisibility(View.INVISIBLE);
+		progressBar.setVisibility(View.INVISIBLE);
 	}
 	
-	public void loadJsonFromServer(View v) {
-		
+	public void loadFromServer(View v) {
+//		tvLink.setVisibility(View.INVISIBLE);
+//		btImportar.setVisibility(View.INVISIBLE);
+//		etLink.setVisibility(View.INVISIBLE);
+		progressBar.setVisibility(View.VISIBLE);
+
 	}
 
 	@Override
@@ -56,11 +55,5 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public void updateHttpClientListener(String result) {
-		
-		
 	}
 }

@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:text="@string/bt_importar_dados" />
+        android:text="@string/bt_importar_dados"
+        android:onClick="loadFromServer" />
 
     <EditText
         android:id="@+id/et_link"
