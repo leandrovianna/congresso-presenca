@@ -8,9 +8,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.congresso.ImportarDadosActivity" >
 
-    <TextView
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <Button
+        android:id="@+id/bt_importar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/bt_importar_dados" />
+
+    <EditText
+        android:id="@+id/et_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bt_importar"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/tv_link"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/tv_link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bt_importar"
+        android:layout_alignParentLeft="true"
+        android:text="@string/label_link"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
