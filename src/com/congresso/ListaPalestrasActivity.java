@@ -16,7 +16,7 @@ import android.widget.SimpleAdapter;
 import com.congresso.dao.MinistracaoDAOImpl;
 import com.congresso.model.Ministracao;
 
-public class ListaPalestrasActivity extends ListActivity{
+public class ListaPalestrasActivity extends ListActivity {
 
 	public static final String EXTRA_MINISTRACAO_ID = "ministracao_id";
 	private MinistracaoDAOImpl mDAO;
@@ -55,19 +55,11 @@ public class ListaPalestrasActivity extends ListActivity{
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
 		
 		switch (item.getItemId()) {
-		case R.id.action_importacao:
-			//ação para botão importação da action bar
+		case R.id.action_part_list:
 			//por teste abrindo lista de participacoes
 			startActivity(new Intent(this, ParticipacaoListActivity.class));
-			break;
-			
-		case R.id.action_exportacao:
-			//ação para botão de exportação
 			break;
 		}
 

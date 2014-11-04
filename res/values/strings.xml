@@ -5,8 +5,7 @@
     <string name="title_lista_palestras">Palestras de Hoje</string>
     <string name="title_activity_verificar_presenca">Validação de Inscrições</string>
     <string name="msg_default_status">Posicione o QR Code dentro do retângulo para a leitura</string>
-    <string name="action_importar">Importar</string>
-    <string name="action_exportar">Exportar</string>
+    <string name="action_part_list">Lista Part.</string>
     <string name="label_inscricao">Inscrição</string>
     <string name="label_nome">Nome:</string>
     <string name="hint_et_inscricao">Nº Inscrição</string>
