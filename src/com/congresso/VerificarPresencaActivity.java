@@ -13,7 +13,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.congresso.dao.MinistracaoDAOImpl;
 import com.congresso.dao.ParticipacaoDAOImpl;
 import com.congresso.model.Ministracao;
 import com.congresso.model.Participacao;
@@ -29,22 +28,19 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 	private Participacao participacao;
 	private Ministracao ministracao;
 	private ParticipacaoDAOImpl dao;
-	private MinistracaoDAOImpl daoM;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_verificar_presenca);
+		
+		ministracao = (Ministracao) getIntent().getSerializableExtra(ListaPalestrasActivity.EXTRA_MINISTRACAO);
 
-		String id = getIntent().getStringExtra(ListaPalestrasActivity.EXTRA_MINISTRACAO_ID);
-
-		if (id != null) {
+		if (ministracao != null) {
 			dialogConfirmacao = constroiDialogoConfirmacao();
 
 			dao = new ParticipacaoDAOImpl(this);
-			daoM = new MinistracaoDAOImpl(this);
 			participacao = new Participacao();
-			ministracao = daoM.buscarMinistracaoPorId(Integer.parseInt(id));
 
 			etInscricao = (EditText) findViewById(R.id.et_inscricao);
 			tvNome = (TextView) findViewById(R.id.tv_nome);

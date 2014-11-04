@@ -18,7 +18,7 @@ import com.congresso.model.Ministracao;
 
 public class ListaPalestrasActivity extends ListActivity {
 
-	public static final String EXTRA_MINISTRACAO_ID = "ministracao_id";
+	public static final String EXTRA_MINISTRACAO = "ministracao_object";
 	private MinistracaoDAOImpl mDAO;
 	private List<Ministracao> ministracoesHoje;
 
@@ -71,7 +71,7 @@ public class ListaPalestrasActivity extends ListActivity {
 		super.onListItemClick(l, v, position, id);
 
 		Intent intent = new Intent(getApplicationContext(), VerificarPresencaActivity.class);
-		intent.putExtra(EXTRA_MINISTRACAO_ID, String.valueOf(ministracoesHoje.get(position).getId()));
+		intent.putExtra(EXTRA_MINISTRACAO, ministracoesHoje.get(position));
 		startActivity(intent);
 	}
 
