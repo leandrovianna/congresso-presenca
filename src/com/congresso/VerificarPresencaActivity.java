@@ -18,7 +18,7 @@ import com.congresso.dao.ParticipacaoDAOImpl;
 import com.congresso.model.Ministracao;
 import com.congresso.model.Participacao;
 
-public class ActivityVerificarPresenca extends Activity implements OnClickListener {
+public class VerificarPresencaActivity extends Activity implements OnClickListener {
 
 	private AlertDialog dialogConfirmacao;
 
@@ -36,7 +36,7 @@ public class ActivityVerificarPresenca extends Activity implements OnClickListen
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_verificar_presenca);
 
-		String id = getIntent().getStringExtra(ActivityListaPalestras.EXTRA_MINISTRACAO_ID);
+		String id = getIntent().getStringExtra(ListaPalestrasActivity.EXTRA_MINISTRACAO_ID);
 
 		if (id != null) {
 			dialogConfirmacao = constroiDialogoConfirmacao();

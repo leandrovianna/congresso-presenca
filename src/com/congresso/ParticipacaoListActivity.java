@@ -12,7 +12,7 @@ import android.widget.SimpleAdapter;
 import com.congresso.dao.ParticipacaoDAOImpl;
 import com.congresso.model.Participacao;
 
-public class ActivityParticipacaoList extends ListActivity {
+public class ParticipacaoListActivity extends ListActivity {
 	
 	private ParticipacaoDAOImpl dao;
 	private List<Participacao> participacoes;

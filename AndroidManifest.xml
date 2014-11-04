@@ -25,7 +25,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ActivityListaPalestras"
+            android:name=".ListaPalestrasActivity"
             android:label="@string/title_lista_palestras" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityVerificarPresenca"
+            android:name=".VerificarPresencaActivity"
             android:label="@string/title_activity_verificar_presenca" >
         </activity>
 
@@ -47,7 +47,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <activity
-            android:name=".ActivityParticipacaoList"
+            android:name=".ParticipacaoListActivity"
             android:label="@string/title_activity_activity_participacao_list" >
         </activity>
         <activity

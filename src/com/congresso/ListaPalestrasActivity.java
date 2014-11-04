@@ -16,7 +16,7 @@ import android.widget.SimpleAdapter;
 import com.congresso.dao.MinistracaoDAOImpl;
 import com.congresso.model.Ministracao;
 
-public class ActivityListaPalestras extends ListActivity{
+public class ListaPalestrasActivity extends ListActivity{
 
 	public static final String EXTRA_MINISTRACAO_ID = "ministracao_id";
 	private MinistracaoDAOImpl mDAO;
@@ -63,7 +63,7 @@ public class ActivityListaPalestras extends ListActivity{
 		case R.id.action_importacao:
 			//ação para botão importação da action bar
 			//por teste abrindo lista de participacoes
-			startActivity(new Intent(this, ActivityParticipacaoList.class));
+			startActivity(new Intent(this, ParticipacaoListActivity.class));
 			break;
 			
 		case R.id.action_exportacao:
@@ -78,7 +78,7 @@ public class ActivityListaPalestras extends ListActivity{
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 
-		Intent intent = new Intent(getApplicationContext(), ActivityVerificarPresenca.class);
+		Intent intent = new Intent(getApplicationContext(), VerificarPresencaActivity.class);
 		intent.putExtra(EXTRA_MINISTRACAO_ID, String.valueOf(ministracoesHoje.get(position).getId()));
 		startActivity(intent);
 	}
