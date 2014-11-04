@@ -9,10 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.congresso.httpClient.GetHttpClientTask;
 import com.congresso.httpClient.HttpClientListener;
 import com.congresso.serverModel.Evento;
+import com.congresso.serverModel.ImportadoraDados;
 import com.google.gson.Gson;
 
 public class ImportarDadosActivity extends Activity implements HttpClientListener {
@@ -26,6 +28,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 	private final String link = "http://intranet.ifg.edu.br/eventos/admin/congresso.json";
 	
 	private Gson gson;
+	private ImportadoraDados importadora;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		getHttpTask.addHttpClientListener(this);
 		
 		gson = new Gson();
+		importadora = new ImportadoraDados(this);
 		
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		tvLink = (TextView) findViewById(R.id.tv_link);
@@ -56,7 +60,13 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		ativarTelaNormal();
 
 		Evento evento = gson.fromJson(result, Evento.class);
-
+		
+		boolean retorno = importadora.gravarDados(evento);
+		
+		if (retorno)
+			Toast.makeText(this, "Os dados foram importados com sucesso!", Toast.LENGTH_SHORT).show();
+		else
+			Toast.makeText(this, "Oops! Os dados não foram importados.", Toast.LENGTH_SHORT).show();
 	}
 	
 	private void ativarTelaCarregamento() {
