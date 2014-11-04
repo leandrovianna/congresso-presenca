@@ -1,7 +1,13 @@
 package com.congresso.model;
 
-public class Participacao {
+import java.io.Serializable;
 
+public class Participacao implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Ministracao ministracao;
 	private Participante participante;
 	private int id;

@@ -1,9 +1,14 @@
 package com.congresso.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Ministracao {
+public class Ministracao implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private Palestra palestra;
 	private Date data;
