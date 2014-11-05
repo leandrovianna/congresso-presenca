@@ -24,5 +24,7 @@
     <string name="bt_lista_palestras">Lista de Palestras</string>
     <string name="bt_importar_dados_activity">Importar Dados</string>
     <string name="bt_exportar_dados_activity">Exportar Dados</string>
+    <string name="title_activity_teste_http_client">TesteHttpClient</string>
+    <string name="title_activity_teste_http_client_get">TesteHttpClientGet</string>
 
 </resources>

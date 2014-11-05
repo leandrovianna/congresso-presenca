@@ -25,11 +25,11 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ListaPalestrasActivity"
+            android:name="com.congresso.ListaPalestrasActivity"
             android:label="@string/title_lista_palestras" >
         </activity>
         <activity
-            android:name=".VerificarPresencaActivity"
+            android:name="com.congresso.VerificarPresencaActivity"
             android:label="@string/title_activity_verificar_presenca" >
         </activity>
 
@@ -42,16 +42,34 @@
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <activity
-            android:name=".ParticipacaoListActivity"
+            android:name="com.congresso.ParticipacaoListActivity"
             android:label="@string/title_activity_activity_participacao_list" >
         </activity>
         <activity
-            android:name=".ImportarDadosActivity"
+            android:name="com.congresso.ImportarDadosActivity"
             android:label="@string/title_activity_importar_dados" >
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.congresso.MainActivity"
             android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.congresso.httpClient.TesteHttpClientPost"
+            android:label="@string/title_activity_teste_http_client" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.congresso.httpClient.TesteHttpClientGet"
+            android:label="@string/title_activity_teste_http_client_get" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
