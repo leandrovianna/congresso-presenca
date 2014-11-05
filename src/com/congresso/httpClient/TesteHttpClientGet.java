@@ -7,6 +7,7 @@ import com.congresso.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.Toast;
 
 public class TesteHttpClientGet extends Activity implements HttpClientListener{
 
@@ -34,6 +35,7 @@ public class TesteHttpClientGet extends Activity implements HttpClientListener{
 	@Override
 	public void updateHttpClientListener(String result) {
 		System.out.println(result);
+		Toast.makeText(this, result, Toast.LENGTH_LONG).show();
 		
 	}
 
