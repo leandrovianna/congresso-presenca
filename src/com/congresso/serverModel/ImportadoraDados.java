@@ -1,8 +1,12 @@
 package com.congresso.serverModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.congresso.DatabaseHelper;
 
@@ -10,10 +14,12 @@ public class ImportadoraDados {
 
 	private DatabaseHelper helper;
 	private SQLiteDatabase db;
+	private SimpleDateFormat dateFormat;
 	
 	
 	public ImportadoraDados(Context context) {
 		helper = new DatabaseHelper(context);
+		dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	}
 	
 	public boolean gravarDados(Evento evento) {
@@ -42,9 +48,18 @@ public class ImportadoraDados {
 			db.insert("palestra", null, values);
 			values.clear();
 			
+			String data;
+			try {
+				data = dateFormat.format(dateFormat.parse(atividade.getDTHORA_INICIO()));
+			} catch (ParseException e) {
+				data = atividade.getDTHORA_INICIO();
+			}
+			
+			Log.i("ImportadoraDados", "Data a ser passado pro banco: "+data);
+			
 			//criando registro Ministracao no banco
 			values.put("_id", ministracaoIdCount);
-			values.put("data", atividade.getDTHORA_INICIO());
+			values.put("data", data);
 			values.put("palestra_id", Integer.parseInt(atividade.getCODATIVIDADE()));
 			db.insert("ministracao", null, values);
 			values.clear();
