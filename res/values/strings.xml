@@ -26,5 +26,7 @@
     <string name="bt_exportar_dados_activity">Exportar Dados</string>
     <string name="title_activity_teste_http_client">TesteHttpClient</string>
     <string name="title_activity_teste_http_client_get">TesteHttpClientGet</string>
+    <string name="title_activity_exportar_dados">Exportar Dados</string>
+    <string name="textOutput">Out</string>
 
 </resources>
