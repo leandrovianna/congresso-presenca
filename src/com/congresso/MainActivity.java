@@ -29,7 +29,8 @@ public class MainActivity extends Activity {
 	}
 	
 	public void abrirExportarDados(View v) {
-		//TODO
+		intent = new Intent(this, ExportarDadosActivity.class);
+		startActivity(intent);
 	}
 
 	@Override
