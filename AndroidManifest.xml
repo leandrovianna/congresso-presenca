@@ -76,6 +76,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity 
+            android:name="ExportarDadosActivity" 
+            android:label="@string/title_activity_exportar_dados">
+        </activity>
     </application>
 
 </manifest>
