@@ -27,7 +27,7 @@ public class ListaPalestrasActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		mDAO = new MinistracaoDAOImpl(this);
-		ministracoesHoje = mDAO.listarMinistracaoDeHoje();
+		ministracoesHoje = mDAO.listarMinistracoes();
 
 		ArrayList<HashMap<String, String>> itens = new ArrayList<HashMap<String, String>>();
 		for (int i = 0; i < ministracoesHoje.size(); i++) {

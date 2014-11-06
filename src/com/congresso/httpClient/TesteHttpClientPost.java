@@ -27,7 +27,7 @@ public class TesteHttpClientPost extends Activity implements HttpClientListener{
 		task.addHttpClientListener(this);
 		
 		// cria par de valores para envio
-		NameValuePair nameValuePair = new BasicNameValuePair("presenca", "sanderson");
+		NameValuePair nameValuePair = new BasicNameValuePair("presenca", "sanderson jas");
 		
 		// adiciona a tarefa
 		task.addNameValuePair(nameValuePair);

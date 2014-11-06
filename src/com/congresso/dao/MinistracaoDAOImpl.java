@@ -59,6 +59,42 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 
 		return ministracoes;
 	}
+	
+	public List<Ministracao> listarMinistracoes() {
+
+
+		Cursor cursor = getDb().rawQuery("SELECT ministracao._id, ministracao.data, ministracao.palestra_id, palestra.nome FROM ministracao, palestra " + 
+				"WHERE palestra._id = ministracao.palestra_id", null);
+
+		List<Ministracao> ministracoes = new ArrayList<Ministracao>();
+
+		while (cursor.moveToNext()) {
+
+			try {
+
+				Palestra palestra = new Palestra(
+						cursor.getString(cursor.getColumnIndex("nome")),
+						cursor.getInt(cursor.getColumnIndex("palestra_id"))
+						);
+
+				Ministracao m = new Ministracao(
+						cursor.getInt(cursor.getColumnIndex("_id")),
+						palestra,		
+						dateFormat.parse(cursor.getString(cursor.getColumnIndex("data")))
+
+						);
+				ministracoes.add(m);
+			} catch (ParseException e) {
+
+				e.printStackTrace();
+			}
+
+
+		}
+
+		return ministracoes;
+	}
+
 
 	@Override
 	public boolean inserirMinistracao(Ministracao m) {
@@ -108,7 +144,7 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 			//ocorreu um erro no parser da data do banco
 			return null;
 		}
-		
+
 		return ministracao;
 	}
 
