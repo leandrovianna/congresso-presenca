@@ -7,11 +7,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.congresso.dao.ParticipacaoDAOImpl;
 import com.congresso.model.Ministracao;
@@ -24,6 +27,8 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 	private EditText etInscricao;
 	private TextView tvNome, tvPalestra;
 	private ImageButton btValidar;
+	private LinearLayout fundoBusca;
+	
 
 	private Participacao participacao;
 	private Ministracao ministracao;
@@ -44,50 +49,36 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 
 			etInscricao = (EditText) findViewById(R.id.et_inscricao);
 			tvNome = (TextView) findViewById(R.id.tv_nome);
-			btValidar = (ImageButton) findViewById(R.id.bt_validar);
+			btValidar = (ImageButton) findViewById(R.id.btValidar);
 			tvPalestra = (TextView) findViewById(R.id.tvPalestra);
-
+			fundoBusca = (LinearLayout) findViewById(R.id.fundoBusca);
+		
+			
+						
 			tvPalestra.setText(ministracao.getPalestra().getNome());
 			btValidar.setEnabled(false);
+			limparBusca();
 		}
 	}
+
 	
-	private void mostrarDialogoMensagem(String message) {
-		
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		
-		builder.setTitle("Aviso");
-		builder.setMessage(message);
-		builder.setNeutralButton("OK", null);
-		
-		builder.show();
-	}
-
-	private AlertDialog constroiDialogoConfirmacao() {
-
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Confirma√ß√£o");
-		builder.setMessage("O aluno est√° presente?");
-
-		builder.setPositiveButton("Confirmar", this);
-
-		builder.setNegativeButton("Cancelar", this);
-
-		return builder.create();		
-	}
-
+	
+	// M…TODO QUE BUSCA QR-CODE EM COMPONENTE
 	public void qr(View v) {
-
-		IntentIntegrator.initiateScan(this, R.layout.qrcode_reader_layout, 
-				R.id.viewfinder_view, R.id.preview_view, true);
+		IntentIntegrator.initiateScan(this, 
+									  R.layout.qrcode_reader_layout, 
+									  R.id.viewfinder_view, 
+									  R.id.preview_view, 
+									  true);
 	}
 
+	
+	// RETORNO DO COMPONENTE DE LEITURA DO QR-CODE
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		IntentResult result = 
-				IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+		IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
 		if (result != null) {
 
@@ -103,28 +94,40 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 		}
 	}
 
+	
+	
+	
+	// M…TODO PARA BUSCAR UMA INSCRICAO
 	public void buscarInscrito (View v) {
 		
 		if (etInscricao.getText().length() != 0) {
 			
 			int inscricao = Integer.parseInt(etInscricao.getText().toString());
 
-			participacao = dao.buscarParticipacaoPorInscricaoMinistracao(
-					inscricao, ministracao);
+			participacao = dao.buscarParticipacaoPorInscricaoMinistracao(inscricao, ministracao);
 	
 			if (participacao != null) {
 				
-				tvNome.setText(participacao.getParticipante().getNome());
+				tvNome.setText(participacao.getParticipante().getNome());				
 				btValidar.setEnabled(true);
-				
+				fundoBusca.setBackgroundColor(Color.rgb(168, 207, 96));
+																			
 			} else {
 				
-				tvNome.setText("Inscrito n√£o encontrado.");
+				tvNome.setText("InscriÁ„o n„o encontrada.");
 				btValidar.setEnabled(false);
+				fundoBusca.setBackgroundColor(Color.rgb(248, 172, 146));
+				
 			}
+		}else{
+			Toast.makeText(this, "Digite uma inscriÁ„o v·lida", Toast.LENGTH_LONG).show();
+			limparBusca();
 		}
 	}
 
+
+	
+	// M…TODO PARA VALIDAR A PRESEN«A 
 	public void validarPresenca (View v) {
 		//chamando dialogo de confirma√ß√£o da presen√ßa
 		dialogConfirmacao.show();
@@ -138,19 +141,51 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 			boolean sucesso = dao.updateParticipacao(participacao);
 			
 			if (sucesso) {
-				mostrarDialogoMensagem("A presen√ßa foi gravada com sucesso.");
-				
+				mostrarDialogoMensagem("PresenÁa registrada com sucesso.");				
 				//reiniciando os valores na interface
-				tvNome.setText("");
-				btValidar.setEnabled(false);
-				etInscricao.setText("");
+				limparBusca();
 			}
 			else
-				mostrarDialogoMensagem("Oops! Ocorreu um erro na grava√ß√£o da presen√ßa.");
-			
-			
+				mostrarDialogoMensagem("Oops! Ocorreu um erro na gravaÁ„o da presenÁa.");
+					
 		}
 
 	}
+
+	
+	
+	private void mostrarDialogoMensagem(String message) {
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		
+		builder.setTitle("Aviso");
+		builder.setMessage(message);
+		builder.setNeutralButton("OK", null);
+		
+		builder.show();
+	}
+
+	private AlertDialog constroiDialogoConfirmacao() {
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("ConfirmaÁ„o");
+		builder.setMessage("O aluno est· presente?");
+
+		builder.setPositiveButton("Confirmar", this);
+
+		builder.setNegativeButton("Cancelar", this);
+
+		return builder.create();		
+	}
+	
+	
+	private void limparBusca(){
+		tvNome.setText("");
+		btValidar.setEnabled(false);
+		etInscricao.setText("");
+		fundoBusca.setBackgroundColor(Color.rgb(210, 211, 213));
+	}
+	
+	
 
 }
