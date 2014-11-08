@@ -22,7 +22,7 @@ public class ExportadoraDados {
 
 	public JSONObject getJsonEvento(){
 
-		List<Participacao> participacoes = pDAO.listarParticipacao();
+		List<Participacao> participacoes = pDAO.listarParticipacoesComPresenca();
 
 		JSONObject jObj = new JSONObject();
 		JSONArray jArr = new JSONArray();
