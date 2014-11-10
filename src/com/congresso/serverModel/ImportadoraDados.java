@@ -3,26 +3,35 @@ package com.congresso.serverModel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import com.congresso.DatabaseHelper;
+import com.google.gson.Gson;
 
 public class ImportadoraDados {
 
 	private DatabaseHelper helper;
 	private SQLiteDatabase db;
-	private SimpleDateFormat dateFormat;
+	private SimpleDateFormat dateFormatJson;
+	private Gson gson;
 	
 	
+	@SuppressLint("SimpleDateFormat")
 	public ImportadoraDados(Context context) {
 		helper = new DatabaseHelper(context);
-		dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormatJson = new SimpleDateFormat("dd-MM-yyyy"); //formato de data do Json
+		gson = new Gson();
 	}
 	
-	public boolean gravarDados(Evento evento) {
+	public boolean gravarDados(String json) {
+
+		json = json.replace("\\/", "-");
+		Evento evento = gson.fromJson(json, Evento.class);
 		
 		db = helper.getWritableDatabase();
 		
@@ -44,25 +53,21 @@ public class ImportadoraDados {
 			
 			//criando registro Palestra no banco
 			values.put("_id", Integer.parseInt(atividade.getCODATIVIDADE()));
-			try {
-				byte[] b = atividade.getATIVIDADE().getBytes("UTF-8");
-				String nome = new String(b, "UTF-8");
-				values.put("nome", nome);
-			} catch (UnsupportedEncodingException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			values.put("nome", atividade.getATIVIDADE());
 			db.insert("palestra", null, values);
 			values.clear();
 			
 			String data;
 			try {
-				data = dateFormat.format(dateFormat.parse(atividade.getDTHORA_INICIO()));
+				data = DateFormat.format("yyyy-MM-dd",	dateFormatJson.parse(atividade.getDTHORA_INICIO()))
+							.toString();
+
 			} catch (ParseException e) {
-				data = atividade.getDTHORA_INICIO();
+				Log.e("ERRO: ImportadoraDados", "Erro no parser da data a partir do Json");
+				return false;
 			}
 			
-			Log.i("ImportadoraDados", "Data a ser passado pro banco: "+data);
+			Log.i("OK: ImportadoraDados", "Data a ser passado pro banco: "+data);
 			
 			//criando registro Ministracao no banco
 			values.put("_id", ministracaoIdCount);

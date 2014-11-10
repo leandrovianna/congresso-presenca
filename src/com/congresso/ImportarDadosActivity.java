@@ -13,9 +13,7 @@ import android.widget.Toast;
 
 import com.congresso.httpClient.GetHttpClientTask;
 import com.congresso.httpClient.HttpClientListener;
-import com.congresso.serverModel.Evento;
 import com.congresso.serverModel.ImportadoraDados;
-import com.google.gson.Gson;
 
 public class ImportarDadosActivity extends Activity implements HttpClientListener {
 
@@ -27,7 +25,6 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 	private GetHttpClientTask getHttpTask;
 	private final String link = "http://intranet.ifg.edu.br/eventos/admin/dadosjson.php";
 	
-	private Gson gson;
 	private ImportadoraDados importadora;
 
 	@Override
@@ -38,7 +35,6 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		getHttpTask = new GetHttpClientTask();
 		getHttpTask.addHttpClientListener(this);
 		
-		gson = new Gson();
 		importadora = new ImportadoraDados(this);
 		
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -60,10 +56,8 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 	@Override
 	public void updateHttpClientListener(String result) {
 		ativarTelaNormal();
-
-		Evento evento = gson.fromJson(result, Evento.class);
 		
-		boolean retorno = importadora.gravarDados(evento);
+		boolean retorno = importadora.gravarDados(result);
 		
 		if (retorno)
 			Toast.makeText(this, "Os dados foram importados com sucesso!", Toast.LENGTH_SHORT).show();
