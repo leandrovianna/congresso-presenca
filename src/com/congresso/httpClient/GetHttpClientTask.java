@@ -22,7 +22,9 @@ public class GetHttpClientTask extends HttpClientTaskAbstract {
 			HttpResponse httpResponse = client.execute(httpGet);
 			
 			
-			bufferreader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
+			bufferreader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent(), "UTF-8"));
+			
+			//bufferreader = new BufferedReader(new InputStreamReader());
 			StringBuffer stringBuffer = new StringBuffer("");
 			String line = "";
 			String LS = System.getProperty("line.separator");
