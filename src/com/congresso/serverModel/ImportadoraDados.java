@@ -44,7 +44,14 @@ public class ImportadoraDados {
 			
 			//criando registro Palestra no banco
 			values.put("_id", Integer.parseInt(atividade.getCODATIVIDADE()));
-			values.put("nome", atividade.getATIVIDADE());
+			try {
+				byte[] b = atividade.getATIVIDADE().getBytes("UTF-8");
+				String nome = new String(b, "UTF-8");
+				values.put("nome", nome);
+			} catch (UnsupportedEncodingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			db.insert("palestra", null, values);
 			values.clear();
 			
