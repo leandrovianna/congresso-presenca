@@ -25,7 +25,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 	private EditText etLink;
 
 	private GetHttpClientTask getHttpTask;
-	private final String link = "http://intranet.ifg.edu.br/eventos/admin/congresso.json";
+	private final String link = "http://leandrovianna.net84.net/json/congresso_teste.json";
 	
 	private Gson gson;
 	private ImportadoraDados importadora;
