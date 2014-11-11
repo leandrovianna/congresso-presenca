@@ -28,5 +28,6 @@
     <string name="title_activity_teste_http_client_get">TesteHttpClientGet</string>
     <string name="title_activity_exportar_dados">Exportar Dados</string>
     <string name="textOutput">Out</string>
+    <string name="internet_erro">Sua internet está sem conexão ou desabilitada</string>
 
 </resources>

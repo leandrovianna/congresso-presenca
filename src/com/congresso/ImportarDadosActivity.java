@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.congresso.httpClient.GetHttpClientTask;
 import com.congresso.httpClient.HttpClientListener;
+import com.congresso.httpClient.InternetCheck;
 import com.congresso.serverModel.ImportadoraDados;
 
 public class ImportarDadosActivity extends Activity implements HttpClientListener {
@@ -48,9 +49,13 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 	}
 	
 	public void loadFromServer(View v) {
-		ativarTelaCarregamento();
 		
-		getHttpTask.execute(etLink.getText().toString());
+		if(InternetCheck.isConnected(this)){
+			ativarTelaCarregamento();
+			getHttpTask.execute(etLink.getText().toString());
+		}else{
+			Toast.makeText(this, getString(R.string.internet_erro), Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override

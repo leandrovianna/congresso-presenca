@@ -70,7 +70,7 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 			task.execute(link);
 
 		}else{
-			Toast.makeText(this, "Sua internet está desabilitada ou sem conexão", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, getString(R.string.internet_erro), Toast.LENGTH_LONG).show();
 		}
 
 
