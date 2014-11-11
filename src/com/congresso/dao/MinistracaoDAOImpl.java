@@ -57,6 +57,7 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 			ministracoes.add(m);
 		}
 
+		cursor.close();
 		return ministracoes;
 	}
 	
@@ -92,6 +93,7 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 
 		}
 
+		cursor.close();
 		return ministracoes;
 	}
 
@@ -144,7 +146,8 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 			//ocorreu um erro no parser da data do banco
 			return null;
 		}
-
+		
+		cursor.close();
 		return ministracao;
 	}
 
