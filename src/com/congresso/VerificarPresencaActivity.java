@@ -141,13 +141,12 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 			boolean sucesso = dao.updateParticipacao(participacao);
 			
 			if (sucesso) {
-				mostrarDialogoMensagem("Presença registrada com sucesso.");				
+				Toast.makeText(this,"Presença registrada com sucesso.", Toast.LENGTH_LONG).show();				
 				//reiniciando os valores na interface
 				limparBusca();
 			}
 			else
-				mostrarDialogoMensagem("Oops! Ocorreu um erro na gravação da presença.");
-					
+				mostrarDialogoMensagem("Oops! Ocorreu um erro na gravação da presença.");					
 		}
 
 	}

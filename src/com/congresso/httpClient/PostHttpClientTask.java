@@ -24,7 +24,7 @@ public class PostHttpClientTask extends HttpClientTaskAbstract{
 	public String executaHttp(String string) throws Exception {
 
 		BufferedReader bufferreader = null;
-
+		String resultado;
 		//Encoding POST data
 		try {
 			HttpClient httpClient = getHttpClient();
@@ -44,14 +44,14 @@ public class PostHttpClientTask extends HttpClientTaskAbstract{
 			}
 			bufferreader.close();
 
-			String resultado = stringBuffer.toString();			
+			resultado = stringBuffer.toString();			
 
 			return resultado;
 		} catch (UnsupportedEncodingException e) {
-			// log exception
+			
 			e.printStackTrace();
 		} catch (ClientProtocolException e) {
-			// Log exception
+			
 			e.printStackTrace();
 		} catch (IOException e) {
 			// Log exception
@@ -65,8 +65,9 @@ public class PostHttpClientTask extends HttpClientTaskAbstract{
 				}               
 			}           
 		}
-
 		return null;
+
+		
 	}
 
 

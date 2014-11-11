@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.congresso.httpClient.HttpClientListener;
+import com.congresso.httpClient.InternetCheck;
 import com.congresso.httpClient.PostHttpClientTask;
 import com.congresso.serverModel.ExportadoraDados;
 
@@ -43,28 +44,35 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 
 		btExportar.setOnClickListener(this);
 
+
 		ativarPrimeiraTela();
 
 	}
 
 	public void exportarDados(View v) throws JSONException{
 
-		ativarTelaCarregamento();
+		if(InternetCheck.isConnected(this)){
+			ativarTelaCarregamento();
 
-		PostHttpClientTask task = new PostHttpClientTask();
-		task.addHttpClientListener(this);
+			PostHttpClientTask task = new PostHttpClientTask();
+			task.addHttpClientListener(this);
 
-		//gera o JSON
-		JSONObject jObj = exportadora.getJsonEvento();
+			//gera o JSON
+			JSONObject jObj = exportadora.getJsonEvento();
 
-		//adiciona o JSON a task e a executa
-		NameValuePair nameValuePair;
-		nameValuePair = new BasicNameValuePair("participacoes", jObj.toString());
-		task.addNameValuePair(nameValuePair);
-		task.execute(link);
+			//adiciona o JSON a task e a executa
+			NameValuePair nameValuePair;
 
-		//mostra conteudo do JSON para motivos de teste
-		tvOutput.setText(" Json Exportado : " + nameValuePair.toString());
+			String value = jObj.toString();
+
+			nameValuePair = new BasicNameValuePair("presenca", value);
+			task.addNameValuePair(nameValuePair);
+			task.execute(link);
+
+		}else{
+			Toast.makeText(this, "Sua internet está desabilitada ou sem conexão", Toast.LENGTH_LONG).show();
+		}
+
 
 	}
 
@@ -89,7 +97,8 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 	@Override
 	public void updateHttpClientListener(String result) {
 		ativarSegundaTela();
-		Toast.makeText(this, "success", Toast.LENGTH_LONG).show();
+		tvOutput.setText(" Json Exportado : " + result);
+		Toast.makeText(this, "Dados exportados com sucesso!", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -116,6 +125,7 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 		try {
 			exportarDados(v);
 		} catch (JSONException e) {
+			Toast.makeText(this, "Ocorreu um erro ao gerar o json para exportação", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
 		}
 	}
