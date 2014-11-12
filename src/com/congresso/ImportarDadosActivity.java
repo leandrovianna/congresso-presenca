@@ -20,6 +20,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 
 	private ProgressBar progressBar;
 	private TextView tvLink;
+	private TextView tvAguarde;
 	private Button btImportar;
 	private EditText etLink;
 
@@ -39,9 +40,10 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		importadora = new ImportadoraDados(this);
 		
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
-		tvLink = (TextView) findViewById(R.id.tv_link);
-		btImportar = (Button) findViewById(R.id.bt_importar);
-		etLink = (EditText) findViewById(R.id.et_link);
+		tvLink      = (TextView) findViewById(R.id.tv_link);
+		tvAguarde   = (TextView) findViewById(R.id.tv_aguarde);
+		btImportar  = (Button) findViewById(R.id.bt_importar);
+		etLink      = (EditText) findViewById(R.id.et_link);
 		
 		etLink.setText(link);
 		
@@ -75,6 +77,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		btImportar.setVisibility(View.INVISIBLE);
 		etLink.setVisibility(View.INVISIBLE);
 		progressBar.setVisibility(View.VISIBLE);
+		tvAguarde.setVisibility(View.VISIBLE);
 	}
 	
 	private void ativarTelaNormal() {
@@ -82,6 +85,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		btImportar.setVisibility(View.VISIBLE);
 		etLink.setVisibility(View.VISIBLE);
 		progressBar.setVisibility(View.INVISIBLE);
+		tvAguarde.setVisibility(View.INVISIBLE);
 	}
 	
 	@Override
