@@ -77,57 +77,83 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 
 			if (atividade == null)
 				break;
-
-			ContentValues values = new ContentValues();
-
-			//criando registro Palestra no banco
-			values.put("_id", Integer.parseInt(atividade.getCODATIVIDADE()));
-			values.put("nome", atividade.getATIVIDADE());
-			db.insert("palestra", null, values);
-			values.clear();
-
+			
+			ContentValues values = new ContentValues(); //criando o contentvalues que será usado
 			String data;
-			try {
-				data = DateFormat.format("yyyy-MM-dd",	dateFormatJson.parse(atividade.getDTHORA_INICIO()))
-							.toString();
 
+			//fazendo processamento da data
+			try {
+				data = DateFormat.format("yyyy-MM-dd",
+						dateFormatJson.parse(atividade.getDTHORA_INICIO()))
+						.toString();
+				
 			} catch (ParseException e) {
-				Log.e("ERRO: ImportadoraDados", "Erro no parser da data a partir do Json");
+				Log.e("ERRO: ImportadoraDados",
+						"Erro no parser da data a partir do Json");
 				return false;
 			}
+			Log.i("OK: ImportadoraDados", "Sucesso. Data a ser passado pro banco: "
+					+ data);
 			
-			Log.i("OK: ImportadoraDados", "Data a ser passado pro banco: "+data);
-			
-			//criando registro Ministracao no banco
-			values.put("_id", ministracaoIdCount);
-			values.put("data", data);
-			values.put("palestra_id", Integer.parseInt(atividade.getCODATIVIDADE()));
-			db.insert("ministracao", null, values);
-			values.clear();
-			
-			//criando registro de Participações desta Atividade no banco
-			
-			for (ParticipanteServer participante : atividade.getLISTA_PARTICIPANTES()) {
+
+			//verificar se a palestra NAO EXISTE
+			if ((db.rawQuery("SELECT * FROM palestra WHERE _id = "+atividade.getCODATIVIDADE(), 
+					null)).getCount() == 0) {
 				
-				if (participante == null)
-					break;
+				//se a palestra nao existe, então vamos adiciona-la ao banco
 				
-				//criando registro Participante no banco
-				values.put("inscricao", Integer.parseInt(participante.getCODPARTICIPANTE()));
-				values.put("nome", participante.getNOME());
-				db.insert("participante", null, values);
+				
+				//criando registro Palestra no banco
+				values.put("_id", Integer.parseInt(atividade.getCODATIVIDADE()));
+				values.put("nome", atividade.getATIVIDADE());
+				db.insert("palestra", null, values);
 				values.clear();
 				
-				//criando registro Participacao no banco
-				values.put("_id", participacaoIdCount);
-				values.put("ministracao_id", ministracaoIdCount);
-				values.put("participante_inscricao", Integer.parseInt(participante.getCODPARTICIPANTE()));
-				values.put("presenca", false);
-				values.put("updated", false);
-				db.insert("participacao", null, values);
+				
+				//criando registro Ministracao no banco
+				values.put("_id", ministracaoIdCount);
+				values.put("data", data);
+				values.put("palestra_id",
+						Integer.parseInt(atividade.getCODATIVIDADE()));
+				db.insert("ministracao", null, values);
 				values.clear();
 				
-				participacaoIdCount++;
+				for (ParticipanteServer participante : atividade
+						.getLISTA_PARTICIPANTES()) {
+
+					if (participante == null)
+						break;
+
+					//criando registro Participante no banco
+					values.put("inscricao",
+							Integer.parseInt(participante.getCODPARTICIPANTE()));
+					values.put("nome", participante.getNOME());
+					db.insert("participante", null, values);
+					values.clear();
+
+					//criando registro Participacao no banco
+					values.put("_id", participacaoIdCount);
+					values.put("ministracao_id", ministracaoIdCount);
+					values.put("participante_inscricao",
+							Integer.parseInt(participante.getCODPARTICIPANTE()));
+					values.put("presenca", false);
+					values.put("updated", false);
+					db.insert("participacao", null, values);
+					values.clear();
+
+					participacaoIdCount++;
+				}
+			} else {
+				//caso contrário, a palestra já existe no banco
+				//então vamos criar uma ministracao, com a nova data
+				
+				//criando registro Ministracao no banco
+				values.put("_id", ministracaoIdCount);
+				values.put("data", data);
+				values.put("palestra_id",
+						Integer.parseInt(atividade.getCODATIVIDADE()));
+				db.insert("ministracao", null, values);
+				values.clear();
 			}
 			
 			ministracaoIdCount++;
