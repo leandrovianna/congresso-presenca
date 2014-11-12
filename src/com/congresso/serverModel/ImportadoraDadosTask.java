@@ -4,19 +4,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
+import android.text.format.DateFormat;
+import android.util.Log;
+
 import com.congresso.DatabaseHelper;
 import com.congresso.ImportarDadosActivity;
 import com.congresso.dao.ParticipacaoDAOImpl;
 import com.congresso.model.Participacao;
 import com.google.gson.Gson;
-
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
-import android.text.format.DateFormat;
-import android.util.Log;
 
 public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 

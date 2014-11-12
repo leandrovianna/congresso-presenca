@@ -146,8 +146,11 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 		values.put("presenca", participacao.isPresenca());
 		values.put("updated", participacao.isUpdated());
 		
+		//fazer update no registro que tiver ministracao_id e participante_inscricao iguais ao desse objeto
+		
 		int retorno = getDb().update("participacao", values, 
-				"_id = "+participacao.getId(), null);
+				"ministracao_id = "+participacao.getMinistracao().getId()+
+				" AND participante_inscricao = "+participacao.getParticipante().getInscricao(), null);
 		
 		return retorno != 0;
 	}
