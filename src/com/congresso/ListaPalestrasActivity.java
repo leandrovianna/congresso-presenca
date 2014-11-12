@@ -37,8 +37,8 @@ public class ListaPalestrasActivity extends ListActivity {
 		}
 
 		String[] from = new String[]{"nome"};
-		int[] to = new int[]{android.R.id.text1};
-		int resource = android.R.layout.simple_selectable_list_item;
+		int[] to = new int[]{R.id.nome_palestra};
+		int resource = R.layout.activity_lista_palestras;
 
 		SimpleAdapter adapter = new SimpleAdapter(this, itens, resource, from, to);
 
