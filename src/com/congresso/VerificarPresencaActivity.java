@@ -63,7 +63,17 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 
 	
 	
-	// MÉTODO QUE BUSCA QR-CODE EM COMPONENTE
+	
+	@Override
+	protected void onDestroy() {
+		dao.close();
+		super.onDestroy();
+	}
+
+
+
+
+	// Mï¿½TODO QUE BUSCA QR-CODE EM COMPONENTE
 	public void qr(View v) {
 		IntentIntegrator.initiateScan(this, 
 									  R.layout.qrcode_reader_layout, 
@@ -97,7 +107,7 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 	
 	
 	
-	// MÉTODO PARA BUSCAR UMA INSCRICAO
+	// Mï¿½TODO PARA BUSCAR UMA INSCRICAO
 	public void buscarInscrito (View v) {
 		
 		if (etInscricao.getText().length() != 0) {
@@ -114,20 +124,20 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 																			
 			} else {
 				
-				tvNome.setText("Inscrição não encontrada.");
+				tvNome.setText("Inscriï¿½ï¿½o nï¿½o encontrada.");
 				btValidar.setEnabled(false);
 				fundoBusca.setBackgroundColor(Color.rgb(248, 172, 146));
 				
 			}
 		}else{
-			Toast.makeText(this, "Digite uma inscrição válida", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Digite uma inscriï¿½ï¿½o vï¿½lida", Toast.LENGTH_LONG).show();
 			limparBusca();
 		}
 	}
 
 
 	
-	// MÉTODO PARA VALIDAR A PRESENÇA 
+	// Mï¿½TODO PARA VALIDAR A PRESENï¿½A 
 	public void validarPresenca (View v) {
 		//chamando dialogo de confirmaÃ§Ã£o da presenÃ§a
 		dialogConfirmacao.show();
@@ -141,12 +151,12 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 			boolean sucesso = dao.updateParticipacao(participacao);
 			
 			if (sucesso) {
-				Toast.makeText(this,"Presença registrada com sucesso.", Toast.LENGTH_LONG).show();				
+				Toast.makeText(this,"Presenï¿½a registrada com sucesso.", Toast.LENGTH_LONG).show();				
 				//reiniciando os valores na interface
 				limparBusca();
 			}
 			else
-				mostrarDialogoMensagem("Oops! Ocorreu um erro na gravação da presença.");					
+				mostrarDialogoMensagem("Oops! Ocorreu um erro na gravaï¿½ï¿½o da presenï¿½a.");					
 		}
 
 	}
@@ -167,8 +177,8 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 	private AlertDialog constroiDialogoConfirmacao() {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Confirmação");
-		builder.setMessage("O aluno está presente?");
+		builder.setTitle("Confirmaï¿½ï¿½o");
+		builder.setMessage("O aluno estï¿½ presente?");
 
 		builder.setPositiveButton("Confirmar", this);
 

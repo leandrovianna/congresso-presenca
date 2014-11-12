@@ -34,7 +34,6 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 		helper = new DatabaseHelper(ac);
 		dateFormatJson = new SimpleDateFormat("dd-MM-yyyy"); //formato de data do Json
 		gson = new Gson();
-		dao = new ParticipacaoDAOImpl(ac);
 	}
 
 
@@ -48,12 +47,17 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 	@Override
 	protected void onPostExecute(Boolean result) {
 		super.onPostExecute(result);
+		
+		dao.close();
+		db.close();
+		
 		ac.retornoGravacaoDados(result);
 	}
 
 
 	private boolean gravarDados(String json) {
 		db = helper.getWritableDatabase();
+		dao = new ParticipacaoDAOImpl(ac);
 
 		json = json.replace("\\/", "-");
 		Evento evento = gson.fromJson(json, Evento.class);
@@ -91,7 +95,7 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 						"Erro no parser da data a partir do Json");
 				return false;
 			}
-			Log.i("OK: ImportadoraDados", "Sucesso. Data a ser passado pro banco: "
+			Log.i("ImportadoraDadosTask", "Sucesso. Data a ser passado pro banco: "
 					+ data);
 
 
@@ -101,7 +105,7 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 
 				//se a palestra nao existe, então vamos adiciona-la ao banco
 
-				Log.d("ImportadoraDados", "Criando Palestra cod:"+atividade.getCODATIVIDADE());
+				Log.i("ImportadoraDadosTask", "Criando Palestra cod:"+atividade.getCODATIVIDADE());
 				
 				//criando registro Palestra no banco
 				values.put("_id", Integer.parseInt(atividade.getCODATIVIDADE()));
@@ -127,7 +131,7 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 					if ((db.rawQuery("SELECT * FROM participante WHERE inscricao = "+participante.getCODPARTICIPANTE(), 
 							null)).getCount() == 0) {
 
-						Log.d("ImportadoraDados", "Criando Participante cod:"+participante.getCODPARTICIPANTE());
+						Log.i("ImportadoraDadosTask", "Criando Participante cod:"+participante.getCODPARTICIPANTE());
 						
 						//criando registro Participante no banco
 						values.put("inscricao",
@@ -188,10 +192,13 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 		//4a fase: reinserir participações antigas
 
 		for (Participacao participacao : participacoesAntigas) {
+			Log.i("ImportadoraDadosTask", "Backup: Atualizando Participacao");
+			Log.i("ImportadoraDadosTask", "ministracao_id = "+participacao.getMinistracao().getId()+
+					" participante nome:"+participacao.getParticipante().getNome()+
+					" inscricao:"+participacao.getParticipante().getInscricao());
+			
 			dao.updateParticipacao(participacao);
 		}
-		
-		db.close();
 
 		return true;
 	}

@@ -18,6 +18,7 @@ import com.congresso.model.Ministracao;
 
 public class ListaPalestrasActivity extends ListActivity {
 
+
 	public static final String EXTRA_MINISTRACAO = "ministracao_object";
 	private MinistracaoDAOImpl mDAO;
 	private List<Ministracao> ministracoesHoje;
@@ -44,6 +45,12 @@ public class ListaPalestrasActivity extends ListActivity {
 
 		setListAdapter(adapter);
 
+	}
+	
+	@Override
+	protected void onDestroy() {
+		mDAO.close();
+		super.onDestroy();
 	}
 	
 	@Override

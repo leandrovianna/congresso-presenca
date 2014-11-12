@@ -33,6 +33,10 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 
 		return db;
 	}
+	
+	public void close() {
+		helper.close();
+	}
 
 	@Override
 	public List<Ministracao> listarMinistracaoDeHoje() {

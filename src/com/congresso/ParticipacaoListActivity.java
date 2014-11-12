@@ -54,4 +54,12 @@ public class ParticipacaoListActivity extends ListActivity {
 				R.layout.activity_participacao_list, mapKeys, interfaceKeys));
 		
 	}
+
+	@Override
+	protected void onDestroy() {
+		dao.close();
+		super.onDestroy();
+	}
+	
+	
 }

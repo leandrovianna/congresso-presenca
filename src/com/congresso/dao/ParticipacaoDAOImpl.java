@@ -32,6 +32,10 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 
 		return db;
 	}
+	
+	public void close() {
+		helper.close();
+	}
 
 	@Override
 	public List<Participacao> listarParticipacao() {

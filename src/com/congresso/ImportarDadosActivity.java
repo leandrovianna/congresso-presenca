@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.congresso.httpClient.GetHttpClientTask;
 import com.congresso.httpClient.HttpClientListener;
 import com.congresso.httpClient.InternetCheck;
-import com.congresso.serverModel.ImportadoraDados;
 import com.congresso.serverModel.ImportadoraDadosTask;
 
 public class ImportarDadosActivity extends Activity implements HttpClientListener {
@@ -28,7 +27,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 	private GetHttpClientTask getHttpTask;
 	private final String link = "http://intranet.ifg.edu.br/eventos/admin/dadosjson.php";
 	
-	private ImportadoraDados importadora;
+	private ImportadoraDadosTask taskUpdate;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		getHttpTask = new GetHttpClientTask();
 		getHttpTask.addHttpClientListener(this);
 		
-		importadora = new ImportadoraDados(this);
+		taskUpdate = new ImportadoraDadosTask(this);
 		
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		tvLink      = (TextView) findViewById(R.id.tv_link);
@@ -67,15 +66,14 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		
 		if (!result.equals(null)){
 			Toast.makeText(this, "Os dados foram importados com sucesso!", Toast.LENGTH_SHORT).show();
-			tvAguarde.setText("Gravando no banco de dados local... essa operação pode levar alguns minutos");
+			tvAguarde.setText("Gravando no banco de dados local... essa operaï¿½ï¿½o pode levar alguns minutos");
 			
-			ImportadoraDadosTask taskUpdate = new ImportadoraDadosTask(this);
 			taskUpdate.execute(result);
 			
 			//boolean retorno = importadora.gravarDados(result);
 
 		}else{
-			Toast.makeText(this, "Oops! Os dados não foram importados.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "Oops! Os dados nï¿½o foram importados.", Toast.LENGTH_SHORT).show();
 		}
 				
 	}
@@ -86,7 +84,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		if (retorno)
 			tvAguarde.setText("Dados importados e gravados com sucesso!");
 		else
-			tvAguarde.setText("Oops! Os dados não foram gravados");			
+			tvAguarde.setText("Oops! Os dados nï¿½o foram gravados");			
 		
 		ativarTelaNormal();
 		tvAguarde.setVisibility(View.VISIBLE);
