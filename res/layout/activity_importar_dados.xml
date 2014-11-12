@@ -16,31 +16,36 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
 
-    <Button
-        android:id="@+id/bt_importar"
+    <TextView
+        android:id="@+id/tv_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="@string/bt_importar_dados"
-        android:onClick="loadFromServer" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/label_link"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
         android:id="@+id/et_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bt_importar"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/tv_link"
-        android:ems="10" />
+        android:layout_alignLeft="@+id/tv_link"
+        android:layout_below="@+id/tv_link"
+        android:ems="10" >
 
-    <TextView
-        android:id="@+id/tv_link"
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/bt_importar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bt_importar"
-        android:layout_alignParentLeft="true"
-        android:text="@string/label_link"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignLeft="@+id/progressBar"
+        android:layout_below="@+id/et_link"
+        android:layout_marginLeft="46dp"
+        android:onClick="loadFromServer"
+        android:text="@string/bt_importar_dados" />
 
 </RelativeLayout>
