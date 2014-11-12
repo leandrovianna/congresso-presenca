@@ -12,6 +12,7 @@ import com.congresso.DatabaseHelper;
 import com.congresso.model.Ministracao;
 import com.congresso.model.Participacao;
 import com.congresso.model.Participante;
+import com.congresso.serverModel.Presenca;
 
 public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 
@@ -44,11 +45,11 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 			Participacao p = criarParticipacao(cursor);
 			participacoes.add(p);
 		}
-		
+
 		cursor.close();
 		return participacoes;
 	}
-	
+
 	public List<Participacao> listarParticipacoesComPresenca() {
 
 		Cursor cursor = getDb().rawQuery("SELECT * FROM participacao, participante " +
@@ -66,19 +67,50 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 		return participacoes;
 	}
 
+	public List<Presenca> listarParticipacoesJson() {
+
+		Cursor cursor = getDb().rawQuery("SELECT "
+				+ "participacao.participante_inscricao as cod_participante, "
+				+ "palestra._id as cod_atividade "
+				+ "FROM "
+				+ "palestra INNER JOIN ministracao "
+				+ "ON palestra._id = ministracao.palestra_id "
+				+ "INNER JOIN participacao "
+				+ "ON ministracao._id = participacao.ministracao_id "
+				+ "WHERE participacao.presenca = 1 "
+				+ "GROUP BY participacao.participante_inscricao "
+				+ "HAVING count(participacao.participante_inscricao) >= 0.75*"
+				+ "(SELECT count(ministracao.palestra_id) as ministracoes "
+				+ "FROM ministracao WHERE ministracao.palestra_id = palestra._id)" , null);
+
+		List<Presenca> participacoes = new ArrayList<Presenca>();
+
+		while (cursor.moveToNext()) {
+			Presenca p = new Presenca();
+			
+			p.setCod_participante(cursor.getInt(cursor.getColumnIndex("cod_participante")));
+			p.setCod_atividade(cursor.getInt(cursor.getColumnIndex("cod_atividade")));
+			
+			participacoes.add(p);
+		}
+
+		cursor.close();
+		return participacoes;
+	}
+
 	private Participacao criarParticipacao(Cursor cursor) {
-			Participacao p = new Participacao();
+		Participacao p = new Participacao();
 
-			p.setId(cursor.getInt(cursor.getColumnIndex("_id")));
-			p.setParticipante(new Participante(
-					cursor.getInt(cursor.getColumnIndex("participante_inscricao")),
-					cursor.getString(cursor.getColumnIndex("nome"))
-					));
-			p.setPresenca(cursor.getInt(cursor.getColumnIndex("presenca")));
-			p.setUpdated(cursor.getInt(cursor.getColumnIndex("updated")));
+		p.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+		p.setParticipante(new Participante(
+				cursor.getInt(cursor.getColumnIndex("participante_inscricao")),
+				cursor.getString(cursor.getColumnIndex("nome"))
+				));
+		p.setPresenca(cursor.getInt(cursor.getColumnIndex("presenca")));
+		p.setUpdated(cursor.getInt(cursor.getColumnIndex("updated")));
 
-			p.setMinistracao(ministDAO.buscarMinistracaoPorId(cursor.getInt(cursor.getColumnIndex("ministracao_id"))));
-			return p;
+		p.setMinistracao(ministDAO.buscarMinistracaoPorId(cursor.getInt(cursor.getColumnIndex("ministracao_id"))));
+		return p;
 	}
 
 	@Override
@@ -102,8 +134,8 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 
 		return retorno != 0;
 	}
-	
-	
+
+
 
 	@Override
 	public Participacao buscarParticipacaoPorId(int id) {
@@ -127,7 +159,7 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 				"participacao.ministracao_id = "+ministracao.getId()+" AND " +
 				"participacao.participante_inscricao = "+inscricao
 				, null);
-		
+
 		while (cursor.moveToNext()) {
 			Participacao p = criarParticipacao(cursor);
 			return p;
@@ -145,13 +177,13 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 		values.put("participante_inscricao", participacao.getParticipante().getInscricao());
 		values.put("presenca", participacao.isPresenca());
 		values.put("updated", participacao.isUpdated());
-		
+
 		//fazer update no registro que tiver ministracao_id e participante_inscricao iguais ao desse objeto
-		
+
 		int retorno = getDb().update("participacao", values, 
 				"ministracao_id = "+participacao.getMinistracao().getId()+
 				" AND participante_inscricao = "+participacao.getParticipante().getInscricao(), null);
-		
+
 		return retorno != 0;
 	}
 

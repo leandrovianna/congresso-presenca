@@ -1,49 +1,31 @@
 package com.congresso.serverModel;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.content.Context;
 
 import com.congresso.dao.ParticipacaoDAOImpl;
-import com.congresso.model.Participacao;
+import com.google.gson.Gson;
 
 public class ExportadoraDados {
 
 	private ParticipacaoDAOImpl pDAO;
-
+	private Gson gson;
 
 	public ExportadoraDados(Context context) {
 		pDAO = new ParticipacaoDAOImpl(context);
+		gson = new Gson();
 	}
 
-	public JSONObject getJsonEvento(){
+	public String getJsonEvento(){
 
-		List<Participacao> participacoes = pDAO.listarParticipacoesComPresenca();
+		List<Presenca> presencas = new ArrayList<Presenca>();
 
-		JSONObject jObj = new JSONObject();
-		JSONArray jArr = new JSONArray();
+		presencas = pDAO.listarParticipacoesJson();
+		
+		String json = gson.toJson(presencas);
 
-		for(Participacao participacao : participacoes){
-			try {
-				JSONObject aux = new JSONObject();
-				aux.put("cod_participante", participacao.getParticipante().getInscricao());
-				aux.put("cod_atividade", participacao.getMinistracao().getPalestra().getId());
-				jArr.put(aux);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
-		try {
-			jObj.put("participacoes", jArr);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-
-		return jObj;
-
+		return json;
 	}
 }

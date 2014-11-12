@@ -3,7 +3,6 @@ package com.congresso;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -58,14 +57,12 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 			task.addHttpClientListener(this);
 
 			//gera o JSON
-			JSONObject jObj = exportadora.getJsonEvento();
+			String json = exportadora.getJsonEvento();
 
 			//adiciona o JSON a task e a executa
 			NameValuePair nameValuePair;
 
-			String value = jObj.toString();
-
-			nameValuePair = new BasicNameValuePair("presenca", value);
+			nameValuePair = new BasicNameValuePair("presenca", json);
 			task.addNameValuePair(nameValuePair);
 			task.execute(link);
 
@@ -125,7 +122,7 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 		try {
 			exportarDados(v);
 		} catch (JSONException e) {
-			Toast.makeText(this, "Ocorreu um erro ao gerar o json para exportação", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Ocorreu um erro ao gerar o json para exportaï¿½ï¿½o", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
 		}
 	}
