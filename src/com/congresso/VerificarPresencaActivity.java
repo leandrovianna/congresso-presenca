@@ -85,7 +85,8 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 	}
 
 
-	// RETORNO DO COMPONENTE DE LEITURA DO QR-CODE
+	// RETORNO DO COMPONENTE DE LEITURA DO QR-CODE E
+	// RETORNO DA ACTIVITY LISTA PARTICIPANTES COM O PARTICIPANTE SELECIONADO
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -106,13 +107,13 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 					etInscricao.setText("");
 				}
 			}
-		} else if (requestCode == ListaParticipantesActivity.RESPONSE_NUMERO_INSCRITO) {
+		} else if (requestCode == ListaParticipantesActivity.REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {                
             	
             	etInscricao.setText(data.getStringExtra(ListaParticipantesActivity.EXTRA_NUMERO_INSCRITO)+"");
             	buscarInscrito(null);
             } else {
-            	etInscricao.setText("");
+            	limparBusca();
             }
         }
 	}
@@ -158,9 +159,10 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 
 	//MÉTODO PARA LISTAR OS PARTICIPANTES DESTA MINISTRAÇÃO
 	public void verParticipacoes(View v) {
+		//carregando activity com a lista e passando a ministração para ela
 		Intent intent = new Intent(this, ListaParticipantesActivity.class);
 		intent.putExtra(EXTRA_MINISTRACAO, ministracao);
-		startActivityForResult(intent, ListaParticipantesActivity.RESPONSE_NUMERO_INSCRITO);
+		startActivityForResult(intent, ListaParticipantesActivity.REQUEST_CODE);
 	}
 
 	@Override
@@ -176,7 +178,7 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 				limparBusca();
 			}
 			else
-				mostrarDialogoMensagem("Oops! Ocorreu um erro na grava��o da presen�a.");					
+				mostrarDialogoMensagem("Oops! Ocorreu um erro na grava��o da presen�a.");
 		}
 
 	}

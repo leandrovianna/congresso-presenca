@@ -25,7 +25,7 @@ public class ListaParticipantesActivity extends ListActivity {
 	private Ministracao m;
 	private List<Participacao> participacoes;
 	
-	public static final int RESPONSE_NUMERO_INSCRITO = 999;
+	public static final int REQUEST_CODE = 999;
 	public static final String EXTRA_NUMERO_INSCRITO = "extra_numero_inscrito";
 	
 	@Override
@@ -58,6 +58,12 @@ public class ListaParticipantesActivity extends ListActivity {
 			setListAdapter(adapter);
 		}
 	}
+	
+	@Override
+	protected void onDestroy() {
+		dao.close();
+		super.onDestroy();
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,10 +87,6 @@ public class ListaParticipantesActivity extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
-
-//		Intent intent = new Intent(getApplicationContext(), VerificarPresencaActivity.class);
-//		
-//		startActivityForResult(intent, RESPONSE_NUMERO_INSCRITO);
 		
 		Intent resultIntent = new Intent();
 		resultIntent.putExtra(EXTRA_NUMERO_INSCRITO, participacoes.get(position).getParticipante().getInscricao()+"");
