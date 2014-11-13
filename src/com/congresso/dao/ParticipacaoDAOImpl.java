@@ -191,4 +191,20 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 		return retorno != 0;
 	}
 
+	public List<Participacao> listarParticipacoesPorMinistracao(Ministracao m) {
+		Cursor cursor = getDb().rawQuery("SELECT * FROM participacao, participante " +
+				"WHERE participacao.participante_inscricao = participante.inscricao " +
+				"AND participacao.ministracao_id = "+m.getId(), null);
+
+		List<Participacao> participacoes = new ArrayList<Participacao>();
+
+		while (cursor.moveToNext()) {
+			Participacao p = criarParticipacao(cursor);
+			participacoes.add(p);
+		}
+
+		cursor.close();
+		return participacoes;
+	}
+
 }

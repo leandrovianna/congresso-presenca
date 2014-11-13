@@ -77,6 +77,12 @@
         android:layout_marginTop="2dp"
         >
 
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="participantes"
+            android:onClick="verParticipacoes" />
        
         <EditText
             android:id="@+id/et_inscricao"

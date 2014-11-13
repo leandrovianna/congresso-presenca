@@ -33,6 +33,8 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 	private Participacao participacao;
 	private Ministracao ministracao;
 	private ParticipacaoDAOImpl dao;
+	
+	public static final String EXTRA_MINISTRACAO = "ministracao_atual";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -137,10 +139,17 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 
 
 	
-	// M�TODO PARA VALIDAR A PRESEN�A 
+	// MÉTODO PARA VALIDAR A PRESENÇA 
 	public void validarPresenca (View v) {
 		//chamando dialogo de confirmação da presença
 		dialogConfirmacao.show();
+	}
+	
+	//MÉTODO PARA LISTAR OS PARTICIPANTES DESTA MINISTRAÇÃO
+	public void verParticipacoes(View v) {
+		Intent intent = new Intent(this, ListaParticipantesActivity.class);
+		intent.putExtra(EXTRA_MINISTRACAO, ministracao);
+		startActivity(intent);
 	}
 
 	@Override
