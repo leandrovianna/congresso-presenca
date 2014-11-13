@@ -27,11 +27,13 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".ListaPalestrasActivity"
-            android:label="@string/title_lista_palestras" >
+            android:label="@string/title_lista_palestras"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".VerificarPresencaActivity"
-            android:label="@string/title_activity_verificar_presenca" >
+            android:label="@string/title_activity_verificar_presenca"
+            android:screenOrientation="portrait" >
         </activity>
 
         <!-- O Zxing precisa dessa Activity para a leitura do QR Code -->
@@ -44,15 +46,18 @@
         </activity>
         <activity
             android:name=".ParticipacaoListActivity"
-            android:label="@string/title_activity_activity_participacao_list" >
+            android:label="@string/title_activity_activity_participacao_list"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ImportarDadosActivity"
-            android:label="@string/title_activity_importar_dados" >
+            android:label="@string/title_activity_importar_dados"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -79,19 +84,23 @@
         </activity>
         <activity
             android:name=".ExportarDadosActivity"
-            android:label="@string/title_activity_exportar_dados" >
+            android:label="@string/title_activity_exportar_dados"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ListaParticipantesActivity"
-            android:label="@string/title_activity_lista_participantes" >
+            android:label="@string/title_activity_lista_participantes"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".ListaMinistracaoPorParticipanteActivity"
-            android:label="@string/title_activity_lista_ministracao_por_participante">
+            android:label="@string/title_activity_lista_ministracao_por_participante"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".SelecionarParticipanteActivity"
             android:label="@string/title_activity_selecionar_participante"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
