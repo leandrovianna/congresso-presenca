@@ -77,22 +77,12 @@
         android:layout_marginTop="2dp"
         >
 
-        
-        
-        <ImageButton
-            android:id="@+id/bt_listarParticipanter"
+        <Button
+            android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/bt_list" 
-            android:background="#A9ABAE"
-            android:layout_marginRight="10dp"
-            android:contentDescription="@string/app_name"
-            android:onClick="verParticipacoes"
-            />
-        
-        
-        
-        
+            android:text="participantes"
+            android:onClick="verParticipacoes" />
        
         <EditText
             android:id="@+id/et_inscricao"
@@ -144,7 +134,7 @@
             android:id="@+id/tv_nome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="carambaaa"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:padding="10dp"/>
         
