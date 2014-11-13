@@ -58,6 +58,12 @@ public class ListaParticipantesActivity extends ListActivity {
 			setListAdapter(adapter);
 		}
 	}
+	
+	@Override
+	protected void onDestroy() {
+		dao.close();
+		super.onDestroy();
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
