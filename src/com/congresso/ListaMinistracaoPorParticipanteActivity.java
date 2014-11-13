@@ -40,7 +40,7 @@ public class ListaMinistracaoPorParticipanteActivity extends ListActivity {
 				Map<String, String> item = new HashMap<String, String>();
 				
 				item.put("data", 
-						DateFormat.format("dd/mm/yyyy", participacao.getMinistracao().getData()).toString());
+						DateFormat.format("dd/MM/yyyy", participacao.getMinistracao().getData()).toString());
 				item.put("nome palestra", 
 						participacao.getMinistracao().getPalestra().getNome());
 				
@@ -54,6 +54,8 @@ public class ListaMinistracaoPorParticipanteActivity extends ListActivity {
 			SimpleAdapter adapter = new SimpleAdapter(this, data, resource, from, to);
 
 			setListAdapter(adapter);
+			
+			setTitle(participante.getNome());
 		}
 	}
 

@@ -79,8 +79,10 @@ public class SelecionarParticipanteActivity extends Activity {
 
 			Participante participante = new Participante();
 			participante.setInscricao(inscricao);
+			
+			participante = dao.buscarParticipante(participante);
 
-			if (dao.buscarParticipante(participante) != null) {
+			if (participante != null) {
 
 				Intent intent = new Intent(this, ListaMinistracaoPorParticipanteActivity.class);
 				intent.putExtra(EXTRA_PARTICIPANTE, participante);
