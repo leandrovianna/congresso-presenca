@@ -1,11 +1,18 @@
 package com.congresso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,16 +55,29 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 
 	}
 
-	public void exportarDados(View v) throws JSONException{
+	public void exportarDados(View v) throws JSONException, IOException{
+
+		//gera o JSON
+		String json = exportadora.getJsonEvento();
+
+		String nomeArquivo = "PresencasEvento.txt";
+		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + Environment.DIRECTORY_DOWNLOADS;
+		
+		File arquivo = new File( dir, nomeArquivo);
+		arquivo.createNewFile();
+		
+		//exporta o JSON para o arquivo
+		FileWriter writer = new FileWriter(arquivo);
+		writer.write(json);
+		writer.close();
+		
+		Toast.makeText(this, "Backup exportado para " + dir, Toast.LENGTH_LONG).show();
 
 		if(InternetCheck.isConnected(this)){
 			ativarTelaCarregamento();
 
 			PostHttpClientTask task = new PostHttpClientTask();
 			task.addHttpClientListener(this);
-
-			//gera o JSON
-			String json = exportadora.getJsonEvento();
 
 			//adiciona o JSON a task e a executa
 			NameValuePair nameValuePair;
@@ -122,9 +142,13 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 		try {
 			exportarDados(v);
 		} catch (JSONException e) {
-			Toast.makeText(this, "Ocorreu um erro ao gerar o json para exporta��o", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Ocorreu um erro ao gerar o json para exportaï¿½ï¿½o", Toast.LENGTH_LONG).show();
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 }
+
