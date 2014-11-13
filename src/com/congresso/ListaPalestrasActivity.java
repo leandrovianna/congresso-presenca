@@ -63,12 +63,12 @@ public class ListaPalestrasActivity extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		
-		switch (item.getItemId()) {
-		case R.id.action_part_list:
-			//por teste abrindo lista de participacoes
-			startActivity(new Intent(this, ParticipacaoListActivity.class));
-			break;
-		}
+//		switch (item.getItemId()) {
+//		case R.id.action_part_list:
+//			//por teste abrindo lista de participacoes
+//			startActivity(new Intent(this, ParticipacaoListActivity.class));
+//			break;
+//		}
 
 		return super.onOptionsItemSelected(item);
 	}

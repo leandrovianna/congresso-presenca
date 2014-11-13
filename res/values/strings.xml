@@ -31,5 +31,7 @@
     <string name="internet_erro">Sua internet está sem conexão ou desabilitada</string>
     <string name="aguarde_importacao">Por favor aguarde...</string>
     <string name="title_activity_lista_participantes">Participantes Cadastrados</string>
+    <string name="title_activity_lista_ministracao_por_participante">Atividades desse Inscrito</string>
+    <string name="title_activity_selecionar_participante">Selecionar Participante</string>
 
 </resources>

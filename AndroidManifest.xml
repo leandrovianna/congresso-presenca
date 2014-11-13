@@ -83,7 +83,19 @@
         </activity>
         <activity
             android:name=".ListaParticipantesActivity"
-            android:label="@string/title_activity_lista_participantes">
+            android:label="@string/title_activity_lista_participantes" >
+        </activity>
+        <activity
+            android:name=".ListaMinistracaoPorParticipanteActivity"
+            android:label="@string/title_activity_lista_ministracao_por_participante">
+        </activity>
+        <activity
+            android:name=".SelecionarParticipanteActivity"
+            android:label="@string/title_activity_selecionar_participante"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.congresso.MainActivity" />
         </activity>
     </application>
 

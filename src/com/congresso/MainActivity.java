@@ -23,6 +23,11 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 	
+	public void abrirListaMinistracaoPorParticipante(View v) {
+		intent = new Intent(this, SelecionarParticipanteActivity.class);
+		startActivity(intent);
+	}
+	
 	public void abrirImportarDados(View v) {
 		intent = new Intent(this, ImportarDadosActivity.class);
 		startActivity(intent);

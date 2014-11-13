@@ -206,5 +206,38 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 		cursor.close();
 		return participacoes;
 	}
+	
+	public List<Participacao> listarParticipacoesPorParticipante(Participante participante) {
+		Cursor cursor = getDb().rawQuery("SELECT * FROM participacao, participante " +
+				"WHERE participacao.participante_inscricao = participante.inscricao " +
+				"AND participante.inscricao = "+participante.getInscricao(), null);
+
+		List<Participacao> participacoes = new ArrayList<Participacao>();
+
+		while (cursor.moveToNext()) {
+			Participacao p = criarParticipacao(cursor);
+			participacoes.add(p);
+		}
+
+		cursor.close();
+		return participacoes;
+	}
+	
+	public Participante buscarParticipante(Participante participante) {
+		Cursor cursor = getDb().rawQuery("SELECT * FROM participante " +
+				"WHERE inscricao = "+participante.getInscricao(), null);
+		
+		Participante p = null;
+		
+		while (cursor.moveToNext()) {
+			p = new Participante();
+			p.setInscricao(cursor.getInt(cursor.getColumnIndex("inscricao")));
+			p.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+			
+			break;
+		}
+		
+		return p;
+	}
 
 }
