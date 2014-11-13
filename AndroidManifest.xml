@@ -83,11 +83,7 @@
         </activity>
         <activity
             android:name=".ListaParticipantesActivity"
-            android:label="@string/title_activity_lista_participantes"
-            android:parentActivityName=".VerificarPresencaActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.congresso.VerificarPresencaActivity" />
+            android:label="@string/title_activity_lista_participantes">
         </activity>
     </application>
 

@@ -5,10 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.congresso.dao.ParticipacaoDAOImpl;
@@ -19,6 +23,10 @@ public class ListaParticipantesActivity extends ListActivity {
 
 	private ParticipacaoDAOImpl dao;
 	private Ministracao m;
+	private List<Participacao> participacoes;
+	
+	public static final int RESPONSE_NUMERO_INSCRITO = 999;
+	public static final String EXTRA_NUMERO_INSCRITO = "extra_numero_inscrito";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +36,7 @@ public class ListaParticipantesActivity extends ListActivity {
 		m = (Ministracao) getIntent().getSerializableExtra(VerificarPresencaActivity.EXTRA_MINISTRACAO);
 		
 		if (m != null) {
-			List<Participacao> participacoes = dao.listarParticipacoesPorMinistracao(m);
+			participacoes = dao.listarParticipacoesPorMinistracao(m);
 			
 			List<Map<String, String>> data = new ArrayList<Map<String, String>>();
 			
@@ -69,4 +77,20 @@ public class ListaParticipantesActivity extends ListActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+
+//		Intent intent = new Intent(getApplicationContext(), VerificarPresencaActivity.class);
+//		
+//		startActivityForResult(intent, RESPONSE_NUMERO_INSCRITO);
+		
+		Intent resultIntent = new Intent();
+		resultIntent.putExtra(EXTRA_NUMERO_INSCRITO, participacoes.get(position).getParticipante().getInscricao()+"");
+		setResult(Activity.RESULT_OK, resultIntent);
+		finish();
+		
+	}
+
 }

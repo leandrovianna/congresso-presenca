@@ -28,19 +28,19 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 	private TextView tvNome, tvPalestra;
 	private ImageButton btValidar;
 	private LinearLayout fundoBusca;
-	
+
 
 	private Participacao participacao;
 	private Ministracao ministracao;
 	private ParticipacaoDAOImpl dao;
-	
+
 	public static final String EXTRA_MINISTRACAO = "ministracao_atual";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_verificar_presenca);
-		
+
 		ministracao = (Ministracao) getIntent().getSerializableExtra(ListaPalestrasActivity.EXTRA_MINISTRACAO);
 
 		if (ministracao != null) {
@@ -54,18 +54,18 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 			btValidar = (ImageButton) findViewById(R.id.btValidar);
 			tvPalestra = (TextView) findViewById(R.id.tvPalestra);
 			fundoBusca = (LinearLayout) findViewById(R.id.fundoBusca);
-		
-			
-						
+
+
+
 			tvPalestra.setText(ministracao.getPalestra().getNome());
 			btValidar.setEnabled(false);
 			limparBusca();
 		}
 	}
 
-	
-	
-	
+
+
+
 	@Override
 	protected void onDestroy() {
 		dao.close();
@@ -78,58 +78,69 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 	// M�TODO QUE BUSCA QR-CODE EM COMPONENTE
 	public void qr(View v) {
 		IntentIntegrator.initiateScan(this, 
-									  R.layout.qrcode_reader_layout, 
-									  R.id.viewfinder_view, 
-									  R.id.preview_view, 
-									  true);
+				R.layout.qrcode_reader_layout, 
+				R.id.viewfinder_view, 
+				R.id.preview_view, 
+				true);
 	}
 
-	
+
 	// RETORNO DO COMPONENTE DE LEITURA DO QR-CODE
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 
-		IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+		if (requestCode == IntentIntegrator.REQUEST_CODE) {
 
-		if (result != null) {
+			IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
 
-			String textoQr = result.getContents();
-			
-			try {
-				int numeroInscricao = Integer.parseInt(textoQr);
-				etInscricao.setText(numeroInscricao+"");
-				buscarInscrito(null);
-			} catch (NumberFormatException e) {
-				etInscricao.setText("");
+			if (result != null) {
+
+				String textoQr = result.getContents();
+
+				try {
+					int numeroInscricao = Integer.parseInt(textoQr);
+					etInscricao.setText(numeroInscricao+"");
+					buscarInscrito(null);
+				} catch (NumberFormatException e) {
+					etInscricao.setText("");
+				}
 			}
-		}
+		} else if (requestCode == ListaParticipantesActivity.RESPONSE_NUMERO_INSCRITO) {
+            if (resultCode == Activity.RESULT_OK) {                
+            	
+            	etInscricao.setText(data.getStringExtra(ListaParticipantesActivity.EXTRA_NUMERO_INSCRITO)+"");
+            	buscarInscrito(null);
+            } else {
+            	etInscricao.setText("");
+            }
+        }
 	}
 
-	
-	
-	
+
+
+
 	// M�TODO PARA BUSCAR UMA INSCRICAO
 	public void buscarInscrito (View v) {
-		
+
 		if (etInscricao.getText().length() != 0) {
-			
+
 			int inscricao = Integer.parseInt(etInscricao.getText().toString());
 
 			participacao = dao.buscarParticipacaoPorInscricaoMinistracao(inscricao, ministracao);
-	
+
 			if (participacao != null) {
-				
+
 				tvNome.setText(participacao.getParticipante().getNome());				
 				btValidar.setEnabled(true);
 				fundoBusca.setBackgroundColor(Color.rgb(168, 207, 96));
-																			
+
 			} else {
-				
+
 				tvNome.setText("Inscri��o n�o encontrada.");
 				btValidar.setEnabled(false);
 				fundoBusca.setBackgroundColor(Color.rgb(248, 172, 146));
-				
+
 			}
 		}else{
 			Toast.makeText(this, "Digite uma inscri��o v�lida", Toast.LENGTH_LONG).show();
@@ -138,27 +149,27 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 	}
 
 
-	
+
 	// MÉTODO PARA VALIDAR A PRESENÇA 
 	public void validarPresenca (View v) {
 		//chamando dialogo de confirmação da presença
 		dialogConfirmacao.show();
 	}
-	
+
 	//MÉTODO PARA LISTAR OS PARTICIPANTES DESTA MINISTRAÇÃO
 	public void verParticipacoes(View v) {
 		Intent intent = new Intent(this, ListaParticipantesActivity.class);
 		intent.putExtra(EXTRA_MINISTRACAO, ministracao);
-		startActivity(intent);
+		startActivityForResult(intent, ListaParticipantesActivity.RESPONSE_NUMERO_INSCRITO);
 	}
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
-		
+
 		if (dialog == dialogConfirmacao && which == DialogInterface.BUTTON_POSITIVE) {
 			participacao.setPresenca(true);
 			boolean sucesso = dao.updateParticipacao(participacao);
-			
+
 			if (sucesso) {
 				Toast.makeText(this,"Presen�a registrada com sucesso.", Toast.LENGTH_LONG).show();				
 				//reiniciando os valores na interface
@@ -170,16 +181,16 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 
 	}
 
-	
-	
+
+
 	private void mostrarDialogoMensagem(String message) {
-		
+
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		
+
 		builder.setTitle("Aviso");
 		builder.setMessage(message);
 		builder.setNeutralButton("OK", null);
-		
+
 		builder.show();
 	}
 
@@ -195,15 +206,15 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 
 		return builder.create();		
 	}
-	
-	
+
+
 	private void limparBusca(){
 		tvNome.setText("");
 		btValidar.setEnabled(false);
 		etInscricao.setText("");
 		fundoBusca.setBackgroundColor(Color.rgb(210, 211, 213));
 	}
-	
-	
+
+
 
 }
