@@ -54,7 +54,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		
 		if(InternetCheck.isConnected(this)){
 			ativarTelaCarregamento();
-			tvAguarde.setText("Importando dados de " + etLink.getText().toString());
+			tvAguarde.setText(getString(R.string.importando_dados) + etLink.getText().toString());
 			getHttpTask.execute(etLink.getText().toString());
 		}else{
 			Toast.makeText(this, getString(R.string.internet_erro), Toast.LENGTH_LONG).show();
@@ -65,15 +65,15 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 	public void updateHttpClientListener(String result) {
 		
 		if (!result.equals(null)){
-			Toast.makeText(this, "Os dados foram importados com sucesso!", Toast.LENGTH_SHORT).show();
-			tvAguarde.setText("Gravando no banco de dados local... essa opera��o pode levar alguns minutos");
+			Toast.makeText(this, getString(R.string.importacao_sucesso), Toast.LENGTH_SHORT).show();
+			tvAguarde.setText(getString(R.string.gravando_bd));
 			
 			taskUpdate.execute(result);
 			
 			//boolean retorno = importadora.gravarDados(result);
 
 		}else{
-			Toast.makeText(this, "Oops! Os dados n�o foram importados.", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, getString(R.string.dados_naoImportados), Toast.LENGTH_SHORT).show();
 		}
 				
 	}
@@ -82,9 +82,9 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 	public void retornoGravacaoDados(Boolean retorno){
 		
 		if (retorno)
-			tvAguarde.setText("Dados importados e gravados com sucesso!");
+			tvAguarde.setText(getString(R.string.dados_importadosEgravados));
 		else
-			tvAguarde.setText("Oops! Os dados n�o foram gravados");			
+			tvAguarde.setText(getString(R.string.dados_naoGravados));			
 		
 		ativarTelaNormal();
 		tvAguarde.setVisibility(View.VISIBLE);

@@ -71,7 +71,7 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 		writer.write(json);
 		writer.close();
 		
-		Toast.makeText(this, "Backup exportado para " + dir, Toast.LENGTH_LONG).show();
+		Toast.makeText(this, getString(R.string.backup_exportado) + dir, Toast.LENGTH_LONG).show();
 
 		if(InternetCheck.isConnected(this)){
 			ativarTelaCarregamento();
@@ -114,8 +114,8 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 	@Override
 	public void updateHttpClientListener(String result) {
 		ativarSegundaTela();
-		tvOutput.setText(" Json Exportado : " + result);
-		Toast.makeText(this, "Dados exportados com sucesso!", Toast.LENGTH_LONG).show();
+		tvOutput.setText(getString(R.string.json_exportado) + result);
+		Toast.makeText(this, getString(R.string.dados_exportados), Toast.LENGTH_LONG).show();
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 		try {
 			exportarDados(v);
 		} catch (JSONException e) {
-			Toast.makeText(this, "Ocorreu um erro ao gerar o json para exportaï¿½ï¿½o", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, getString(R.string.erro_jsonExportacao), Toast.LENGTH_LONG).show();
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

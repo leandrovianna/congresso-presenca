@@ -90,11 +90,11 @@ public class SelecionarParticipanteActivity extends Activity {
 
 			} else {
 
-				Toast.makeText(this, "Inscrição não encontrada", Toast.LENGTH_LONG).show();
+				Toast.makeText(this, getString(R.string.inscricao_naoEcontrada), Toast.LENGTH_LONG).show();
 
 			}
 		}else{
-			Toast.makeText(this, "Digite uma inscri��o v�lida", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, getString(R.string.inscricao_invalida), Toast.LENGTH_LONG).show();
 			etInscricao.setText("");
 
 		}

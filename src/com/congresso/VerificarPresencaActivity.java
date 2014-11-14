@@ -138,13 +138,13 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 
 			} else {
 
-				tvNome.setText("Inscri��o n�o encontrada.");
+				tvNome.setText(getString(R.string.inscricao_naoEcontrada));
 				btValidar.setEnabled(false);
 				fundoBusca.setBackgroundColor(Color.rgb(248, 172, 146));
 
 			}
 		}else{
-			Toast.makeText(this, "Digite uma inscri��o v�lida", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, getString(R.string.inscricao_invalida), Toast.LENGTH_LONG).show();
 			limparBusca();
 		}
 	}
@@ -173,12 +173,12 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 			boolean sucesso = dao.updateParticipacao(participacao);
 
 			if (sucesso) {
-				Toast.makeText(this,"Presen�a registrada com sucesso.", Toast.LENGTH_LONG).show();				
+				Toast.makeText(this, getString(R.string.presenca_registrada), Toast.LENGTH_LONG).show();				
 				//reiniciando os valores na interface
 				limparBusca();
 			}
 			else
-				mostrarDialogoMensagem("Oops! Ocorreu um erro na grava��o da presen�a.");
+				mostrarDialogoMensagem(getString(R.string.erro_presenca));
 		}
 
 	}
@@ -189,9 +189,9 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-		builder.setTitle("Aviso");
+		builder.setTitle(getString(R.string.dialogo_titulo));
 		builder.setMessage(message);
-		builder.setNeutralButton("OK", null);
+		builder.setNeutralButton(getString(R.string.dialogo_ok), null);
 
 		builder.show();
 	}
@@ -199,12 +199,12 @@ public class VerificarPresencaActivity extends Activity implements OnClickListen
 	private AlertDialog constroiDialogoConfirmacao() {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Confirma��o");
-		builder.setMessage("O aluno est� presente?");
+		builder.setTitle(getString(R.string.dialogo_confirmacao));
+		builder.setMessage(getString(R.string.dialogo_mensagem));
 
-		builder.setPositiveButton("Confirmar", this);
+		builder.setPositiveButton(getString(R.string.dialogo_confirmar), this);
 
-		builder.setNegativeButton("Cancelar", this);
+		builder.setNegativeButton(getString(R.string.dialogo_cancelar), this);
 
 		return builder.create();		
 	}
