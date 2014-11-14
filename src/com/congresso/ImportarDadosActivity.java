@@ -54,7 +54,7 @@ public class ImportarDadosActivity extends Activity implements HttpClientListene
 		
 		if(InternetCheck.isConnected(this)){
 			ativarTelaCarregamento();
-			tvAguarde.setText(getString(R.string.importando_dados) + etLink.getText().toString());
+			tvAguarde.setText(getString(R.string.importando_dados) + " " + etLink.getText().toString());
 			getHttpTask.execute(etLink.getText().toString());
 		}else{
 			Toast.makeText(this, getString(R.string.internet_erro), Toast.LENGTH_LONG).show();
