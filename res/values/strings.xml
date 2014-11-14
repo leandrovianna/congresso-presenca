@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Congresso Presença</string>
-    <string name="title_lista_palestras">Palestras de Hoje</string>
+    <string name="app_name">Inspector</string>
+    <string name="title_lista_palestras">Atividades de Hoje</string>
     <string name="title_activity_verificar_presenca">Validação de Inscrições</string>
     <string name="msg_default_status">Posicione o QR Code dentro do retângulo para a leitura</string>
     <string name="action_part_list">Lista Part.</string>
