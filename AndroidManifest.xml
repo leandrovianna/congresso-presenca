@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="13"
         android:targetSdkVersion="19" />
 
     <!-- Permissões necessário para ler QR Codes -->
@@ -28,7 +28,11 @@
         <activity
             android:name=".ListaPalestrasActivity"
             android:label="@string/title_lista_palestras"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.congresso.MainActivity" /> >
         </activity>
         <activity
             android:name=".VerificarPresencaActivity"
@@ -52,7 +56,11 @@
         <activity
             android:name=".ImportarDadosActivity"
             android:label="@string/title_activity_importar_dados"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.congresso.MainActivity" /> >
         </activity>
         <activity
             android:name=".MainActivity"
@@ -85,7 +93,11 @@
         <activity
             android:name=".ExportarDadosActivity"
             android:label="@string/title_activity_exportar_dados"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.congresso.MainActivity" /> >
         </activity>
         <activity
             android:name=".ListaParticipantesActivity"
