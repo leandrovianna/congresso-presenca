@@ -1,4 +1,4 @@
-package com.congresso;
+package com.congresso.dao;
 
 import android.content.ContentValues;
 import android.content.Context;

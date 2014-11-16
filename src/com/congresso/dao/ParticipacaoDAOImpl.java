@@ -8,7 +8,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.congresso.DatabaseHelper;
 import com.congresso.model.Ministracao;
 import com.congresso.model.Participacao;
 import com.congresso.model.Participante;

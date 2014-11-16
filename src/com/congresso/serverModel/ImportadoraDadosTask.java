@@ -11,8 +11,8 @@ import android.os.AsyncTask;
 import android.text.format.DateFormat;
 import android.util.Log;
 
-import com.congresso.DatabaseHelper;
 import com.congresso.ImportarDadosActivity;
+import com.congresso.dao.DatabaseHelper;
 import com.congresso.dao.ParticipacaoDAOImpl;
 import com.congresso.model.Participacao;
 import com.google.gson.Gson;
