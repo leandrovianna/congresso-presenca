@@ -76,7 +76,7 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 		writer.write(json);
 		writer.close();
 		
-		Toast.makeText(this, getString(R.string.backup_exportado) + dir, Toast.LENGTH_LONG).show();
+		Toast.makeText(this, getString(R.string.backup_exportado) + dir, Toast.LENGTH_SHORT).show();
 
 		if(InternetCheck.isConnected(this)){
 			ativarTelaCarregamento();
@@ -123,7 +123,8 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 	public void updateHttpClientListener(String result) {
 		ativarSegundaTela();
 		
-		tvOutput.setText(getString(R.string.json_exportado) + result);
+//		tvOutput.setText(getString(R.string.json_exportado) + result);
+		tvOutput.setText(getString(R.string.dados_exportados));
 		
 		Toast.makeText(this, getString(R.string.dados_exportados), Toast.LENGTH_LONG).show();
 	}
