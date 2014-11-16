@@ -38,7 +38,7 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 	}
 
 	@Override
-	public List<Ministracao> listarMinistracaoDeHoje() {
+	public List<Ministracao> listarMinistracoesDeHoje() {
 
 		//precisamos da data de hoje para fazer a comparacao na busca sql
 		//formatando a data de hoje para yyyy-MM-dd
@@ -47,15 +47,19 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 		Log.d("MinistracaoDAOImpl", "Data de hoje para busca no banco: "+dataHoje);
 
 		Cursor cursor = getDb().rawQuery("SELECT ministracao._id, ministracao.palestra_id, palestra.nome FROM ministracao, palestra " + 
-				"WHERE palestra._id = ministracao.palestra_id AND ministracao.data = ?", new String[]{dataHoje});
+				"WHERE palestra._id = ministracao.palestra_id AND ministracao.data = ? ORDER BY palestra.nome ASC", new String[]{dataHoje});
 
 		List<Ministracao> ministracoes = new ArrayList<Ministracao>();
 
 		while (cursor.moveToNext()) {
-			Ministracao m = new Ministracao(cursor.getInt(cursor.getColumnIndex("_id")), 
-					new Palestra(cursor.getString(cursor.getColumnIndex("nome")), 
-							cursor.getInt(cursor.getColumnIndex("palestra_id"))), 
-							new Date());
+			Palestra p = new Palestra();
+			p.setId(cursor.getInt(cursor.getColumnIndex("palestra_id")));
+			p.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+			
+			Ministracao m = new Ministracao();
+			m.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+			m.setPalestra(p);
+			m.setData(new Date());
 
 			ministracoes.add(m);
 		}
@@ -64,10 +68,11 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 		return ministracoes;
 	}
 	
+	@Override
 	public List<Ministracao> listarMinistracoes() {
 
-
-		Cursor cursor = getDb().rawQuery("SELECT ministracao._id, ministracao.data, ministracao.palestra_id, palestra.nome FROM ministracao, palestra " + 
+		Cursor cursor = getDb().rawQuery("SELECT ministracao._id, ministracao.data, ministracao.palestra_id, palestra.nome " +
+				"FROM ministracao, palestra " + 
 				"WHERE palestra._id = ministracao.palestra_id", null);
 
 		List<Ministracao> ministracoes = new ArrayList<Ministracao>();
@@ -85,8 +90,8 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 						cursor.getInt(cursor.getColumnIndex("_id")),
 						palestra,		
 						dateFormat.parse(cursor.getString(cursor.getColumnIndex("data")))
-
 						);
+
 				ministracoes.add(m);
 			} catch (ParseException e) {
 
@@ -153,7 +158,7 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 		cursor.close();
 		return ministracao;
 	}
-	
+
 	public Palestra buscarPalestraPorId(int id) {
 		Palestra p = null;
 		

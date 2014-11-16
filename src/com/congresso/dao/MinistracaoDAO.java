@@ -6,7 +6,9 @@ import com.congresso.model.Ministracao;
 
 public interface MinistracaoDAO {
 
-	public List<Ministracao> listarMinistracaoDeHoje();
+	public List<Ministracao> listarMinistracoesDeHoje();
+	
+	public List<Ministracao> listarMinistracoes();
 	
 	public boolean inserirMinistracao(Ministracao m);
 	

@@ -7,6 +7,7 @@ import java.util.List;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,17 +29,20 @@ public class ListaPalestrasActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 
 		mDAO = new MinistracaoDAOImpl(this);
-		ministracoesHoje = mDAO.listarMinistracoes();
+		ministracoesHoje = mDAO.listarMinistracoesDeHoje();
 
 		ArrayList<HashMap<String, String>> itens = new ArrayList<HashMap<String, String>>();
-		for (int i = 0; i < ministracoesHoje.size(); i++) {
-			HashMap<String, String> ministracoes = new HashMap<String, String>();
-			ministracoes.put("nome", ministracoesHoje.get(i).getPalestra().getNome());
-			itens.add(ministracoes);
+		for (Ministracao m : ministracoesHoje) {
+			HashMap<String, String> item = new HashMap<String, String>();
+			
+			item.put("nome", m.getPalestra().getNome());
+			item.put("data", DateFormat.format("dd/MM/yyyy", m.getData()).toString());
+
+			itens.add(item);
 		}
 
-		String[] from = new String[]{"nome"};
-		int[] to = new int[]{R.id.nome_palestra};
+		String[] from = new String[]{"nome", "data"};
+		int[] to = new int[]{R.id.nome_palestra, R.id.data_palestra};
 		int resource = R.layout.activity_lista_palestras;
 
 		SimpleAdapter adapter = new SimpleAdapter(this, itens, resource, from, to);
