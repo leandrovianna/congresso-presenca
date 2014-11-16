@@ -1,8 +1,6 @@
 package com.congresso;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -11,6 +9,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
@@ -18,7 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,13 +30,17 @@ import com.congresso.serverModel.ExportadoraDados;
 
 public class ExportarDadosActivity extends Activity implements HttpClientListener, OnClickListener {
 
+	public static final String JSON_EXPORTADO_EXTRA = "com.congresso.json_exportado_extra";
+	
 	private ProgressBar progressBar;
 	private Button btExportar;
 	private TextView tvOutput;
-
+	private Button btListaPresencas;
+	
 	private final String link = "http://intranet.ifg.edu.br/eventos/admin/post.php";
 
 	private ExportadoraDados exportadora;
+	private String json;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +52,7 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 		progressBar = (ProgressBar) findViewById(R.id.progressBar);
 		btExportar = (Button) findViewById(R.id.bt_exportar);
 		tvOutput = (TextView) findViewById(R.id.textOutput);
+		btListaPresencas = (Button) findViewById(R.id.bt_lista_presencas);
 
 		btExportar.setOnClickListener(this);
 
@@ -58,8 +64,9 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 	public void exportarDados(View v) throws JSONException, IOException{
 
 		//gera o JSON
-		String json = exportadora.getJsonEvento();
+		json = exportadora.getJsonEvento();
 
+		//grava arquivo com json na pasta Downloas do dispositivo
 		String nomeArquivo = "PresencasEvento.txt";
 		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + Environment.DIRECTORY_DOWNLOADS;
 		
@@ -97,25 +104,36 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 		btExportar.setVisibility(View.INVISIBLE);
 		progressBar.setVisibility(View.VISIBLE);
 		tvOutput.setVisibility(View.INVISIBLE);
+		btListaPresencas.setVisibility(View.INVISIBLE);
 	}
 
 	private void ativarPrimeiraTela() {
 		btExportar.setVisibility(View.VISIBLE);
 		progressBar.setVisibility(View.INVISIBLE);
 		tvOutput.setVisibility(View.INVISIBLE);
+		btListaPresencas.setVisibility(View.INVISIBLE);
 	}
 
 	private void ativarSegundaTela() {
 		btExportar.setVisibility(View.INVISIBLE);
 		progressBar.setVisibility(View.INVISIBLE);
 		tvOutput.setVisibility(View.VISIBLE);
+		btListaPresencas.setVisibility(View.VISIBLE);
 	}
 
 	@Override
 	public void updateHttpClientListener(String result) {
 		ativarSegundaTela();
+		
 		tvOutput.setText(getString(R.string.json_exportado) + result);
+		
 		Toast.makeText(this, getString(R.string.dados_exportados), Toast.LENGTH_LONG).show();
+	}
+	
+	public void abrirListaPresencasExportadas(View v) {
+		Intent intent = new Intent(this, ListaPresencasExportadasActivity.class);
+		intent.putExtra(JSON_EXPORTADO_EXTRA, json);
+		startActivity(intent);
 	}
 
 	@Override

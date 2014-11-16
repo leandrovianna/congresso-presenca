@@ -30,4 +30,13 @@
         android:layout_height="wrap_content"
         android:text="@string/textOutput" />
 
+    <Button
+        android:id="@+id/bt_lista_presencas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:onClick="abrirListaPresencasExportadas"
+        android:text="@string/bt_lista_presencas" />
+
 </RelativeLayout>

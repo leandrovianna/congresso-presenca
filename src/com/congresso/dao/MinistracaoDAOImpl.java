@@ -153,5 +153,20 @@ public class MinistracaoDAOImpl implements MinistracaoDAO {
 		cursor.close();
 		return ministracao;
 	}
+	
+	public Palestra buscarPalestraPorId(int id) {
+		Palestra p = null;
+		
+		Cursor cursor = getDb().rawQuery("SELECT * FROM palestra WHERE palestra._id = "+id, null);
+		
+		while (cursor.moveToNext()) {
+			p = new Palestra();
+			p.setId(id);
+			p.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+			break;
+		}
+		
+		return p;
+	}
 
 }

@@ -53,7 +53,7 @@
     <string name="dialogo_mensagem">O aluno está presente?</string>
     <string name="dialogo_confirmar">Confirmar</string>
     <string name="dialogo_cancelar">Cancelar</string>
-    
-    
+    <string name="title_activity_lista_presencas_exportadas">Presenças Exportadas</string>
+    <string name="bt_lista_presencas">Lista de Presenças Exportadas</string>
 
 </resources>

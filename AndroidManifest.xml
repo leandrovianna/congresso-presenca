@@ -28,11 +28,12 @@
         <activity
             android:name=".ListaPalestrasActivity"
             android:label="@string/title_lista_palestras"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.congresso.MainActivity" /> >
+                android:value="com.congresso.MainActivity" />
+ >
         </activity>
         <activity
             android:name=".VerificarPresencaActivity"
@@ -56,11 +57,12 @@
         <activity
             android:name=".ImportarDadosActivity"
             android:label="@string/title_activity_importar_dados"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.congresso.MainActivity" /> >
+                android:value="com.congresso.MainActivity" />
+ >
         </activity>
         <activity
             android:name=".MainActivity"
@@ -72,15 +74,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ExportarDadosActivity"
             android:label="@string/title_activity_exportar_dados"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.congresso.MainActivity" /> >
+                android:value="com.congresso.MainActivity" />
+ >
         </activity>
         <activity
             android:name=".ListaParticipantesActivity"
@@ -90,16 +92,20 @@
         <activity
             android:name=".ListaMinistracaoPorParticipanteActivity"
             android:label="@string/title_activity_lista_ministracao_por_participante"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".SelecionarParticipanteActivity"
             android:label="@string/title_activity_selecionar_participante"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.congresso.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ListaPresencasExportadasActivity"
+            android:label="@string/title_activity_lista_presencas_exportadas" >
         </activity>
     </application>
 
