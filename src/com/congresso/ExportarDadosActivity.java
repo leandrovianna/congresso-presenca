@@ -3,6 +3,9 @@ package com.congresso;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -64,8 +67,14 @@ public class ExportarDadosActivity extends Activity implements HttpClientListene
 		//gera o JSON
 		json = exportadora.getJsonEvento();
 
+		// data atual
+		String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());
+		
+		
+		
+		
 		//grava arquivo com json na pasta Downloas do dispositivo
-		String nomeArquivo = "PresencasEvento.txt";
+		String nomeArquivo = "PresencasEvento "+ date + ".txt";
 		String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + Environment.DIRECTORY_DOWNLOADS;
 		
 		File arquivo = new File( dir, nomeArquivo);
