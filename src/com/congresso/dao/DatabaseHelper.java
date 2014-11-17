@@ -3,6 +3,7 @@ package com.congresso.dao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -56,6 +57,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		db.execSQL("ALTER TABLE new_participacao RENAME TO participacao");
 		
 		db.execSQL("PRAGMA foreign_keys=ON"); //reativando FOREIGN KEYS
+		
+		Log.i("DatabaseHelper", "Alteracao na tabela participacao completa");
 	}
 	
 //	private void inserirDadosTeste(SQLiteDatabase db) {
