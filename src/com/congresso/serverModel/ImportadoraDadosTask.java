@@ -1,7 +1,11 @@
 package com.congresso.serverModel;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -9,6 +13,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
 
@@ -27,6 +32,7 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 
 	private ImportarDadosActivity ac;
 	private ParticipacaoDAOImpl dao;
+	private ExportadoraDados exportadora;
 
 
 	@SuppressLint("SimpleDateFormat")
@@ -35,6 +41,7 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 		helper = new DatabaseHelper(ac);
 		dateFormatJson = new SimpleDateFormat("dd-MM-yyyy"); //formato de data do Json
 		gson = new Gson();
+		exportadora = new ExportadoraDados(ac);
 	}
 
 
@@ -59,6 +66,27 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 	private boolean gravarDados(String json) {
 		db = helper.getWritableDatabase();
 		dao = new ParticipacaoDAOImpl(ac);
+		
+		//salvando arquivo
+		try {
+			// data atual
+			String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());
+
+			//grava arquivo com json na pasta Downloas do dispositivo
+			String nomeArquivo = "PresencasEvento "+ date + ".txt";
+			String dir = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + Environment.DIRECTORY_DOWNLOADS;
+
+			File arquivo = new File( dir, nomeArquivo);
+			arquivo.createNewFile();
+
+			//exporta o JSON para o arquivo
+			FileWriter writer = new FileWriter(arquivo);
+			writer.write(exportadora.getJsonEvento());
+			writer.close();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		json = json.replace("\\/", "-");
 		Evento evento = gson.fromJson(json, Evento.class);
