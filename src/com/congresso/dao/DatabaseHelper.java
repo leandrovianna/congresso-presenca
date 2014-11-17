@@ -8,7 +8,7 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	private static final String BANCO_DADOS = "congresso";
-	private static final int VERSAO = 26;
+	private static final int VERSAO = 31;
 
 	public DatabaseHelper(Context context) {
 		super(context, BANCO_DADOS, null, VERSAO);
@@ -50,13 +50,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				"SELECT participacao.ministracao_id, participacao.participante_inscricao, participacao.presenca, participacao.updated " +
 				"FROM participacao;");
 		
-		db.execSQL("PRAGMA foreign_keys=OFF"); //desativando inteferencia de FOREIGN KEYS
+		db.execSQL("PRAGMA foreign_keys = OFF;"); //desativando inteferencia de FOREIGN KEYS
 		
 		db.execSQL("DROP TABLE participacao");
-		
+
 		db.execSQL("ALTER TABLE new_participacao RENAME TO participacao");
 		
-		db.execSQL("PRAGMA foreign_keys=ON"); //reativando FOREIGN KEYS
+		db.execSQL("PRAGMA foreign_keys = ON;"); //reativando FOREIGN KEYS
 		
 		Log.i("DatabaseHelper", "Alteracao na tabela participacao completa");
 	}

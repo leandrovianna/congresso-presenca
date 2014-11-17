@@ -66,7 +66,7 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 	private boolean gravarDados(String json) {
 		db = helper.getWritableDatabase();
 		dao = new ParticipacaoDAOImpl(ac);
-		
+
 		//salvando arquivo
 		try {
 			// data atual
@@ -89,14 +89,14 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 
 		json = json.replace("\\/", "-");
 		Evento evento = gson.fromJson(json, Evento.class);
-		
+
 		if (evento == null) {
 			Log.e("ImportadoraDadosTask", "ERRO: Leitura do Json - O objeto evento é null");
 			return false;
 		}
 
 		//1a fase: guardar as participações
-//		List<Participacao> participacoesAntigas = dao.listarParticipacoesComPresenca();
+		//		List<Participacao> participacoesAntigas = dao.listarParticipacoesComPresenca();
 
 		//2a fase: excluir tudo
 		db.execSQL("DELETE FROM palestra;");
@@ -131,13 +131,10 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 				Log.i("ImportadoraDadosTask", "Data a ser passado pro banco: "+data);
 
 				Cursor cursor = db.rawQuery("SELECT palestra._id FROM palestra WHERE _id = "+
-							atividade.getCODATIVIDADE(), null);
-				
+						atividade.getCODATIVIDADE(), null);
+
 				//verificar se a palestra NAO EXISTE
 				if (cursor.getCount() == 0) {
-					
-					//limpando cursor da memória, esses resultados não são mais necessário
-					cursor.close();
 
 					//se a palestra nao existe, então vamos adiciona-la ao banco
 
@@ -148,7 +145,6 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 					values.put("nome", atividade.getATIVIDADE());
 					db.insert("palestra", null, values);
 					values.clear();
-
 
 					//criando registro Ministracao no banco
 					values.put("_id", ministracaoIdCount);
@@ -165,13 +161,10 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 							break;
 
 						Cursor cursor2 = db.rawQuery("SELECT participante.inscricao FROM participante WHERE inscricao = "+
-											participante.getCODPARTICIPANTE(), null);
-						
+								participante.getCODPARTICIPANTE(), null);
+
 						if (cursor2.getCount() == 0) {
-							
-							//limpando cursor da memória, esses resultados não são mais necessário
-							cursor2.close();
-							
+
 							Log.i("ImportadoraDadosTask", "Criando Participante cod:"+participante.getCODPARTICIPANTE());
 
 							//criando registro Participante no banco
@@ -183,19 +176,35 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 
 						}
 
-						//criando registro Participacao no banco
-						values.put("ministracao_id", ministracaoIdCount);
-						values.put("participante_inscricao",
-								Integer.parseInt(participante.getCODPARTICIPANTE()));
-						values.put("presenca", false);
-						values.put("updated", false);
-						db.insert("participacao", null, values);
-						values.clear();
+						//limpando cursor da memória, esses resultados não são mais necessário
+						cursor2.close();
+						
+						//Verificando se a participacao já existe no banco
+						Cursor cursor3 = db.rawQuery("SELECT ministracao_id, participante_inscricao " +
+								"FROM participacao WHERE ministracao_id = "+ministracaoIdCount+" " +
+								"AND participante_inscricao = "+participante.getCODPARTICIPANTE(), null);
+
+						if (cursor3.getCount() == 0) {
+							
+							Log.i("ImportadoraDadosTask", "Criando nova Participação (ministracao_id="+ministracaoIdCount+
+									" participante_inscricao="+participante.getCODPARTICIPANTE()+")");
+
+							//criando registro Participacao no banco
+							values.put("ministracao_id", ministracaoIdCount);
+							values.put("participante_inscricao",
+									Integer.parseInt(participante.getCODPARTICIPANTE()));
+							values.put("presenca", false);
+							values.put("updated", false);
+							db.insert("participacao", null, values);
+							values.clear();
+						}
+
+						cursor3.close();
 					}
 				} else {
 					//caso contrário, a palestra já existe no banco
 					//então vamos criar uma ministracao, com a nova data
-					
+
 					Log.i("ImportadoraDadosTask", "Palestra cod:"+atividade.getCODATIVIDADE()+" ja existe no banco!");
 
 					//criando registro Ministracao no banco
@@ -212,37 +221,53 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 						if (participante == null)
 							break;
 
-						//criando registro Participacao no banco
-						values.put("ministracao_id", ministracaoIdCount);
-						values.put("participante_inscricao",
-								Integer.parseInt(participante.getCODPARTICIPANTE()));
-						values.put("presenca", false);
-						values.put("updated", false);
-						db.insert("participacao", null, values);
-						values.clear();
+						Cursor cursor4 = db.rawQuery("SELECT ministracao_id, participante_inscricao " +
+								"FROM participacao WHERE ministracao_id = "+ministracaoIdCount+" " +
+								"AND participante_inscricao = "+participante.getCODPARTICIPANTE(), null);
+
+						//Verificando se a participacao já existe no banco
+						if (cursor4.getCount() == 0) {
+							
+							Log.i("ImportadoraDadosTask", "Criando nova Participação (ministracao_id="+ministracaoIdCount+
+									" participante_inscricao="+participante.getCODPARTICIPANTE()+")");
+							
+							//criando registro Participacao no banco
+							values.put("ministracao_id", ministracaoIdCount);
+							values.put("participante_inscricao",
+									Integer.parseInt(participante.getCODPARTICIPANTE()));
+							values.put("presenca", false);
+							values.put("updated", false);
+							db.insert("participacao", null, values);
+							values.clear();
+						}
+
+						cursor4.close();
 					}
 				}
 
 				ministracaoIdCount++;
+
+				//limpando cursor da memória, esses resultados não são mais necessário
+				cursor.close();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 
 			Log.e("ImportadoraDadosTask", "ERRO: Ocorreu um erro na 3ª etapa - inserção dos dados no banco");
-			
+
 		} finally {
 
 			//4a fase: reinserir participações antigas
 
-//			for (Participacao participacao : participacoesAntigas) {
-//				Log.i("ImportadoraDadosTask", "Backup: Atualizando Participacao");
-//				Log.i("ImportadoraDadosTask", "ministracao_id = "+participacao.getMinistracao().getId()+
-//						" participante nome:"+participacao.getParticipante().getNome()+
-//						" inscricao:"+participacao.getParticipante().getInscricao());
-//
-//				dao.updateParticipacao(participacao);
-//			}
-			
+			//			for (Participacao participacao : participacoesAntigas) {
+			//				Log.i("ImportadoraDadosTask", "Backup: Atualizando Participacao");
+			//				Log.i("ImportadoraDadosTask", "ministracao_id = "+participacao.getMinistracao().getId()+
+			//						" participante nome:"+participacao.getParticipante().getNome()+
+			//						" inscricao:"+participacao.getParticipante().getInscricao());
+			//
+			//				dao.updateParticipacao(participacao);
+			//			}
+
 			Log.i("ImportadoraDadosTask", "Importação Terminada.");
 		}
 
