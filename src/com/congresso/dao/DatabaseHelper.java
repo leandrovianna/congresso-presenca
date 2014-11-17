@@ -1,6 +1,5 @@
 package com.congresso.dao;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -8,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
 	private static final String BANCO_DADOS = "congresso";
-	private static final int VERSAO = 24;
+	private static final int VERSAO = 26;
 
 	public DatabaseHelper(Context context) {
 		super(context, BANCO_DADOS, null, VERSAO);
@@ -25,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		//alterando campo data para tipo TEXT
 		//assim vou salvar um valor como 2014-11-20 (yyyy-MM-dd)
 		
-		db.execSQL("CREATE TABLE participacao (_id INTEGER PRIMARY KEY, ministracao_id INTEGER," +
+		db.execSQL("CREATE TABLE participacao (ministracao_id INTEGER," +
 				" participante_inscricao INTEGER, presenca BOOLEAN, updated BOOLEAN," +
 				" FOREIGN KEY(ministracao_id) REFERENCES ministracao(_id)," +
 				" FOREIGN KEY(participante_inscricao) REFERENCES participante(inscricao));");
@@ -38,6 +37,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 //		inserirDadosTeste(db); //inserindo dados para teste
+		
+		//atualização -- removendo campo _id da tabela participacao
+		
+		db.execSQL("CREATE TABLE new_participacao (ministracao_id INTEGER," +
+				" participante_inscricao INTEGER, presenca BOOLEAN, updated BOOLEAN," +
+				" FOREIGN KEY(ministracao_id) REFERENCES ministracao(_id)," +
+				" FOREIGN KEY(participante_inscricao) REFERENCES participante(inscricao));");
+		
+		db.execSQL("INSERT INTO new_participacao " +
+				"SELECT participacao.ministracao_id, participacao.participante_inscricao, participacao.presenca, participacao.updated " +
+				"FROM participacao;");
+		
+		db.execSQL("PRAGMA foreign_keys=OFF"); //desativando inteferencia de FOREIGN KEYS
+		
+		db.execSQL("DROP TABLE participacao");
+		
+		db.execSQL("ALTER TABLE new_participacao RENAME TO participacao");
+		
+		db.execSQL("PRAGMA foreign_keys=ON"); //reativando FOREIGN KEYS
 	}
 	
 //	private void inserirDadosTeste(SQLiteDatabase db) {

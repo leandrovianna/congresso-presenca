@@ -37,8 +37,7 @@ public class ParticipacaoListActivity extends ListActivity {
 		
 		for (Participacao p : participacoes) {
 			Map<String,Object> item = new HashMap<String,Object>();
-			
-			item.put("id", p.getId());
+
 			item.put("ministracao id", p.getMinistracao().getId());
 			item.put("palestra nome", p.getMinistracao().getPalestra().getNome());
 			item.put("palestra id", p.getMinistracao().getPalestra().getId());

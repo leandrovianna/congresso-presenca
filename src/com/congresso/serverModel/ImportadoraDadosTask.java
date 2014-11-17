@@ -84,7 +84,6 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 			writer.write(exportadora.getJsonEvento());
 			writer.close();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -97,19 +96,18 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 		}
 
 		//1a fase: guardar as participações
-		List<Participacao> participacoesAntigas = dao.listarParticipacoesComPresenca();
+//		List<Participacao> participacoesAntigas = dao.listarParticipacoesComPresenca();
 
 		//2a fase: excluir tudo
 		db.execSQL("DELETE FROM palestra;");
 		db.execSQL("DELETE FROM ministracao;");
-		db.execSQL("DELETE FROM participacao;");
+		db.execSQL("DELETE FROM participacao WHERE presenca = 0;");
 		db.execSQL("DELETE FROM participante;");
 
 
 		try {
 			//3a fase: incluir os dados do json
 			int ministracaoIdCount = 0; //contador para os ids das ministracoes
-			int participacaoIdCount = 0; //contador para os ids das participacoes
 
 			for (Atividade atividade : evento.getLISTA_ATIVIDADES()) {
 
@@ -186,7 +184,6 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 						}
 
 						//criando registro Participacao no banco
-						values.put("_id", participacaoIdCount);
 						values.put("ministracao_id", ministracaoIdCount);
 						values.put("participante_inscricao",
 								Integer.parseInt(participante.getCODPARTICIPANTE()));
@@ -194,8 +191,6 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 						values.put("updated", false);
 						db.insert("participacao", null, values);
 						values.clear();
-
-						participacaoIdCount++;
 					}
 				} else {
 					//caso contrário, a palestra já existe no banco
@@ -218,7 +213,6 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 							break;
 
 						//criando registro Participacao no banco
-						values.put("_id", participacaoIdCount);
 						values.put("ministracao_id", ministracaoIdCount);
 						values.put("participante_inscricao",
 								Integer.parseInt(participante.getCODPARTICIPANTE()));
@@ -226,8 +220,6 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 						values.put("updated", false);
 						db.insert("participacao", null, values);
 						values.clear();
-
-						participacaoIdCount++;
 					}
 				}
 
@@ -242,14 +234,14 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 
 			//4a fase: reinserir participações antigas
 
-			for (Participacao participacao : participacoesAntigas) {
-				Log.i("ImportadoraDadosTask", "Backup: Atualizando Participacao");
-				Log.i("ImportadoraDadosTask", "ministracao_id = "+participacao.getMinistracao().getId()+
-						" participante nome:"+participacao.getParticipante().getNome()+
-						" inscricao:"+participacao.getParticipante().getInscricao());
-
-				dao.updateParticipacao(participacao);
-			}
+//			for (Participacao participacao : participacoesAntigas) {
+//				Log.i("ImportadoraDadosTask", "Backup: Atualizando Participacao");
+//				Log.i("ImportadoraDadosTask", "ministracao_id = "+participacao.getMinistracao().getId()+
+//						" participante nome:"+participacao.getParticipante().getNome()+
+//						" inscricao:"+participacao.getParticipante().getInscricao());
+//
+//				dao.updateParticipacao(participacao);
+//			}
 			
 			Log.i("ImportadoraDadosTask", "Importação Terminada.");
 		}

@@ -104,7 +104,6 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 	private Participacao criarParticipacao(Cursor cursor) {
 		Participacao p = new Participacao();
 
-		p.setId(cursor.getInt(cursor.getColumnIndex("_id")));
 		p.setParticipante(new Participante(
 				cursor.getInt(cursor.getColumnIndex("participante_inscricao")),
 				cursor.getString(cursor.getColumnIndex("nome"))
@@ -120,7 +119,6 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 	public boolean inserirParticipacao(Participacao participacao) {
 		ContentValues values = new ContentValues();
 
-		values.put("_id", participacao.getId());
 		values.put("ministracao_id", participacao.getMinistracao().getId());
 		values.put("participante_inscricao", participacao.getParticipante().getInscricao());
 		values.put("presenca", participacao.isPresenca());
@@ -133,25 +131,12 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 
 	@Override
 	public boolean removerParticipacao(Participacao participacao) {
-		int retorno = getDb().delete("participacao", "WHERE _id = "+participacao.getId(), null);
+		int retorno = getDb().delete("participacao", "ministracao_id = "+participacao.getMinistracao().getId()+
+				" AND participante_inscricao = "+participacao.getParticipante().getInscricao(), null);
 
 		return retorno != 0;
 	}
 
-
-
-	@Override
-	public Participacao buscarParticipacaoPorId(int id) {
-		Participacao p;
-
-		Cursor cursor = getDb().rawQuery("SELECT * FROM participacao, participante " +
-				"WHERE participacao.participante_inscricao = participante.inscricao AND " +
-				"participacao._id = "+id, null);
-
-		p = criarParticipacao(cursor);
-
-		return p;
-	}
 
 	@Override
 	public Participacao buscarParticipacaoPorInscricaoMinistracao(
@@ -175,7 +160,6 @@ public class ParticipacaoDAOImpl implements ParticipacaoDAO {
 	public boolean updateParticipacao(Participacao participacao) {
 		ContentValues values = new ContentValues();
 
-		values.put("_id", participacao.getId());
 		values.put("ministracao_id", participacao.getMinistracao().getId());
 		values.put("participante_inscricao", participacao.getParticipante().getInscricao());
 		values.put("presenca", participacao.isPresenca());
