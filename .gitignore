@@ -1,4 +1,5 @@
 bin/*
-!bin/*.apk
+#!bin/*.apk
+gen/*
 *.bak
-Thumbs.db
+*Thumbs.db
