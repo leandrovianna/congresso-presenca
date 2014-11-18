@@ -10,15 +10,13 @@ public class Participacao implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Ministracao ministracao;
 	private Participante participante;
-	private int id;
 	private boolean presenca;
 	private boolean updated;
 	
 	public Participacao(Ministracao ministracao, Participante participante,
-			int id, boolean presenca, boolean updated) {
+			boolean presenca, boolean updated) {
 		this.ministracao = ministracao;
 		this.participante = participante;
-		this.id = id;
 		this.presenca = presenca;
 		this.updated = updated;
 	}
@@ -39,14 +37,6 @@ public class Participacao implements Serializable {
 
 	public void setParticipante(Participante participante) {
 		this.participante = participante;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public boolean isPresenca() {

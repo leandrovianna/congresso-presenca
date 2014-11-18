@@ -14,9 +14,7 @@ public interface ParticipacaoDAO {
 	public boolean removerParticipacao(Participacao participacao);
 	
 	public boolean updateParticipacao(Participacao participacao);
-	
-	public Participacao buscarParticipacaoPorId(int id);
-	
+		
 	public Participacao buscarParticipacaoPorInscricaoMinistracao(int inscricao, Ministracao ministracao);
 
 }

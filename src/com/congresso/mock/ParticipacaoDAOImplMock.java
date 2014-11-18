@@ -23,9 +23,9 @@ public class ParticipacaoDAOImplMock implements ParticipacaoDAO {
 		
 		Ministracao m = new Ministracao(0, new Palestra("Desenvolvimento de Jogos", 0), new Date());
 		
-		Participacao p1 = new Participacao(m, new Participante(0100, "José Maria"), 0, true, true);
-		Participacao p2 = new Participacao(m, new Participante(0102, "Luis Henrique"), 1, true, true);
-		Participacao p3 = new Participacao(m, new Participante(0103, "Paulo"), 2, false, true);
+		Participacao p1 = new Participacao(m, new Participante(0100, "José Maria"), true, true);
+		Participacao p2 = new Participacao(m, new Participante(0102, "Luis Henrique"), true, true);
+		Participacao p3 = new Participacao(m, new Participante(0103, "Paulo"), false, true);
 		
 		participacoes.add(p1);
 		participacoes.add(p2);
@@ -45,18 +45,10 @@ public class ParticipacaoDAOImplMock implements ParticipacaoDAO {
 	}
 
 	@Override
-	public Participacao buscarParticipacaoPorId(int id) {
-		Ministracao m = new Ministracao(0, new Palestra("Desenvolvimento de Jogos", 0), new Date());
-		Participacao p = new Participacao(m, new Participante(0100, "José Maria"), id, true, true);
-		
-		return p;
-	}
-
-	@Override
 	public Participacao buscarParticipacaoPorInscricaoMinistracao(
 			int inscricao, Ministracao ministracao) {
 		
-		Participacao p = new Participacao(ministracao, new Participante(inscricao, "José Maria"), 0, true, true);
+		Participacao p = new Participacao(ministracao, new Participante(inscricao, "José Maria"), true, true);
 		
 		return p;
 	}
