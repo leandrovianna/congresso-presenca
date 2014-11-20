@@ -1,4 +1,4 @@
-package com.congresso;
+package com.congresso.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

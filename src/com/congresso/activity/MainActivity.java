@@ -1,21 +1,42 @@
-package com.congresso;
+package com.congresso.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.congresso.R;
 
 public class MainActivity extends Activity {
 	
 	private Intent intent;
+	
+	private TextView tvVersion;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.activity_main);
 		setContentView(R.layout.inspec_main);
+
+		//pegando objeto com informações do manifesto
+		PackageInfo pInfo;
+		
+		try {
+			pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+			
+			tvVersion = (TextView) findViewById(R.id.tvVersion);
+			tvVersion.setText("V"+pInfo.versionName);
+			
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void abrirListaPalestras(View v) {

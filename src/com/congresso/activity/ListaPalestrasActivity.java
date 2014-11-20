@@ -1,4 +1,4 @@
-package com.congresso;
+package com.congresso.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +14,10 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.congresso.R;
+import com.congresso.R.id;
+import com.congresso.R.layout;
+import com.congresso.R.menu;
 import com.congresso.dao.MinistracaoDAOImpl;
 import com.congresso.model.Ministracao;
 

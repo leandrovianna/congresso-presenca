@@ -1,4 +1,4 @@
-package com.congresso;
+package com.congresso.activity;
 
 import jim.h.common.android.zxinglib.integrator.IntentIntegrator;
 import jim.h.common.android.zxinglib.integrator.IntentResult;
@@ -16,6 +16,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.congresso.R;
+import com.congresso.R.id;
+import com.congresso.R.layout;
+import com.congresso.R.string;
 import com.congresso.dao.ParticipacaoDAOImpl;
 import com.congresso.model.Ministracao;
 import com.congresso.model.Participacao;

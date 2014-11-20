@@ -1,4 +1,4 @@
-package com.congresso;
+package com.congresso.activity;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -24,6 +24,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.congresso.R;
+import com.congresso.R.id;
+import com.congresso.R.layout;
+import com.congresso.R.menu;
+import com.congresso.R.string;
 import com.congresso.httpClient.HttpClientListener;
 import com.congresso.httpClient.InternetCheck;
 import com.congresso.httpClient.PostHttpClientTask;

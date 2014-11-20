@@ -1,4 +1,4 @@
-package com.congresso;
+package com.congresso.activity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +9,9 @@ import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.SimpleAdapter;
 
+import com.congresso.R;
+import com.congresso.R.id;
+import com.congresso.R.layout;
 import com.congresso.dao.ParticipacaoDAOImpl;
 import com.congresso.model.Participacao;
 
