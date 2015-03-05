@@ -1,4 +1,4 @@
-package com.congresso.inspector;
+package com.congresso;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
