@@ -17,7 +17,7 @@ public class TesteHttpClientPost extends Activity implements HttpClientListener{
 		setContentView(R.layout.activity_teste_http_client);
 		
 		/***
-		 * Código para envio POST ao servidor http
+		 * CÃ³digo para envio POST ao servidor http
 		 */
 		
 		//cria a tarefa

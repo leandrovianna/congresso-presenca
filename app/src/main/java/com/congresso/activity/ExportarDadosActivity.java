@@ -1,20 +1,9 @@
 package com.congresso.activity;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,16 +14,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.congresso.R;
-import com.congresso.R.id;
-import com.congresso.R.layout;
-import com.congresso.R.menu;
-import com.congresso.R.string;
 import com.congresso.httpClient.HttpClientListener;
 import com.congresso.httpClient.InternetCheck;
 import com.congresso.httpClient.PostHttpClientTask;
 import com.congresso.serverModel.ExportadoraDados;
 
-public class ExportarDadosActivity extends Activity implements HttpClientListener, OnClickListener {
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class ExportarDadosActivity extends ActionBarActivity implements HttpClientListener, OnClickListener {
 
 	public static final String JSON_EXPORTADO_EXTRA = "com.congresso.json_exportado_extra";
 	
