@@ -1,0 +1,43 @@
+
+SELECT 
+
+    participacao.participante_inscricao as cod_participante,
+    palestra._id as cod_atividade
+                        
+FROM
+
+    palestra
+        INNER JOIN 
+    ministracao
+        ON 
+    palestra._id = ministracao.palestra_id
+        
+    INNER JOIN
+    participacao
+        ON ministracao._id = participacao.ministracao_id
+        
+WHERE
+    participacao.presenca = 1
+    
+GROUP BY 
+    participacao.participante_inscricao
+        
+HAVING 
+    count(participacao.participante_inscricao) >= 0.75* 
+
+  	    (SELECT 
+                count(ministracao.palestra_id) as ministracoes
+            FROM 
+                ministracao
+            WHERE ministracao.palestra_id = palestra._id )
+
+
+
+
+
+
+
+
+
+
+
