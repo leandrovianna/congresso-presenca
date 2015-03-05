@@ -1,5 +1,0 @@
-bin/*
-#!bin/*.apk
-gen/*
-*.bak
-*Thumbs.db
