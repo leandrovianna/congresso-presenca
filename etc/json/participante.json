@@ -1,0 +1,16 @@
+{
+	"participante" : [
+		{
+			"inscricao" : 30000,
+			"nome" : "ADILSON CORREIA GOULART"
+		},
+		{
+			"inscricao" : 30001,
+			"nome" : "ADRIELLY BORGES RODRIGUES"
+		},
+		{
+			"inscricao" : 30002,
+			"nome" : "ALEXANDRINA PEREIRA FERREIRA"
+		}
+	]
+}

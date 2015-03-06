@@ -1,0 +1,56 @@
+{
+	"participacao" : [
+		{
+			"ministracao_id" : 1001,
+			"participante_inscricao" : 30000
+		},
+		{
+			"ministracao_id" : 1001,
+			"participante_inscricao" : 30001
+		},
+		{
+			"ministracao_id" : 1001,
+			"participante_inscricao" : 30002
+		},
+		{
+			"ministracao_id" : 1002,
+			"participante_inscricao" : 30000
+		},
+		{
+			"ministracao_id" : 1002,
+			"participante_inscricao" : 30001
+		},
+		{
+			"ministracao_id" : 1002,
+			"participante_inscricao" : 30002
+		},
+		{
+			"ministracao_id" : 1003,
+			"participante_inscricao" : 30001
+		},
+		{
+			"ministracao_id" : 1004,
+			"participante_inscricao" : 30001
+		},
+		{
+			"ministracao_id" : 1003,
+			"participante_inscricao" : 30002
+		},
+		{
+			"ministracao_id" : 1004,
+			"participante_inscricao" : 30002
+		},
+		{
+			"ministracao_id" : 1005,
+			"participante_inscricao" : 30000
+		},
+		{
+			"ministracao_id" : 1005,
+			"participante_inscricao" : 30001
+		},
+		{
+			"ministracao_id" : 1005,
+			"participante_inscricao" : 30002
+		}
+	]
+}
