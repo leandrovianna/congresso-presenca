@@ -59,7 +59,7 @@ public class ImportadoraDadosTask extends AsyncTask<String, String, Boolean>{
 		dao.close();
 		db.close();
 
-		ac.retornoGravacaoDados(result);
+//		ac.retornoGravacaoDados(result);
 	}
 
 

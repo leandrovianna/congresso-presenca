@@ -1,136 +1,92 @@
 package com.congresso.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.congresso.R;
-import com.congresso.R.id;
-import com.congresso.R.layout;
-import com.congresso.R.menu;
-import com.congresso.R.string;
-import com.congresso.httpClient.GetHttpClientTask;
-import com.congresso.httpClient.HttpClientListener;
+import com.congresso.dataimport.ImportadoraDados;
+import com.congresso.dataimport.ImportadoraListener;
 import com.congresso.httpClient.InternetCheck;
-import com.congresso.serverModel.ImportadoraDadosTask;
 
-public class ImportarDadosActivity extends Activity implements HttpClientListener {
+public class ImportarDadosActivity extends ActionBarActivity implements ImportadoraListener {
 
-	private ProgressBar progressBar;
-	private TextView tvLink;
-	private TextView tvAguarde;
-	private Button btImportar;
-	private EditText etLink;
+    private ProgressBar progressBar;
+    private TextView tvAguarde;
+    private Button btImportar;
 
-	private GetHttpClientTask getHttpTask;
-	private final String link = "http://intranet.ifg.edu.br/eventos/admin/dadosjson.php";
-	
-	private ImportadoraDadosTask taskUpdate;
+    private ImportadoraDados importadoraDados;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_importar_dados);
-		
-		getHttpTask = new GetHttpClientTask();
-		getHttpTask.addHttpClientListener(this);
-		
-		taskUpdate = new ImportadoraDadosTask(this);
-		
-		progressBar = (ProgressBar) findViewById(R.id.progressBar);
-		tvLink      = (TextView) findViewById(R.id.tv_link);
-		tvAguarde   = (TextView) findViewById(R.id.tv_aguarde);
-		btImportar  = (Button) findViewById(R.id.bt_importar);
-		etLink      = (EditText) findViewById(R.id.et_link);
-		
-		etLink.setText(link);
-		
-		ativarTelaNormal();
-	}
-	
-	public void loadFromServer(View v) {
-		
-		if(InternetCheck.isConnected(this)){
-			ativarTelaCarregamento();
-			tvAguarde.setText(getString(R.string.importando_dados) + " " + etLink.getText().toString());
-			getHttpTask.execute(etLink.getText().toString());
-		}else{
-			Toast.makeText(this, getString(R.string.internet_erro), Toast.LENGTH_LONG).show();
-		}
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_importar_dados);
 
-	@Override
-	public void updateHttpClientListener(String result) {
-		
-		if (!result.equals(null)){
-			Toast.makeText(this, getString(R.string.importacao_sucesso), Toast.LENGTH_SHORT).show();
-			tvAguarde.setText(getString(R.string.gravando_bd));
-			
-			taskUpdate.execute(result);
-			
-			//boolean retorno = importadora.gravarDados(result);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        tvAguarde = (TextView) findViewById(R.id.tv_aguarde);
+        btImportar = (Button) findViewById(R.id.bt_importar);
 
-		}else{
-			Toast.makeText(this, getString(R.string.dados_naoImportados), Toast.LENGTH_SHORT).show();
-		}
-				
-	}
-	
-	
-	public void retornoGravacaoDados(Boolean retorno){
-		
-		if (retorno)
-			tvAguarde.setText(getString(R.string.dados_importadosEgravados));
-		else
-			tvAguarde.setText(getString(R.string.dados_naoGravados));			
-		
-		ativarTelaNormal();
-		tvAguarde.setVisibility(View.VISIBLE);
-		
-	}
-	
-	
-	
-	
-	private void ativarTelaCarregamento() {
-		tvLink.setVisibility(View.INVISIBLE);
-		btImportar.setVisibility(View.INVISIBLE);
-		etLink.setVisibility(View.INVISIBLE);
-		progressBar.setVisibility(View.VISIBLE);
-		tvAguarde.setVisibility(View.VISIBLE);
-	}
-	
-	private void ativarTelaNormal() {
-		tvLink.setVisibility(View.VISIBLE);
-		btImportar.setVisibility(View.VISIBLE);
-		etLink.setVisibility(View.VISIBLE);
-		progressBar.setVisibility(View.INVISIBLE);
-		tvAguarde.setVisibility(View.INVISIBLE);
-	}
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.importar_dados, menu);
-		return true;
-	}
+        importadoraDados = new ImportadoraDados(this, this);
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+        ativarTelaNormal();
+    }
+
+    public void loadFromServer(View v) {
+
+        if (InternetCheck.isConnected(this)) {
+            ativarTelaCarregamento();
+            importadoraDados.iniciar();
+            tvAguarde.setText("Os dados estão sendo importados para o seu dispositivo");
+        } else {
+            Toast.makeText(this, getString(R.string.internet_erro), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void updateImportacao(boolean result) {
+        if (result)
+            tvAguarde.setText(getString(R.string.dados_importadosEgravados));
+        else
+            tvAguarde.setText(getString(R.string.dados_naoGravados));
+
+        ativarTelaNormal();
+        tvAguarde.setVisibility(View.VISIBLE);
+    }
+
+    private void ativarTelaCarregamento() {
+        btImportar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
+        tvAguarde.setVisibility(View.VISIBLE);
+    }
+
+    private void ativarTelaNormal() {
+        btImportar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
+        tvAguarde.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.importar_dados, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
